@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
+using Utils;
 
 namespace TP_POO_a30517.Models
 {
@@ -31,8 +32,8 @@ namespace TP_POO_a30517.Models
         private static int nextId = 1;
         private int id { get; set; }
         private string name { get; set; }
-        private DateTime birthdate { get; set; }
-        private int age { get; set; }
+        private DateOnly birthdate { get; set; }
+        private readonly CalculateAge ageCalculator = new CalculateAge();
         private string citizenCard { get; set; }
         private string phone { get; set; }
         private string email { get; set; }
@@ -58,16 +59,13 @@ namespace TP_POO_a30517.Models
             get => name;
             set => name = value;
         }
-        public DateTime Birthdate
+        public DateOnly Birthdate
         {
             get => birthdate;
             set => birthdate = value;
         }
-   
-        public int Age
-        {
-            get => DateTime.Now.Year - Birthdate.Year;
-        }
+
+        public int Age => ageCalculator.Age(Birthdate);
         public string CitizenCard
         {
             get => citizenCard;
@@ -104,25 +102,28 @@ namespace TP_POO_a30517.Models
             get => role;
             set => role = value;
         }
+
         #endregion
 
-        #region Constructors                
+        #region Constructors                        
         /// <summary>
         /// Initializes a new instance of the <see cref="Person"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="birthdate">The birthdate.</param>
+        /// <param name="Age">The age.</param>
         /// <param name="citizenCard">The citizen card.</param>
         /// <param name="phone">The phone.</param>
         /// <param name="email">The email.</param>
         /// <param name="address">The address.</param>
         /// <param name="nationality">The nationality.</param>
         /// <param name="role">The role.</param>
-        public Person(string name, DateTime birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role)
+        public Person(string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role)
         {
             Id = GenerateId();
             this.Name = name;
             this.Birthdate = birthdate;
+            
             this.CitizenCard = citizenCard;
             this.Phone = phone; 
             this.Email = email;
@@ -164,7 +165,7 @@ namespace TP_POO_a30517.Models
         {
             return $"ID: {Id}\n" +
                    $"Name: {Name}\n" +
-                   $"Birthdate: {Birthdate.ToShortDateString()}\n" +
+                   $"Birthdate: {Birthdate}\n" +
                    $"Age: {Age}\n" +
                    $"Citizen Card: {CitizenCard}\n" +
                    $"Phone: {Phone}\n" +
@@ -185,5 +186,7 @@ namespace TP_POO_a30517.Models
             return nextId++;
         }
         #endregion
+
+        
     }
 }

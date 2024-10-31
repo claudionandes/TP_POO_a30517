@@ -62,18 +62,22 @@ namespace TP_POO_a30517.Models
         }
         #endregion
 
-        #region Construtors                
+        #region Construtors                        
         /// <summary>
         /// Initializes a new instance of the <see cref="FireFighter"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="birthdate">The birthdate.</param>
+        /// <param name="Age">The age.</param>
         /// <param name="citizenCard">The citizen card.</param>
         /// <param name="phone">The phone.</param>
+        /// <param name="email">The email.</param>
         /// <param name="address">The address.</param>
+        /// <param name="nationality">The nationality.</param>
+        /// <param name="role">The role.</param>
         /// <param name="yearsOfExperience">The years of experience.</param>
         /// <param name="specialization">The specialization.</param>
-        public FireFighter (string name, DateTime birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, int yearsOfExperience, string specialization)
+        public FireFighter (string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, int yearsOfExperience, string specialization)
             :base (name, birthdate, citizenCard, phone, email, address, nationality, role)
         {
             YearsOfExperience = yearsOfExperience;
@@ -90,7 +94,7 @@ namespace TP_POO_a30517.Models
         {
             return $"ID: {Id}\n" +
                    $"Name: {Name}\n" +
-                   $"Birthdate: {Birthdate.ToShortDateString()}\n" +
+                   $"Birthdate: {Birthdate}\n" +
                    $"Age: {Age}\n" +
                    $"Citizen Card: {CitizenCard}\n" +
                    $"Phone: {Phone}\n" +

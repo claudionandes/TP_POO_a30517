@@ -24,7 +24,7 @@ namespace TP_POO_a30517.Equipments
         private VehiclesType type { get; set; }
         private string brand { get; set; }
         private DateOnly inspDate { get; set; }
-        private StatusVehicle status { get; set; }
+        private VehiclesStatus status { get; set; }
         #endregion
     }
 }

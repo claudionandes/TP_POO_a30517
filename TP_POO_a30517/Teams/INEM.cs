@@ -29,7 +29,7 @@ namespace TP_POO_a30517.Teams
         private static int nextId = 1;
         private int id { get; set; }
         private string name { get; set; }
-        private TeamStatus status { get; set; } = TeamStatus.Available;
+        private TeamStatus status { get; set; } = TeamStatus.Disponível;
         
         #endregion
 
