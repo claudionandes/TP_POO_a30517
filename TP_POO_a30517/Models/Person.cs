@@ -91,12 +91,6 @@ namespace TP_POO_a30517.Models
             get => nationality;
             set => nationality = value;
         }
-        /// <summary>
-        /// Gets or sets the role.
-        /// </summary>
-        /// <value>
-        /// The role.
-        /// </value>
         public Roles Role
         {
             get => role;
@@ -105,13 +99,12 @@ namespace TP_POO_a30517.Models
 
         #endregion
 
-        #region Constructors                        
+        #region Constructors                                
         /// <summary>
         /// Initializes a new instance of the <see cref="Person"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="birthdate">The birthdate.</param>
-        /// <param name="Age">The age.</param>
         /// <param name="citizenCard">The citizen card.</param>
         /// <param name="phone">The phone.</param>
         /// <param name="email">The email.</param>
@@ -161,18 +154,18 @@ namespace TP_POO_a30517.Models
         /// Returnses the values.
         /// </summary>
         /// <returns></returns>
-        public virtual string ReturnsValues()
+        public virtual string ReturnsValuesPerson()
         {
             return $"ID: {Id}\n" +
-                   $"Name: {Name}\n" +
-                   $"Birthdate: {Birthdate}\n" +
-                   $"Age: {Age}\n" +
-                   $"Citizen Card: {CitizenCard}\n" +
-                   $"Phone: {Phone}\n" +
+                   $"Nome: {Name}\n" +
+                   $"Data de Nascimento: {Birthdate}\n" +
+                   $"Idade: {Age}\n" +
+                   $"Cartão de Cidadão: {CitizenCard}\n" +
+                   $"Telemóvel: {Phone}\n" +
                    $"Email: {Email}\n" +
-                   $"Address: {Address}\n" +
-                   $"Nationality: {Nationality}\n" +
-                   $"Role: {Role}";
+                   $"Morada: {Address}\n" +
+                   $"Nacionalidade: {Nationality}\n" +
+                   $"Cargo: {Role}";
         }
         #endregion
 

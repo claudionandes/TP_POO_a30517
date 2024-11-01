@@ -50,7 +50,7 @@ namespace TP_POO_a30517.Models
         public string TechnicalNumber
         {
             get => technicalNumber;
-            set => technicalNumber = value ?? throw new ArgumentException("Technical number is mandatory");
+            set => technicalNumber = value ?? throw new ArgumentException("Número Mecanográfico é obrigatório");
         }
         #endregion
 
@@ -82,20 +82,11 @@ namespace TP_POO_a30517.Models
         /// Returnses the values.
         /// </summary>
         /// <returns>Details of all "EmergencyTechnician" properties</returns>
-        public override string ReturnsValues()
+        public override string ReturnsValuesPerson()
         {
-            return $"ID: {Id}\n" +
-                   $"Name: {Name}\n" +
-                   $"Birthdate: {Birthdate}\n" +
-                   $"Age: {Age}\n" +
-                   $"Citizen Card: {CitizenCard}\n" +
-                   $"Phone: {Phone}\n" +
-                   $"Email: {Email}\n" +
-                   $"Address: {Address}\n" +
-                   $"Nationality: {Nationality}\n" +
-                   $"Role: {Role}\n" +
-                   $"Professional Name: {ProfessionalName}\n" +
-                   $"Technical Number: {TechnicalNumber}";
+            return base.ReturnsValuesPerson() + "\n" +
+                   $"Nome Profissional: {ProfessionalName}\n" +
+                   $"Número Mecanográfico: {TechnicalNumber}";
         }
         #endregion
     }

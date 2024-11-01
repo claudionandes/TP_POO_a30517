@@ -87,5 +87,16 @@ namespace TP_POO_a30517.Equipments
             this.Status = status;
         }
         #endregion
+
+        #region Public Methods
+        public string ReturnsValuesEquipment()
+        {
+            return $"ID: {Id}\n" +
+                   $"Nome: {Name}\n" +
+                   $"Tipo: {Type}\n" +
+                   $"Stock: {QuantityAvailable}\n" +
+                   $"Estado: {Status}\n";
+        }
+        #endregion
     }
 }

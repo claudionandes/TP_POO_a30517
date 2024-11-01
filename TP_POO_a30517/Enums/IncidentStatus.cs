@@ -20,9 +20,9 @@ namespace TP_POO_a30517.Enums
     /// </summary>
     public enum IncidentStatus
     {
-        EmEspera,
-        EmProgresso,
-        Resolvido,
+        Em_Espera,
+        Em_Progresso,
+        Terminado,
         Outro
     }
 }

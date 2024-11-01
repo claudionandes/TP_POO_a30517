@@ -31,6 +31,8 @@ namespace TP_POO_a30517.Teams
         private string name;
         private List<Person> members;
         private TeamStatus status;
+        private VehiclesType vehicleType;
+        private EquipmentType equipmentType;
         #endregion
 
         #region Public Properties        
@@ -39,13 +41,13 @@ namespace TP_POO_a30517.Teams
         /// </summary>
         public int Id
         {
-            get => id; 
+            get => id;
             set => id = value;
         }
         public string Name
         {
             get => name;
-            set => name = value ?? "Not specified";
+            set => name = value ?? "Não especificado";
         }
         public List<Person> Members
         {
@@ -54,34 +56,52 @@ namespace TP_POO_a30517.Teams
         }
         public TeamStatus Status
         {
-            get => status; 
+            get => status;
             set => status = value;
+        }
+
+        public VehiclesType VehicleType
+        {
+            get => vehicleType;
+            set => vehicleType = value;
+        }
+
+        public EquipmentType EquipmentType
+        {
+            get => equipmentType;
+            set => equipmentType = value;
         }
         #endregion
 
-        #region Construtors        
+        #region Constructors        
         /// <summary>
         /// Initializes a new instance of the <see cref="RescueTeam"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="members">The members.</param>
         /// <param name="status">The status.</param>
-        public RescueTeam (string name, List<Person> members, TeamStatus status)
+        /// <param name="vehicleType">The type of vehicle.</param>
+        /// <param name="equipmentType">The type of equipment.</param>
+        public RescueTeam(string name, List<Person> members, TeamStatus status, VehiclesType vehicleType, EquipmentType equipmentType)
         {
             Id = GenerateId();
             Name = name;
             Members = members ?? new List<Person>();
             Status = status;
+            VehicleType = vehicleType;
+            EquipmentType = equipmentType;
         }
         #endregion
 
         #region Public Methods
-        public virtual string ReturnsValues()
-            {
+        public string TeamDetailsRescueTeam()
+        {
             return $"ID: {Id}\n" +
-                   $"Name: {Name}\n" +
-                   $"Members: {string.Join(", ", Members.Select(m => m.Name))}\n" +
-                   $"Status: {Status}\n";
+                   $"Nome: {Name}\n" +
+                   $"Membros: {string.Join(", ", Members.Select(m => m.Name))}\n" +
+                   $"Estado: {Status}\n" +
+                   $"Tipo de Veículo: {VehicleType}\n" +
+                   $"Tipo de Equipamento: {EquipmentType}\n";
         }
         #endregion
 

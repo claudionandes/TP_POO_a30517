@@ -53,7 +53,7 @@ namespace TP_POO_a30517.Models
         public string CardNumber
         { 
             get => cardNumber;
-            set => cardNumber = value ?? throw new ArgumentException("Card number is mandatory");
+            set => cardNumber = value ?? throw new ArgumentException("Número de cédula é obrigatório");
         }
         /// <summary>
         /// Gets or sets the area of activity.
@@ -64,7 +64,7 @@ namespace TP_POO_a30517.Models
         public string AreaOfActivity
         {
             get => areaOfActivity;
-            set => areaOfActivity = value ?? "General";
+            set => areaOfActivity = value ?? "Geral";
         }
         #endregion
 
@@ -98,21 +98,12 @@ namespace TP_POO_a30517.Models
         /// Returnses the values.
         /// </summary>
         /// <returns>Details of all "Nurse" properties</returns>
-        public override string ReturnsValues()
+        public override string ReturnsValuesPerson()
         {
-            return $"ID: {Id}\n" +
-                   $"Name: {Name}\n" +
-                   $"Birthdate: {Birthdate}\n" +
-                   $"Age: {Age}\n" +
-                   $"Citizen Card: {CitizenCard}\n" +
-                   $"Phone: {Phone}\n" +
-                   $"Email: {Email}\n" +
-                   $"Address: {Address}\n" +
-                   $"Nationality: {Nationality}\n" +
-                   $"Role: {Role}\n" +
-                   $"Professional Name: {ProfessionalName}\n" +
-                   $"Card Number: {CardNumber}\n" +
-                   $"Area Of Activity: {AreaOfActivity}";
+            return base.ReturnsValuesPerson() + "\n" +
+                   $"Nome Profissional: {ProfessionalName}\n" +
+                   $"Número de Cédula: {CardNumber}\n" +
+                   $"Área de Atividade: {AreaOfActivity}";
         }
         #endregion
     }

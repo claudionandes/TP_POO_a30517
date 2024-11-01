@@ -46,7 +46,7 @@ namespace TP_POO_a30517.Models
                 if (value >= 0)
                     yearsOfExperience = value;
                 else
-                    throw new ArgumentException("Years of experience cannot be negative");
+                    throw new ArgumentException("Número de anos de experiência não pode ser negativo");
             }
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace TP_POO_a30517.Models
         public string Specialization
         {
             get => specialization;
-            set => specialization = value ?? "Not specified";
+            set => specialization = value ?? "Não especificado";
         }
         #endregion
 
@@ -90,20 +90,12 @@ namespace TP_POO_a30517.Models
         /// Returnses the values.
         /// </summary>
         /// <returns>Details of all "FireFighter" properties</returns>
-        public override string ReturnsValues()
+        public override string ReturnsValuesPerson()
         {
-            return $"ID: {Id}\n" +
-                   $"Name: {Name}\n" +
-                   $"Birthdate: {Birthdate}\n" +
-                   $"Age: {Age}\n" +
-                   $"Citizen Card: {CitizenCard}\n" +
-                   $"Phone: {Phone}\n" +
-                   $"Email: {Email}\n" +
-                   $"Address: {Address}\n" +
-                   $"Nationality: {Nationality}\n" +
-                   $"Years Of Experience: {YearsOfExperience} years\n" +
-                   $"Specialization: {Specialization}\n" +
-                   $"Role: {Role}";
+            return base.ReturnsValuesPerson() + "\n" +
+                   $"Anos de Experiência: {YearsOfExperience} years\n" +
+                   $"Especialização: {Specialization}\n" +
+                   $"Cargo: {Role}";
         }
         #endregion
     }

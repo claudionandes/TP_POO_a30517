@@ -116,17 +116,21 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Returnses the values.
+        /// </summary>
+        /// <returns>Details of all "Incident" properties</returns>
         public virtual string ReturnsValues()
         {
             return $"ID: {Id}\n" +
-                   $"Description: {Description}\n" +
-                   $"Created: {Created}\n" +
-                   $"Location: {Location}\n" +
-                   $"Severity: {Severity}\n" +
-                   $"Type: {Type}\n" +
-                   $"Status: {Status}\n" +
-                   $"Equipment Used: {string.Join(", ", EquipmentUsed.Select(e => e.Name))}\n" +
-                   $"Rescue Team: {RescueTeam}";
+                   $"Descrição: {Description}\n" +
+                   $"Criação: {Created}\n" +
+                   $"Localização: {Location}\n" +
+                   $"Gravidade: {Severity}\n" +
+                   $"Tipo: {Type}\n" +
+                   $"Estado: {Status}\n" +
+                   $"Equipmaneto utilizado: {string.Join(", ", EquipmentUsed.Select(e => e.Name))}\n" +
+                   $"Equipa de Socorro: {RescueTeam}";
         }
         #endregion
     }

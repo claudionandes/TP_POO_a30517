@@ -25,8 +25,6 @@ namespace TP_POO_a30517
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             //ApplicationConfiguration.Initialize();
             //Application.Run(new Form1());
             #region Person
@@ -38,34 +36,35 @@ namespace TP_POO_a30517
 
             #region Professional Details
             //Console.WriteLine("Professional Details:");
-            //Console.WriteLine(nurse.ReturnsValues());
+            //Console.WriteLine(nurse.ReturnsValuesPerson());
             //Console.WriteLine();
-            //Console.WriteLine(doctor.ReturnsValues());
+            //Console.WriteLine(doctor.ReturnsValuesPerson());
             //Console.WriteLine();
-            //Console.WriteLine(firefighter.ReturnsValues());
+            //Console.WriteLine(firefighter.ReturnsValuesPerson());
             #endregion
 
             #region INEM Team Creation
-            INEM inemTeam = new INEM("INEM Team A", doctor, nurse, technician, TeamStatus.Alocado);
+            INEM inemTeam = new INEM("INEM Team A", doctor, nurse, technician, VehiclesType.Ambulância_de_Emergência_Médica_AEM, EquipmentType.Desfibrilhador, TeamStatus.Alocado);
             #endregion
 
             #region Display INEM Team Details
             Console.WriteLine("INEM Team Details:");
-            Console.WriteLine(inemTeam.TeamDetails());
+            Console.WriteLine(inemTeam.TeamDetailsINEM());
             #endregion
 
             #region Add professionals to a list
-            List<Person> members = new List<Person> { firefighter, doctor, nurse };
+            List<Person> members = new List<Person> { firefighter, doctor, nurse};
             #endregion
 
             #region Rescue Team Creation
-            RescueTeam rescueTeam = new RescueTeam("Rescue Team A", members, TeamStatus.Disponível);
+            RescueTeam rescueTeam = new RescueTeam("Rescue Team A", members, TeamStatus.Disponível,VehiclesType.Ambulância_de_Socorro, EquipmentType.Cadeira_Transporte);
             #endregion
 
             #region Display Rescue Team Details
             Console.WriteLine("\nRescue Team Details:");
-            Console.WriteLine(rescueTeam.ReturnsValues());
+            Console.WriteLine(rescueTeam.TeamDetailsRescueTeam());
             #endregion
+
         }
     }
 }

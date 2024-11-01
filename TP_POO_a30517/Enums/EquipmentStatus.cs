@@ -22,7 +22,8 @@ namespace TP_POO_a30517.Enums
     {
         Disponível,
         Ocupado,
-        EmManutenção,
+        Em_Manutenção,
+        Sem_Stock,
         Outro
     }
 }
