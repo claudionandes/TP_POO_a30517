@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Equipments;
+using TP_POO_a30517.Interfaces;
 using TP_POO_a30517.Models;
 using TP_POO_a30517.Teams;
 
@@ -23,7 +24,7 @@ namespace TP_POO_a30517.Incidents
     /// <summary>
     /// Public class Incident
     /// </summary>
-    public abstract class Incident
+    public abstract class Incident : IEmergency
     {
         #region Private Properties        
         private int id;
@@ -34,7 +35,7 @@ namespace TP_POO_a30517.Incidents
         private IncidentType type;
         private IncidentStatus status;
         private List<Equipment> equipmentUsed;
-        private RescueTeam rescueTeam;
+        private TeamType teamType;
         #endregion
 
         #region Public Properties        
@@ -83,10 +84,10 @@ namespace TP_POO_a30517.Incidents
             get => equipmentUsed; 
             set => equipmentUsed = value;
         }
-        public RescueTeam RescueTeam
+        public TeamType TeamType
         {
-            get => rescueTeam;
-            set => rescueTeam = value;
+            get => teamType;
+            set => teamType = value;
         }
         #endregion
 
@@ -101,8 +102,8 @@ namespace TP_POO_a30517.Incidents
         /// <param name="type">The type.</param>
         /// <param name="status">The status.</param>
         /// <param name="equipmentUsed">The equipment used.</param>
-        /// <param name="rescueTeam">The rescue team.</param>
-        public Incident (string description, DateTime created, string location, IncidentSeverityLevel severity, IncidentType type, IncidentStatus status, List<Equipment> equipmentUsed, RescueTeam rescueTeam)
+        /// <param name="teamType">The team Type.</param>
+        public Incident (string description, DateTime created, string location, IncidentSeverityLevel severity, IncidentType type, IncidentStatus status, List<Equipment> equipmentUsed, TeamType teamType)
         {
             this.Description = description;
             this.Created = created;
@@ -111,7 +112,7 @@ namespace TP_POO_a30517.Incidents
             this.Type = type;
             this.Status = status;
             this.EquipmentUsed = equipmentUsed;
-            this.RescueTeam = rescueTeam;
+            this.TeamType = teamType;
         }
         #endregion
 
@@ -120,7 +121,7 @@ namespace TP_POO_a30517.Incidents
         /// Returnses the values.
         /// </summary>
         /// <returns>Details of all "Incident" properties</returns>
-        public virtual string ReturnsValues()
+        public virtual string ReturnsValuesIncident()
         {
             return $"ID: {Id}\n" +
                    $"Descrição: {Description}\n" +
@@ -129,8 +130,20 @@ namespace TP_POO_a30517.Incidents
                    $"Gravidade: {Severity}\n" +
                    $"Tipo: {Type}\n" +
                    $"Estado: {Status}\n" +
-                   $"Equipmaneto utilizado: {string.Join(", ", EquipmentUsed.Select(e => e.Name))}\n" +
-                   $"Equipa de Socorro: {RescueTeam}";
+                   $"Equipamento utilizado: {string.Join(", ", EquipmentUsed.Select(e => e.Name))}\n" +
+                   $"Equipa de Emergência: {TeamType}";
+        }
+
+        public void StartEmergency()
+        {
+            Status = IncidentStatus.Em_Progresso;
+            Console.WriteLine("Emergência iniciada");
+        }
+
+        public void ConcludeEmergency()
+        {
+            Status = IncidentStatus.Terminado;
+            Console.WriteLine("Emergência terminada");
         }
         #endregion
     }

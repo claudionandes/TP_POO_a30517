@@ -1,9 +1,9 @@
 ﻿
 //-----------------------------------------------------------------
-//    <copyright file="EquipmentStatus.cs" company="IPCA">
+//    <copyright file="IEmergencia.cs" company="IPCA">
 //     Copyright IPCA-EST. All rights reserved.
 //    </copyright>
-//    <date>30-10-2024</date>
+//    <date>01-11-2024</date>
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
@@ -13,18 +13,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TP_POO_a30517.Enums
+namespace TP_POO_a30517.Interfaces
 {
-    /// <summary>
-    /// Equipment Status
-    /// </summary>
-    public enum EquipmentStatus
+    public interface IEmergency
     {
-        Disponível,
-        Alocado,
-        Em_Manutenção,
-        Sem_Stock,
-        Indisponível,
-        Outro
+        void StartEmergency();
+        void ConcludeEmergency();
     }
 }

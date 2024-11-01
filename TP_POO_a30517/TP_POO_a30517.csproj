@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataValidationLibrary\DataValidationLibrary.csproj" />
+    <ProjectReference Include="..\GeolocationLibrary\GeolocationLibrary.csproj" />
+    <ProjectReference Include="..\LoginLibrary\LoginLibrary.csproj" />
     <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
 

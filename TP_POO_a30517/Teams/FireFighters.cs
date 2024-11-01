@@ -1,9 +1,9 @@
 ﻿
 //-----------------------------------------------------------------
-//    <copyright file="INEM.cs" company="IPCA">
+//    <copyright file="FireFighter.cs" company="IPCA">
 //     Copyright IPCA-EST. All rights reserved.
 //    </copyright>
-//    <date>30-10-2024</date>
+//    <date>01-11-2024</date>
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
@@ -12,30 +12,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Models;
 
 namespace TP_POO_a30517.Teams
 {
-    /// <summary>
-    /// Class INEM
-    /// </summary>
-    public class INEM : EmergencyTeamBase
+    public class FireFighters : EmergencyTeamBase
     {
         #region Public Properties        
-        public Doctor TeamDoctor { get; set; }
-        public Nurse TeamNurse { get; set; }
-        public EmergencyTechnician TeamTechnician { get; set; }
+        public FireFighter TeamFireFighter { get; set; }
 
         #endregion
 
         #region Constructors
-        public INEM(string name, Doctor doctor, Nurse nurse, EmergencyTechnician technician, VehiclesType vehicleType, EquipmentType equipmentType, TeamStatus status)
+        public FireFighters(string name, FireFighter fireFighter, VehiclesType vehicleType, EquipmentType equipmentType, TeamStatus status)
             : base(name, status, vehicleType, equipmentType)
         {
-            TeamDoctor = doctor;
-            TeamNurse = nurse;
-            TeamTechnician = technician;
+            TeamFireFighter = fireFighter;
         }
         #endregion
 
@@ -47,9 +42,7 @@ namespace TP_POO_a30517.Teams
                    $"Estado: {Status}\n" +
                    $"Tipo de Veículo: {VehicleType}\n" +
                    $"Tipo de Equipamento: {EquipmentType}\n\n" +
-                   $"Médico:\n{TeamDoctor.ReturnsValuesPerson()}\n\n" +
-                   $"Enfermeiro:\n{TeamNurse.ReturnsValuesPerson()}\n\n" +
-                   $"Técnico de Emergência:\n{TeamTechnician.ReturnsValuesPerson()}";
+                   $"Bombeiro:\n{TeamFireFighter.ReturnsValuesPerson()}";
 
         }
         #endregion

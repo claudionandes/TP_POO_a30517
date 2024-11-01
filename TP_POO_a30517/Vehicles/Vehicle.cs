@@ -21,7 +21,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TP_POO_a30517.Vehicles
 {
-    public abstract class Vehicles
+    public abstract class Vehicle
     {
         #region Private Properties        
         private string vehicleRegist { get; set; }
@@ -73,7 +73,7 @@ namespace TP_POO_a30517.Vehicles
 
         #region Constructors  
         /// <summary>
-        /// Initializes a new instance of the <see cref="Vehicles"/> class.
+        /// Initializes a new instance of the <see cref="Vehicle"/> class.
         /// </summary>
         /// <param name="vehicleRegist"></param>
         /// <param name="yearofRegist"></param>
@@ -82,7 +82,7 @@ namespace TP_POO_a30517.Vehicles
         /// <param name="vehicleModel"></param>
         /// <param name="inspDate"></param>
         /// <param name="status"></param>
-        public Vehicles(string vehicleRegist, DateOnly yearofRegist, VehiclesType type, string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status)
+        public Vehicle(string vehicleRegist, DateOnly yearofRegist, VehiclesType type, string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status)
         {
             this.VehicleRegist = vehicleRegist;
             DateOnly YearofRegist = yearofRegist;

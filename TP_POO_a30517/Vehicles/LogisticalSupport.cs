@@ -16,7 +16,7 @@ using TP_POO_a30517.Enums;
 
 namespace TP_POO_a30517.Vehicles
 {
-    public class LogisticalSupport : Vehicles
+    public class LogisticalSupport : Vehicle
     {
         #region Private Properties
         private int capacity;

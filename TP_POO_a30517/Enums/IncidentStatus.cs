@@ -23,6 +23,8 @@ namespace TP_POO_a30517.Enums
         Em_Espera,
         Em_Progresso,
         Terminado,
+        Cancelado,
+        Falso_Incidente,
         Outro
     }
 }

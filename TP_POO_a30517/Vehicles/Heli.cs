@@ -16,7 +16,7 @@ using TP_POO_a30517.Enums;
 
 namespace TP_POO_a30517.Vehicles
 {
-    public class Heli : Vehicles
+    public class Heli : Vehicle
     {
         #region Private Properties
         private int passengerCapacity;

@@ -16,7 +16,7 @@ using TP_POO_a30517.Enums;
 
 namespace TP_POO_a30517.Vehicles
 {
-    public class FireTruck : Vehicles
+    public class FireTruck : Vehicle
     {
         #region Private Properties
         private int tankCapacity;

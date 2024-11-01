@@ -17,7 +17,7 @@ using TP_POO_a30517.Vehicles;
 
 namespace TP_POO_a30517.Vehicles
 {
-    public class MotorBike : Vehicles
+    public class MotorBike : Vehicle
     {
         #region Private Properties
         private int engineCapacity;

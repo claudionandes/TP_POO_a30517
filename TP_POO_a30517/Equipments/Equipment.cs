@@ -23,9 +23,6 @@ namespace TP_POO_a30517.Equipments
     public class Equipment
     {
         #region Private Properties        
-        /// <summary>
-        /// The identifier
-        /// </summary>
         private int id;
         private string name;
         private EquipmentType type;
@@ -34,12 +31,6 @@ namespace TP_POO_a30517.Equipments
         #endregion
 
         #region Public Properties        
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
         public int Id
         {
             get => id;
@@ -72,13 +63,6 @@ namespace TP_POO_a30517.Equipments
         #endregion
 
         #region Construtors        
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Equipment"/> class.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="type">The type.</param>
-        /// <param name="quantityAvailable">The quantity available.</param>
-        /// <param name="status">The status.</param>
         public Equipment (string name, EquipmentType type, int quantityAvailable, EquipmentStatus status)
         {
             this.Name = name;

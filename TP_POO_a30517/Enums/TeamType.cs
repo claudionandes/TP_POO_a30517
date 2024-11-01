@@ -1,9 +1,9 @@
 ﻿
 //-----------------------------------------------------------------
-//    <copyright file="EquipmentStatus.cs" company="IPCA">
+//    <copyright file="TeamType.cs" company="IPCA">
 //     Copyright IPCA-EST. All rights reserved.
 //    </copyright>
-//    <date>30-10-2024</date>
+//    <date>01-11-2024</date>
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
@@ -15,16 +15,11 @@ using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
-    /// <summary>
-    /// Equipment Status
-    /// </summary>
-    public enum EquipmentStatus
+    public enum TeamType
     {
-        Disponível,
-        Alocado,
-        Em_Manutenção,
-        Sem_Stock,
-        Indisponível,
+        INEM,
+        INEM_e_Bombeiros,
+        Bombeiros,
         Outro
     }
 }

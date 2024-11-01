@@ -29,24 +29,13 @@ namespace TP_POO_a30517.Models
         #endregion
 
         #region Public Properties        
-        /// <summary>
-        /// Gets or sets the name of the professional.
-        /// </summary>
-        /// <value>
-        /// The name of the professional.
-        /// </value>
+
         public string ProfessionalName
         {
             get => professionalName;
             set => professionalName = value;
         }
-        /// <summary>
-        /// Gets or sets the technical number.
-        /// </summary>
-        /// <value>
-        /// The technical number.
-        /// </value>
-        /// <exception cref="System.ArgumentException">Technical number is mandatory</exception>
+
         public string TechnicalNumber
         {
             get => technicalNumber;
@@ -55,22 +44,8 @@ namespace TP_POO_a30517.Models
         #endregion
 
         #region Construtors                                        
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmergencyTechnician"/> class.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="birthdate">The birthdate.</param>
-        /// <param name="Age">The age.</param>
-        /// <param name="citizenCard">The citizen card.</param>
-        /// <param name="phone">The phone.</param>
-        /// <param name="email">The email.</param>
-        /// <param name="address">The address.</param>
-        /// <param name="nationality">The nationality.</param>
-        /// <param name="role">The role.</param>
-        /// <param name="professionalName">Name of the professional.</param>
-        /// <param name="technicalNumber">The technical number.</param>
-        public EmergencyTechnician(string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, string professionalName, string technicalNumber)
-            : base(name, birthdate, citizenCard, phone, email, address, nationality, role)
+        public EmergencyTechnician(string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, TeamType teamType, PersonStatus status, string professionalName, string technicalNumber)
+            : base(name, birthdate, citizenCard, phone, email, address, nationality, role, teamType, status)
         {
             ProfessionalName = professionalName;
             TechnicalNumber = technicalNumber;
@@ -78,10 +53,7 @@ namespace TP_POO_a30517.Models
         #endregion
 
         #region Public Methods        
-        /// <summary>
-        /// Returnses the values.
-        /// </summary>
-        /// <returns>Details of all "EmergencyTechnician" properties</returns>
+
         public override string ReturnsValuesPerson()
         {
             return base.ReturnsValuesPerson() + "\n" +

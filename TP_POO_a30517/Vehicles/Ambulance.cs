@@ -17,7 +17,7 @@ using TP_POO_a30517.Vehicles;
 
 namespace TP_POO_a30517.Vehicles
 {
-    public class Ambulance : Vehicles
+    public class Ambulance : Vehicle
     {
         #region Private Properties
         private int patientCapacity { get; set; }

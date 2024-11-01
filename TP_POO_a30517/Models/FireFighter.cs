@@ -31,13 +31,6 @@ namespace TP_POO_a30517.Models
         #endregion
 
         #region Public Properties        
-        /// <summary>
-        /// Gets or sets the years of experience .
-        /// </summary>
-        /// <value>
-        /// The years of experience.
-        /// </value>
-        /// <exception cref="System.ArgumentException">Years of experience cannot be negative</exception>
         public int YearsOfExperience
         {
             get => yearsOfExperience;
@@ -49,12 +42,7 @@ namespace TP_POO_a30517.Models
                     throw new ArgumentException("Número de anos de experiência não pode ser negativo");
             }
         }
-        /// <summary>
-        /// Gets or sets the specialization.
-        /// </summary>
-        /// <value>
-        /// The specialization.
-        /// </value>
+
         public string Specialization
         {
             get => specialization;
@@ -63,22 +51,8 @@ namespace TP_POO_a30517.Models
         #endregion
 
         #region Construtors                        
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FireFighter"/> class.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="birthdate">The birthdate.</param>
-        /// <param name="Age">The age.</param>
-        /// <param name="citizenCard">The citizen card.</param>
-        /// <param name="phone">The phone.</param>
-        /// <param name="email">The email.</param>
-        /// <param name="address">The address.</param>
-        /// <param name="nationality">The nationality.</param>
-        /// <param name="role">The role.</param>
-        /// <param name="yearsOfExperience">The years of experience.</param>
-        /// <param name="specialization">The specialization.</param>
-        public FireFighter (string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, int yearsOfExperience, string specialization)
-            :base (name, birthdate, citizenCard, phone, email, address, nationality, role)
+        public FireFighter (string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, TeamType teamType, PersonStatus status, int yearsOfExperience, string specialization)
+            :base (name, birthdate, citizenCard, phone, email, address, nationality, role, teamType, status)
         {
             YearsOfExperience = yearsOfExperience;
             Specialization = specialization;
@@ -86,10 +60,7 @@ namespace TP_POO_a30517.Models
         #endregion
 
         #region Public Methods        
-        /// <summary>
-        /// Returnses the values.
-        /// </summary>
-        /// <returns>Details of all "FireFighter" properties</returns>
+
         public override string ReturnsValuesPerson()
         {
             return base.ReturnsValuesPerson() + "\n" +

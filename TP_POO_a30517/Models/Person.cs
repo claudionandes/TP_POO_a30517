@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
+using TP_POO_a30517.Interfaces;
 using Utils;
 
 namespace TP_POO_a30517.Models
@@ -39,7 +40,9 @@ namespace TP_POO_a30517.Models
         private string email { get; set; }
         private string address { get; set; }
         private string nationality { get; set; }
-        private Roles role;
+        private Roles role { get; set; }
+        private TeamType teamType { get; set; }
+        private PersonStatus status { get; set; }
         #endregion
 
         #region Public Properties        
@@ -97,6 +100,17 @@ namespace TP_POO_a30517.Models
             set => role = value;
         }
 
+        public TeamType TeamType
+        {
+            get => teamType;
+            set => teamType = value;
+        }
+
+        public PersonStatus Status
+        {
+            get => status;
+            set => status = value;
+        }
         #endregion
 
         #region Constructors                                
@@ -111,7 +125,7 @@ namespace TP_POO_a30517.Models
         /// <param name="address">The address.</param>
         /// <param name="nationality">The nationality.</param>
         /// <param name="role">The role.</param>
-        public Person(string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role)
+        public Person(string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, TeamType teamType, PersonStatus status)
         {
             Id = GenerateId();
             this.Name = name;
@@ -123,6 +137,8 @@ namespace TP_POO_a30517.Models
             this.Address = address;
             this.Nationality = nationality;
             this.Role = role;
+            this.TeamType = teamType;
+            this.Status = status;
         }
         #endregion
 
@@ -165,7 +181,9 @@ namespace TP_POO_a30517.Models
                    $"Email: {Email}\n" +
                    $"Morada: {Address}\n" +
                    $"Nacionalidade: {Nationality}\n" +
-                   $"Cargo: {Role}";
+                   $"Cargo: {Role}\n" +
+                   $"Equipa: {TeamType}\n" +
+                   $"Estado: {Status}";
         }
         #endregion
 
