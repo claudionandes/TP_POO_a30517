@@ -26,7 +26,7 @@ namespace TP_POO_a30517.Vehicles
         public int TankCapacity
         {
             get => tankCapacity;
-            set => tankCapacity = value > 0 ? value : 0;
+            set => tankCapacity = value > 0 ? value : throw new ArgumentException("Capacidade do tanque tem que ser maior que zero");
         }
         #endregion
 

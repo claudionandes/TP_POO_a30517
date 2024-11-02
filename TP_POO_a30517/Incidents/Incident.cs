@@ -130,20 +130,29 @@ namespace TP_POO_a30517.Incidents
                    $"Gravidade: {Severity}\n" +
                    $"Tipo: {Type}\n" +
                    $"Estado: {Status}\n" +
-                   $"Equipamento utilizado: {string.Join(", ", EquipmentUsed.Select(e => e.Name))}\n" +
+                   $"Equipamento utilizado: {EquipmentList(EquipmentUsed)}\n" +
                    $"Equipa de Emergência: {TeamType}";
         }
 
         public void StartEmergency()
         {
             Status = IncidentStatus.Em_Progresso;
-            Console.WriteLine("Emergência iniciada");
+            Console.WriteLine("Emergência ID {Id} iniciada");
         }
 
         public void ConcludeEmergency()
         {
             Status = IncidentStatus.Terminado;
-            Console.WriteLine("Emergência terminada");
+            Console.WriteLine("Emergência ID {Id} terminada");
+        }
+        #endregion
+
+        #region Private Methods
+        private string EquipmentList(List<Equipment> equipmentList)
+        {
+            return equipmentList == null || equipmentList.Count == 0
+                ? "Nenhum equipamento utilizado"
+                : string.Join(", ", equipmentList.Select(e => e.Name));
         }
         #endregion
     }

@@ -29,7 +29,7 @@ namespace TP_POO_a30517.Vehicles
         public int PassengerCapacity
         {
             get => passengerCapacity;
-            set => passengerCapacity = value > 0 ? value : 0;
+            set => passengerCapacity = value > 0 ? value : throw new ArgumentException("Número da Capacidade de passageiros tem que ser maior que zero");
         }
 
         public EquipmentType Equipment

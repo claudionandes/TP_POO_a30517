@@ -37,7 +37,7 @@ namespace TP_POO_a30517.Vehicles
         public string VehicleRegist
         {
             get => vehicleRegist;
-            set => vehicleRegist = value;
+            set => vehicleRegist = !string.IsNullOrEmpty(value) ? value : throw new ArgumentException("Matrícula é obrigatória");
         }
         public DateOnly YearofRegist
         {

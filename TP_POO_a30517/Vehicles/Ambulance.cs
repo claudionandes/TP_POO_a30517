@@ -29,13 +29,13 @@ namespace TP_POO_a30517.Vehicles
         public int PatientCapacity
         {
             get => patientCapacity;
-            set => patientCapacity = value;
+            set => patientCapacity = value > 0 ? value : throw new ArgumentException("Número da Capacidade de Pacientes tem que ser maior que zero");
         }
 
         public int CrewCapacity
         {
             get => crewCapacity;
-            set => crewCapacity = value;
+            set => crewCapacity = value > 0 ? value : throw new ArgumentException("Número da Capacidade da tripulação tem que ser maior que zero");
         }
 
         public EquipmentType MedicalEquipment

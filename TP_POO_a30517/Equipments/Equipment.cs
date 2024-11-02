@@ -22,7 +22,8 @@ namespace TP_POO_a30517.Equipments
     /// </summary>
     public class Equipment
     {
-        #region Private Properties        
+        #region Private Properties   
+        private static int currentId = 1;
         private int id;
         private string name;
         private EquipmentType type;
@@ -40,7 +41,7 @@ namespace TP_POO_a30517.Equipments
         public string Name
         {
             get => name;
-            set => name = value;
+            set => name = !string.IsNullOrEmpty(value) ? value : throw new ArgumentException("Nome não pode estar vazio");
         }
 
         public EquipmentType Type
@@ -51,8 +52,8 @@ namespace TP_POO_a30517.Equipments
 
         public int QuantityAvailable
         {
-            get => quantityAvailable; 
-            set => quantityAvailable = value;
+            get => quantityAvailable;
+            set => quantityAvailable = value >= 0 ? value : throw new ArgumentException("Quantidade tem que ser igual ou superior a zero");
         }
 
         public EquipmentStatus Status

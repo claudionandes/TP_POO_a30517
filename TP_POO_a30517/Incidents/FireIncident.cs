@@ -67,7 +67,7 @@ namespace TP_POO_a30517.Incidents
                             double affectedArea, int peopleAffected)
             : base(description, created, location, severity, type, status, equipmentUsed, teamType)
         {
-            AffectedArea = affectedArea;
+            AffectedArea = affectedArea > 0 ? affectedArea : throw new ArgumentException("A área afetada deve ser positiva");
             PeopleAffected = peopleAffected;
         }
         #endregion
