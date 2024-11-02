@@ -80,11 +80,11 @@ namespace TP_POO_a30517
             List<Person> members = new List<Person> { firefighter, doctor, nurse};
             #endregion
 
-            #region Rescue Team Creation
+            #region Inem e Bombeiros Creation
             INEM_FireFighter inem_Fire = new INEM_FireFighter("INEM e Bombeiros Equipa A", members, TeamStatus.Disponível,VehiclesType.Ambulância_de_Socorro_ABSC, EquipmentType.Cadeira_Transporte);
             #endregion
 
-            #region Display Rescue Team Details
+            #region Display INEM e Bombeiros Details
             Console.WriteLine("\nDetalhes da equipa INEM e Bombeiros:");
             Console.WriteLine(inem_Fire.ReturnTeamDetails());
             #endregion
