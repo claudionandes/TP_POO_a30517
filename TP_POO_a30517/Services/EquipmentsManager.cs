@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TP_POO_a30517.Data;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Equipments;
 using TP_POO_a30517.Interfaces;
@@ -21,14 +22,11 @@ namespace TP_POO_a30517.Services
     public class EquipmentsManager : IEquipmentsManager
     {
         #region Private Properties
-        private List<Equipment> equipments;
+       
         #endregion
 
         #region Constructor
-        public EquipmentsManager()
-        {
-            equipments = new List<Equipment>();
-        }
+        public EquipmentsManager() { }
         #endregion
 
         #region Public Methods
@@ -36,9 +34,10 @@ namespace TP_POO_a30517.Services
         #region Add Equipment
         public void AddEquipment(Equipment equipment)
         {
-            if (equipment != null)
+            using (var context = new EmergenciesDBContext())
             {
-                equipments.Add(equipment);
+                context.Equipments.Add(equipment);
+                context.SaveChanges();
                 Console.WriteLine("Equipamento inserido com sucesso");
             }
         }
@@ -47,36 +46,40 @@ namespace TP_POO_a30517.Services
         #region Update Equipment
         public void UpdateEquipment(int id, Dictionary<string, object> updates)
         {
-            var equipmentToUpdate = equipments.FirstOrDefault(e => e.Id == id);
-            if (equipmentToUpdate != null)
+            using (var context = new EmergenciesDBContext())
             {
-                foreach (var update in updates)
+                var equipmentToUpdate = context.Equipments.FirstOrDefault(e => e.Id == id);
+                if (equipmentToUpdate != null)
                 {
-                    switch (update.Key.ToLower())
+                    foreach (var update in updates)
                     {
-                        case "name":
-                            equipmentToUpdate.Name = update.Value as string;
-                            break;
-                        case "type":
-                            equipmentToUpdate.Type = (EquipmentType)update.Value;
-                            break;
-                        case "quantityavailable":
-                            equipmentToUpdate.QuantityAvailable = Convert.ToInt32(update.Value);
-                            break;
-                        case "status":
-                            equipmentToUpdate.Status = (EquipmentStatus)update.Value;
-                            break;
-                        default:
-                            Console.WriteLine($"Atributo desconhecido: {update.Key}");
-                            break;
+                        switch (update.Key.ToLower())
+                        {
+                            case "name":
+                                equipmentToUpdate.Name = update.Value as string;
+                                break;
+                            case "type":
+                                equipmentToUpdate.Type = (EquipmentType)update.Value;
+                                break;
+                            case "quantityavailable":
+                                equipmentToUpdate.QuantityAvailable = Convert.ToInt32(update.Value);
+                                break;
+                            case "status":
+                                equipmentToUpdate.Status = (EquipmentStatus)update.Value;
+                                break;
+                            default:
+                                Console.WriteLine($"Atributo desconhecido: {update.Key}");
+                                break;
+                        }
                     }
-                }
 
-                Console.WriteLine("Equipamento atualizado com sucesso");
-            }
-            else
-            {
-                throw new KeyNotFoundException($"Equipamento com ID {id} não encontrado");
+                    context.SaveChanges();
+                    Console.WriteLine("Equipamento atualizado com sucesso");
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"Equipamento com ID {id} não encontrado");
+                }
             }
         }
         #endregion
@@ -84,24 +87,32 @@ namespace TP_POO_a30517.Services
         #region Delete Equipment
         public void DeleteEquipment(int id)
         {
-            var equipment = equipments.FirstOrDefault(e => e.Id == id);
-            if (equipment != null)
+            using (var context = new EmergenciesDBContext())
             {
-                equipments.Remove(equipment);
-                Console.WriteLine("Equipamento eliminado com sucesso");
-            }
-            else
-            {
-                throw new KeyNotFoundException($"Equipamento com ID {id} não encontrado");
+                var equipment = context.Equipments.FirstOrDefault(e => e.Id == id);
+                if (equipment != null)
+                {
+                    context.Equipments.Remove(equipment);
+                    context.SaveChanges();
+                    Console.WriteLine("Equipamento eliminado com sucesso");
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"Equipamento com ID {id} não encontrado");
+                }
             }
         }
-
         #endregion
 
         #region List Available Equipments
         public List<Equipment> AvailableEquipments()
         {
-            return equipments.Where(e => e.Status == EquipmentStatus.Disponível).ToList();
+            using (var context = new EmergenciesDBContext())
+            {
+                return context.Equipments
+                              .Where(e => e.Status == EquipmentStatus.Disponível)
+                              .ToList();
+            }
         }
         #endregion
 

@@ -20,8 +20,8 @@ namespace TP_POO_a30517.Interfaces
     public interface IPersonsManager
     {
         void AddPerson(Person person);
-        void UpdatePersonStatus(int personId, PersonStatus newStatus);
         void UpdatePerson(int id, Dictionary<string, object> updates);
+        public void AssociatePersonToTeam(int personId, int teamId);
         void DeletePerson(int id);
         void PersonsByStatus(PersonStatus status);
     }

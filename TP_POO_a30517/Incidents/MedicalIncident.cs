@@ -17,7 +17,7 @@ using TP_POO_a30517.Equipments;
 using TP_POO_a30517.Incidents;
 using TP_POO_a30517.Teams;
 
-namespace TP_POO_30517.Incidents
+namespace TP_POO_a30517.Incidents
 {
     public class MedicalIncident : Incident
     {
@@ -57,13 +57,13 @@ namespace TP_POO_30517.Incidents
         #endregion
 
         #region Constructors
-        public MedicalIncident(string description, DateTime created,string location,IncidentSeverityLevel severity,IncidentType type,IncidentStatus status,List<Equipment> equipmentUsed,
+        public MedicalIncident(string description, DateTime created,string location,IncidentSeverityLevel severity,IncidentType type,IncidentStatus status,List<EquipmentType> equipmentUsed,
                                TeamType teamType, string patientName, int patientAge, string medicalCondition)
             : base(description, created, location, severity, type, status, equipmentUsed, teamType)
         {
-            this.PatientName = patientName;
-            this.PatientAge = patientAge;
-            this.MedicalCondition = medicalCondition;
+            PatientName = patientName;
+            PatientAge = patientAge;
+            MedicalCondition = medicalCondition;
         }
         #endregion
 
@@ -75,6 +75,7 @@ namespace TP_POO_30517.Incidents
         public override string ReturnsValuesIncident()
         {
             return base.ReturnsValuesIncident() + "\n" +
+                   $"ID: {Id}\n" +
                    $"Nome do Paciente: {PatientName}\n" +
                    $"Idade do Paciente: {PatientAge}\n" +
                    $"Condição Médica: {MedicalCondition}";

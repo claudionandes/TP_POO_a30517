@@ -19,8 +19,9 @@ namespace TP_POO_a30517.Interfaces
 {
     public interface IIncidentManager
     {
-        void CreateIncident(Incident incident);
-        void UpdateIncident(int id, Incident updatedIncident);
+        public void CreateIncident(Incident incident, TeamType teamType);
+        public void UpdateIncident(int id, Incident updatedIncident);
         List<Incident> FilterByStatus(IncidentStatus status);
+        public void AssignTeamToIncident(Incident incident, TeamType teamType);
     }
 }

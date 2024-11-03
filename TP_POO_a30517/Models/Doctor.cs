@@ -21,33 +21,33 @@ namespace TP_POO_a30517.Models
     /// </summary>
     public class Doctor : Person
     {
-        #region Private Properties        
+        #region Private Properties    
         private string professionalName;
-        private string cardNumber;
+        private int cardNumber;
         private string specialty;
         #endregion
 
-        #region Public Properties           
+        #region Public Properties  
         public string ProfessionalName
         {
             get => professionalName;
             set => professionalName = value;
         }
-        public string CardNumber
+        public int CardNumber
         {
             get => cardNumber; 
-            set => cardNumber = value ?? throw new ArgumentException ("Número de Cédula é obrigatório");
+            set => cardNumber = value > 0 ? value : throw new ArgumentException ("Número de Cédula é obrigatório");
         }
         public string Specialty
         {
             get => specialty;
             set => specialty = value ?? "Medicina Geral e Familiar";
         }
-        public TeamType TeamType { get; set; }
+
         #endregion
 
         #region Construtors                        
-        public Doctor (string name, DateOnly birthdate,string citizenCard, string phone, string email, string address, string nationality, Roles role, TeamType teamType, PersonStatus status, string professionalName, string cardNumber, string specialty)
+        public Doctor (string name, DateOnly birthdate,string citizenCard, string phone, string email, string address, string nationality, Roles role, TeamType teamType, PersonStatus status, string professionalName, int cardNumber, string specialty)
             : base(name, birthdate, citizenCard, phone, email, address, nationality, role, teamType, status)
         {
             ProfessionalName = professionalName;
@@ -60,6 +60,7 @@ namespace TP_POO_a30517.Models
         public override string ReturnsValuesPerson()
         {
             return base.ReturnsValuesPerson() + "\n" +
+                   $"ID: {Id}\n" +
                    $"Nome Profissional: {ProfessionalName}\n" +
                    $"Número de Cédula: {CardNumber}\n" +
                    $"Especialidade: {Specialty}";

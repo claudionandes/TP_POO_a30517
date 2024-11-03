@@ -23,7 +23,6 @@ namespace TP_POO_a30517.Equipments
     public class Equipment
     {
         #region Private Properties   
-        private static int currentId = 1;
         private int id;
         private string name;
         private EquipmentType type;
@@ -66,10 +65,10 @@ namespace TP_POO_a30517.Equipments
         #region Construtors        
         public Equipment (string name, EquipmentType type, int quantityAvailable, EquipmentStatus status)
         {
-            this.Name = name;
-            this.Type = type;
-            this.QuantityAvailable = quantityAvailable;
-            this.Status = status;
+            Name = name;
+            Type = type;
+            QuantityAvailable = quantityAvailable;
+            Status = status;
         }
         #endregion
 

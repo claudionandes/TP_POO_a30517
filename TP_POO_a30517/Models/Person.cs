@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
-using TP_POO_a30517.Interfaces;
+using TP_POO_a30517.Teams;
 using Utils;
 
 namespace TP_POO_a30517.Models
@@ -24,13 +24,6 @@ namespace TP_POO_a30517.Models
     public abstract class Person: IComparable
     {
         #region Private Properties        
-        /// <summary>
-        /// Private - Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        private static int nextId = 1;
         private int id { get; set; }
         private string name { get; set; }
         private DateOnly birthdate { get; set; }
@@ -111,6 +104,8 @@ namespace TP_POO_a30517.Models
             get => status;
             set => status = value;
         }
+
+        public ICollection<TeamMember> TeamMemberships { get; set; }
         #endregion
 
         #region Constructors                                
@@ -127,18 +122,17 @@ namespace TP_POO_a30517.Models
         /// <param name="role">The role.</param>
         public Person(string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, TeamType teamType, PersonStatus status)
         {
-            Id = GenerateId();
-            this.Name = name;
-            this.Birthdate = birthdate;
-            
-            this.CitizenCard = citizenCard;
-            this.Phone = phone; 
-            this.Email = email;
-            this.Address = address;
-            this.Nationality = nationality;
-            this.Role = role;
-            this.TeamType = teamType;
-            this.Status = status;
+            Id = id;
+            Name = name;
+            Birthdate = birthdate;
+            CitizenCard = citizenCard;
+            Phone = phone; 
+            Email = email;
+            Address = address;
+            Nationality = nationality;
+            Role = role;
+            TeamType = teamType;
+            Status = status;
         }
         #endregion
 
@@ -188,14 +182,6 @@ namespace TP_POO_a30517.Models
         #endregion
 
         #region Private Methods             
-        /// <summary>
-        /// Generates the identifier.
-        /// </summary>
-        /// <returns></returns>
-        private static int GenerateId()
-        {
-            return nextId++;
-        }
         #endregion
 
         

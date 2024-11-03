@@ -1,0 +1,175 @@
+﻿
+//-----------------------------------------------------------------
+//    <copyright file="EmergenciesDBContext.cs" company="IPCA">
+//     Copyright IPCA-EST. All rights reserved.
+//    </copyright>
+//    <date>02-11-2024</date>
+//    <author>Cláudio Fernandes</author>
+//-----------------------------------------------------------------
+
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TP_POO_a30517.Equipments;
+using TP_POO_a30517.Incidents;
+using TP_POO_a30517.Models;
+using TP_POO_a30517.Teams;
+using TP_POO_a30517.Vehicles;
+
+namespace TP_POO_a30517.Data
+{
+    public class EmergenciesDBContext : DbContext
+    {
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<Incident> Incidents { get; set; }
+        public DbSet<CatastropheIncident> Catastrophe_Incidents { get; set; }
+        public DbSet<FireIncident> Fire_Incidents { get; set; }
+        public DbSet<MedicalIncident> Medical_Incidents { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Nurse> Nurses { get; set; }
+        public DbSet<FireFighter> FireFighters { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<EmergencyTechnician> Emergency_Technicians { get; set; }
+        public DbSet<FireFighters> FireFighters_Team { get; set; }
+        public DbSet<EmergencyTeamBase> Emergency_Team_Base { get; set; }
+        public DbSet<INEM> INEM_Team { get; set; }
+        public DbSet<TeamIncident> TeamIncidents { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+
+        public DbSet<Ambulance> Ambulances { get; set; }
+        public DbSet<Boat> Boats { get; set; }
+        public DbSet<FireTruck> FireTrucks { get; set; }
+        public DbSet<Heli> Helis { get; set; }
+        public DbSet<LiftingMeans> Lifting_Means { get; set; }
+        public DbSet<LogisticalSupport> Logistical_Supports { get; set; }
+        public DbSet<MotorBike> MotorBikes { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configuração de tabelas e chaves primárias
+            modelBuilder.Entity<Equipment>()
+                .ToTable("Equipments")
+                .HasKey(e => e.Id);
+
+            modelBuilder.Entity<Incident>()
+                .ToTable("Incidents")
+                .HasKey(i => i.Id);
+
+            modelBuilder.Entity<CatastropheIncident>()
+                .ToTable("Catastrophe_Incidents")
+                .HasBaseType<Incident>();
+
+            modelBuilder.Entity<FireIncident>()
+                .ToTable("Fire_Incidents")
+                .HasBaseType<Incident>();
+
+            modelBuilder.Entity<MedicalIncident>()
+                .ToTable("Medical_Incidents")
+                .HasBaseType<Incident>();
+
+            modelBuilder.Entity<Person>()
+                .ToTable("Persons")
+                .HasKey(p => p.Id);
+
+            modelBuilder.Entity<Nurse>()
+                .ToTable("Nurses")
+                .HasBaseType<Person>();
+
+            modelBuilder.Entity<FireFighter>()
+                .ToTable("FireFighters")
+                .HasBaseType<Person>();
+
+            modelBuilder.Entity<Doctor>()
+                .ToTable("Doctors")
+                .HasBaseType<Person>();
+
+            modelBuilder.Entity<EmergencyTechnician>()
+                .ToTable("Emergency_Technicians")
+                .HasBaseType<Person>();
+
+            modelBuilder.Entity<EmergencyTeamBase>()
+                .ToTable("Emergency_Team_Base")
+                .HasKey(e => e.Id);
+
+            modelBuilder.Entity<FireFighters>()
+                .ToTable("FireFighters_Team")
+                .HasBaseType<EmergencyTeamBase>();
+
+            modelBuilder.Entity<INEM>()
+                .ToTable("INEM_Team")
+                .HasBaseType<EmergencyTeamBase>();
+
+            modelBuilder.Entity<TeamMember>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
+
+                entity.HasOne(d => d.Team)
+                    .WithMany(p => p.TeamMembers)
+                    .HasForeignKey(d => d.TeamId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TeamMember_EmergencyTeamBase");
+
+                entity.HasOne(d => d.Person)
+                    .WithMany(p => p.TeamMemberships)
+                    .HasForeignKey(d => d.PersonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TeamMember_Person");
+            });
+
+            modelBuilder.Entity<TeamIncident>()
+                   .HasOne(ti => ti.Team)
+                .WithMany(t => t.TeamIncidents)
+            .HasForeignKey(ti => ti.TeamId);
+
+            modelBuilder.Entity<TeamIncident>()
+                .HasOne(ti => ti.Incident)
+                .WithMany(i => i.TeamIncidents)
+                .HasForeignKey(ti => ti.IncidentId);
+
+            modelBuilder.Entity<Vehicle>()
+                .ToTable("Vehicles")
+                .HasKey(v => v.Id);
+
+            modelBuilder.Entity<Ambulance>()
+                .ToTable("Ambulances")
+                .HasBaseType<Vehicle>();
+
+            modelBuilder.Entity<Boat>()
+                .ToTable("Boats")
+                .HasBaseType<Vehicle>();
+
+            modelBuilder.Entity<FireTruck>()
+                .ToTable("FireTrucks")
+                .HasBaseType<Vehicle>();
+
+            modelBuilder.Entity<Heli>()
+                .ToTable("Helis")
+                .HasBaseType<Vehicle>();
+
+            modelBuilder.Entity<LiftingMeans>()
+                .ToTable("Lifting_Means")
+                .HasBaseType<Vehicle>();
+
+            modelBuilder.Entity<LogisticalSupport>()
+                .ToTable("Logistical_Supports")
+                .HasBaseType<Vehicle>();
+
+            modelBuilder.Entity<MotorBike>()
+                .ToTable("MotorBikes")
+                .HasBaseType<Vehicle>();
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=CLAUDIO\\SQLEXPRESS;Database=TP_POO_Emergency_DB;Trusted_Connection=True;Encrypt=False");
+        }
+    }
+}

@@ -7,6 +7,7 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
+using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,51 +25,38 @@ namespace TP_POO_a30517.Incidents
     public class FireIncident : Incident
     {
         #region Private Properties
-        private double affectedArea;
-        private int peopleAffected;
+        private double affectedAreaFire;
+        private int peopleAffectedFire;
         #endregion
 
         #region Public Properties
         /// <summary>
         /// Gets or sets the affected area of the fire.
         /// </summary>
-        public double AffectedArea
+        public double AffectedAreaFire
         {
-            get => affectedArea;
-            set => affectedArea = value > 0 ? value : 0;
+            get => affectedAreaFire;
+            set => affectedAreaFire = value > 0 ? value : 0;
         }
 
         /// <summary>
         /// Gets or sets the number of people affected by the fire.
         /// </summary>
-        public int PeopleAffected
+        public int PeopleAffectedFire
         {
-            get => peopleAffected;
-            set => peopleAffected = value >= 0 ? value : 0;
+            get => peopleAffectedFire;
+            set => peopleAffectedFire = value >= 0 ? value : 0;
         }
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FireIncident"/> class.
-        /// </summary>
-        /// <param name="description">The description of the incident.</param>
-        /// <param name="created">The date of creation.</param>
-        /// <param name="location">The location of the incident.</param>
-        /// <param name="severity">The severity level.</param>
-        /// <param name="type">The type of the incident.</param>
-        /// <param name="status">The current status.</param>
-        /// <param name="equipmentUsed">The list of equipment used.</param>
-        /// <param name="rescueTeam">The assigned rescue team.</param>
-        /// <param name="affectedArea">The area affected by the fire.</param>
-        /// <param name="peopleAffected">The number of people affected by the fire.</param>
         public FireIncident(string description, DateTime created, string location, IncidentSeverityLevel severity, IncidentType type,
-                            IncidentStatus status, List<Equipment> equipmentUsed, TeamType teamType,
-                            double affectedArea, int peopleAffected)
+                            IncidentStatus status, List<EquipmentType> equipmentUsed, TeamType teamType,
+                            double affectedAreaFire, int peopleAffectedFire)
             : base(description, created, location, severity, type, status, equipmentUsed, teamType)
         {
-            AffectedArea = affectedArea > 0 ? affectedArea : throw new ArgumentException("A área afetada deve ser positiva");
-            PeopleAffected = peopleAffected;
+            AffectedAreaFire = affectedAreaFire > 0 ? affectedAreaFire : throw new ArgumentException("A área afetada deve ser maior que zero");
+            PeopleAffectedFire = peopleAffectedFire;
         }
         #endregion
 
@@ -80,8 +68,9 @@ namespace TP_POO_a30517.Incidents
         public override string ReturnsValuesIncident()
         {
             return base.ReturnsValuesIncident() + "\n" +
-                   $"Área Afetada: {AffectedArea} m²\n" +
-                   $"Pessoas Afetadas: {PeopleAffected}";
+                   $"ID: {Id}\n" +
+                   $"Área Afetada: {AffectedAreaFire} m²\n" +
+                   $"Pessoas Afetadas: {PeopleAffectedFire}";
         }
         #endregion
     }

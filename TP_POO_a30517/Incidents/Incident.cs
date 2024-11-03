@@ -7,16 +7,8 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
-using TP_POO_a30517.Equipments;
 using TP_POO_a30517.Interfaces;
-using TP_POO_a30517.Models;
 using TP_POO_a30517.Teams;
 
 namespace TP_POO_a30517.Incidents
@@ -34,8 +26,9 @@ namespace TP_POO_a30517.Incidents
         private IncidentSeverityLevel severity;
         private IncidentType type;
         private IncidentStatus status;
-        private List<Equipment> equipmentUsed;
+        private List<EquipmentType> equipmentUsed;
         private TeamType teamType;
+
         #endregion
 
         #region Public Properties        
@@ -79,7 +72,7 @@ namespace TP_POO_a30517.Incidents
             set => status = value;
         }
 
-        public List<Equipment> EquipmentUsed
+        public List<EquipmentType> EquipmentUsed
         {
             get => equipmentUsed; 
             set => equipmentUsed = value;
@@ -89,6 +82,8 @@ namespace TP_POO_a30517.Incidents
             get => teamType;
             set => teamType = value;
         }
+
+        public ICollection<TeamIncident> TeamIncidents { get; set; }
         #endregion
 
         #region Construtors        
@@ -103,16 +98,16 @@ namespace TP_POO_a30517.Incidents
         /// <param name="status">The status.</param>
         /// <param name="equipmentUsed">The equipment used.</param>
         /// <param name="teamType">The team Type.</param>
-        public Incident (string description, DateTime created, string location, IncidentSeverityLevel severity, IncidentType type, IncidentStatus status, List<Equipment> equipmentUsed, TeamType teamType)
+        public Incident (string description, DateTime created, string location, IncidentSeverityLevel severity, IncidentType type, IncidentStatus status, List<EquipmentType> equipmentUsed, TeamType teamType)
         {
-            this.Description = description;
-            this.Created = created;
-            this.Location = location;
-            this.Severity = severity;
-            this.Type = type;
-            this.Status = status;
-            this.EquipmentUsed = equipmentUsed;
-            this.TeamType = teamType;
+            Description = description;
+            Created = created;
+            Location = location;
+            Severity = severity;
+            Type = type;
+            Status = status;
+            EquipmentUsed = equipmentUsed;
+            TeamType = teamType;
         }
         #endregion
 
@@ -148,12 +143,13 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Private Methods
-        private string EquipmentList(List<Equipment> equipmentList)
+        private string EquipmentList(List<EquipmentType> equipmentList)
         {
             return equipmentList == null || equipmentList.Count == 0
                 ? "Nenhum equipamento utilizado"
-                : string.Join(", ", equipmentList.Select(e => e.Name));
+                : string.Join(", ", equipmentList.Select(e => e.ToString()));
         }
         #endregion
+
     }
 }

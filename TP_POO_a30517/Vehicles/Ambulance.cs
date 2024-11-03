@@ -50,7 +50,7 @@ namespace TP_POO_a30517.Vehicles
         /// 
         /// </summary>
         /// <param name="vehicleRegist"></param>
-        /// <param name="yearofRegist"></param>
+        /// <param name="yearOfRegist"></param>
         /// <param name="type"></param>
         /// <param name="brand"></param>
         /// <param name="vehicleModel"></param>
@@ -59,13 +59,13 @@ namespace TP_POO_a30517.Vehicles
         /// <param name="patientCapacity"></param>
         /// <param name="crewCapacity"></param>
         /// <param name="medicalEquipment"></param>
-        public Ambulance(string vehicleRegist, DateOnly yearofRegist, VehiclesType type,string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status,
+        public Ambulance(string vehicleRegist, DateOnly yearOfRegist, VehiclesType type,string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status,
                          int patientCapacity, int crewCapacity, EquipmentType medicalEquipment)
-            : base(vehicleRegist, yearofRegist, type, brand, vehicleModel, inspDate, status)
+            : base(vehicleRegist, yearOfRegist, type, brand, vehicleModel, inspDate, status)
         {
-            this.PatientCapacity = patientCapacity;
-            this.CrewCapacity = crewCapacity;
-            this.MedicalEquipment = medicalEquipment;
+            PatientCapacity = patientCapacity;
+            CrewCapacity = crewCapacity;
+            MedicalEquipment = medicalEquipment;
         }
         #endregion
 
@@ -77,6 +77,9 @@ namespace TP_POO_a30517.Vehicles
                    $"Capacidade de Tripulação: {CrewCapacity}\n" +
                    $"Equipamento Médico: {MedicalEquipment}";
         }
+        #endregion
+
+        #region Private Methods
         #endregion
     }
 }

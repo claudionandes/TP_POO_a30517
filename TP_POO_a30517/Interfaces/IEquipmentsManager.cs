@@ -12,7 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TP_POO_a30517.Enums;
 using TP_POO_a30517.Equipments;
+using TP_POO_a30517.Teams;
 
 namespace TP_POO_a30517.Interfaces
 {
@@ -22,5 +24,6 @@ namespace TP_POO_a30517.Interfaces
         void UpdateEquipment(int id, Dictionary<string, object> updates);
         void DeleteEquipment(int id);
         List<Equipment> AvailableEquipments();
+        
     }
 }

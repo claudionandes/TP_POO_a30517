@@ -42,8 +42,8 @@ namespace TP_POO_a30517.Vehicles
         public MotorBike(string vehicleRegist, DateOnly yearOfRegist, VehiclesType type, string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status, int engineCapacity, bool medicalBagSupport)
             : base(vehicleRegist, yearOfRegist, type, brand, vehicleModel, inspDate, status)
         {
-            this.EngineCapacity = engineCapacity;
-            this.MedicalBagSupport = medicalBagSupport;
+            EngineCapacity = engineCapacity;
+            MedicalBagSupport = medicalBagSupport;
         }
         #endregion
 

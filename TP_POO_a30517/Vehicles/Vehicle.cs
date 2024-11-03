@@ -24,6 +24,7 @@ namespace TP_POO_a30517.Vehicles
     public abstract class Vehicle
     {
         #region Private Properties        
+        private int id;
         private string vehicleRegist { get; set; }
         private DateOnly yearOfRegist { get; set; }
         private VehiclesType type { get; set; }
@@ -34,12 +35,17 @@ namespace TP_POO_a30517.Vehicles
         #endregion
 
         #region Public Properties   
+        public int Id
+        {
+            get => id;
+            set => id = value;
+        }
         public string VehicleRegist
         {
             get => vehicleRegist;
             set => vehicleRegist = !string.IsNullOrEmpty(value) ? value : throw new ArgumentException("Matrícula é obrigatória");
         }
-        public DateOnly YearofRegist
+        public DateOnly YearOfRegist
         {
             get => yearOfRegist;
             set => yearOfRegist = value;
@@ -82,15 +88,15 @@ namespace TP_POO_a30517.Vehicles
         /// <param name="vehicleModel"></param>
         /// <param name="inspDate"></param>
         /// <param name="status"></param>
-        public Vehicle(string vehicleRegist, DateOnly yearofRegist, VehiclesType type, string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status)
+        public Vehicle(string vehicleRegist, DateOnly yearOfRegist, VehiclesType type, string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status)
         {
-            this.VehicleRegist = vehicleRegist;
-            DateOnly YearofRegist = yearofRegist;
-            VehiclesType Type = type;
-            this.Brand = brand;
-            this.VehicleModel = vehicleModel;
-            DateOnly InspDate = inspDate;
-            this.Status = status;
+            VehicleRegist = vehicleRegist;
+            YearOfRegist = yearOfRegist;
+            Type = type;
+            Brand = brand;
+            VehicleModel = vehicleModel;
+            InspDate = inspDate;
+            Status = status;
         }
         #endregion
 
@@ -98,7 +104,7 @@ namespace TP_POO_a30517.Vehicles
         public virtual string ReturnsValuesVehicles()
         {
             return $"Matrícula: {VehicleRegist}\n" +
-                   $"Ano: {YearofRegist}\n" +
+                   $"Ano: {YearOfRegist}\n" +
                    $"Tipo: {Type}\n" +
                    $"Marca: {brand}\n" +
                    $"Modelo: {VehicleModel}\n" +
