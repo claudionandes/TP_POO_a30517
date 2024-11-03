@@ -255,6 +255,15 @@ namespace TP_POO_a30517.Services
         }
         #endregion
 
+        #region Get All Persons
+        public List<Person> GetAllPersons()
+        {
+            using (var context = new EmergenciesDBContext())
+            {
+                return context.Set<Person>().ToList();
+            }
+        }
+        #endregion
         #endregion
     }
 }

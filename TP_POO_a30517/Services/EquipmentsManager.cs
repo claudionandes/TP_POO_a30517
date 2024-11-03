@@ -170,13 +170,23 @@ namespace TP_POO_a30517.Services
         }
         #endregion
 
-        #region List Available Equipments
-        public List<Equipment> AvailableEquipments()
+        #region List All Equipments
+        public List<Equipment> ListAllEquipments()
+        {
+            using (var context = new EmergenciesDBContext())
+            {
+                return context.Equipments.ToList(); // Retorna todos os equipamentos
+            }
+        }
+        #endregion
+
+        #region List Equipments by Status
+        public List<Equipment> ListEquipmentsByStatus(EquipmentStatus status)
         {
             using (var context = new EmergenciesDBContext())
             {
                 return context.Equipments
-                              .Where(e => e.Status == EquipmentStatus.Disponível)
+                              .Where(e => e.Status == status)
                               .ToList();
             }
         }

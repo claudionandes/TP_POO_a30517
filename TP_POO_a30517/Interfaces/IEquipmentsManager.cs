@@ -21,9 +21,12 @@ namespace TP_POO_a30517.Interfaces
     public interface IEquipmentsManager
     {
         void AddEquipment(Equipment equipment);
+        public void AssociateEquipmentWithIncident(int equipmentId, int incidentId);
+        public void RemoveEquipmentFromIncident(int equipmentId, int incidentId);
         void UpdateEquipment(int id, Dictionary<string, object> updates);
         void DeleteEquipment(int id);
-        List<Equipment> AvailableEquipments();
-        
+        public List<Equipment> ListEquipmentsByStatus(EquipmentStatus status);
+        public List<Equipment> GetEquipmentsByIncident(int incidentId);
+
     }
 }

@@ -200,6 +200,13 @@ namespace TP_POO_a30517.Services
         }
         #endregion
 
+        #region Get All Teams
+        public List<EmergencyTeamBase> GetAllTeams()
+        {
+            return context.Set<EmergencyTeamBase>().ToList();
+        }
+        #endregion
+
         #region List Teams by Type
         /// <summary>
         /// Lista as equipas de um determinado tipo.

@@ -187,6 +187,13 @@ namespace TP_POO_a30517.Services
         }
         #endregion
 
+        #region Get All Incidents
+        public List<Incident> GetAllIncidents()
+        {
+            return _context.Incidents.ToList();
+        }
+        #endregion
+
         #region Assing Team
         public void AssignTeamToIncident(Incident incident, TeamType teamType)
         {
