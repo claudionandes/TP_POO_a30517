@@ -31,6 +31,16 @@ namespace TP_POO_a30517.Models
         private readonly TeamsManager _teamManager;
         #endregion
 
+        #region Public Properties
+        public int Id { get; set; }
+        public string CommandName { get; set; }
+        public List<Vehicle> Vehicles { get; set; }
+        public List<Incident> Incidents { get; set; }
+        public List<Equipment> Equipments { get; set; }
+        public List<Person> Persons { get; set; }
+        public List<EmergencyTeamBase> Teams { get; set; }
+        #endregion
+
         #region Constructor
         public OperationalCommand(VehiclesManager vehicleManager, IncidentsManager incidentManager, EquipmentsManager equipmentManager, PersonsManager personManager,
                                   TeamsManager teamManager)
@@ -41,13 +51,22 @@ namespace TP_POO_a30517.Models
             _personManager = personManager;
             _teamManager = teamManager;
         }
-        #endregion
+
+        public OperationalCommand()
+        {
+            Vehicles = new List<Vehicle>();
+            Incidents = new List<Incident>();
+            Equipments = new List<Equipment>();
+            Persons = new List<Person>();
+            Teams = new List<EmergencyTeamBase>();
+        }
+         #endregion
 
 
         #region List Methods
 
-        #region List All Vehicles
-        public void ListVehicles()
+            #region List All Vehicles
+            public void ListVehicles()
         {
             var vehicles = _vehicleManager.ListAllVehicles();
             foreach (var vehicle in vehicles)

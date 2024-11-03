@@ -54,8 +54,6 @@ namespace TP_POO_a30517.Data
 
         public DbSet<VehicleIncident> VehicleIncidents { get; set; }
 
-        public DbSet<OperationalCommand> OperationalCommands { get; set; }
-
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
