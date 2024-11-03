@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using TP_POO_a30517.Equipments;
 using TP_POO_a30517.Incidents;
 using TP_POO_a30517.Models;
+using TP_POO_a30517.Relations;
 using TP_POO_a30517.Teams;
 using TP_POO_a30517.Vehicles;
 
@@ -49,6 +50,9 @@ namespace TP_POO_a30517.Data
         public DbSet<LogisticalSupport> Logistical_Supports { get; set; }
         public DbSet<MotorBike> MotorBikes { get; set; }
 
+        public DbSet<EquipmentIncident> EquipmentIncidents { get; set; }
+
+        public DbSet<VehicleIncident> VehicleIncidents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,6 +60,19 @@ namespace TP_POO_a30517.Data
             modelBuilder.Entity<Equipment>()
                 .ToTable("Equipments")
                 .HasKey(e => e.Id);
+
+            modelBuilder.Entity<EquipmentIncident>()
+                .HasKey(ei => new { ei.EquipmentId, ei.IncidentId });
+
+            modelBuilder.Entity<EquipmentIncident>()
+                .HasOne(ei => ei.Equipment)
+                .WithMany(e => e.EquipmentIncidents)
+                .HasForeignKey(ei => ei.EquipmentId);
+
+            modelBuilder.Entity<EquipmentIncident>()
+                .HasOne(ei => ei.Incident)
+                .WithMany(i => i.EquipmentIncidents)
+                .HasForeignKey(ei => ei.IncidentId);
 
             modelBuilder.Entity<Incident>()
                 .ToTable("Incidents")
@@ -165,7 +182,20 @@ namespace TP_POO_a30517.Data
                 .ToTable("MotorBikes")
                 .HasBaseType<Vehicle>();
 
+            modelBuilder.Entity<VehicleIncident>()
+        .HasKey(vi => new { vi.VehicleId, vi.IncidentId });
+
+            modelBuilder.Entity<VehicleIncident>()
+                .HasOne(vi => vi.Vehicle)
+                .WithMany(v => v.VehicleIncidents)
+                .HasForeignKey(vi => vi.VehicleId);
+
+            modelBuilder.Entity<VehicleIncident>()
+                .HasOne(vi => vi.Incident)
+                .WithMany(i => i.VehicleIncidents)
+                .HasForeignKey(vi => vi.IncidentId);
         }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

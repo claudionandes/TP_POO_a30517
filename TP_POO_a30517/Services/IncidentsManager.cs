@@ -16,6 +16,7 @@ using TP_POO_a30517.Data;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Incidents;
 using TP_POO_a30517.Interfaces;
+using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Services
 {
@@ -62,17 +63,104 @@ namespace TP_POO_a30517.Services
                 var selectedTeam = availableTeams[choice - 1];
                 incident.TeamType = teamType;
 
+                // Adiciona o incidente ao contexto
                 _context.Incidents.Add(incident);
-                _context.SaveChanges();
+                _context.SaveChanges(); // Salva o incidente primeiro para obter o ID
 
-                Console.WriteLine("Incidente criado e equipa atribuída com sucesso");
+                // Agora, permita que o usuário selecione o tipo de veículo
+                Console.WriteLine("Selecione o tipo de veículo:");
+
+                // Supondo que você tenha uma enumeração VehicleType
+                var vehicleTypes = Enum.GetValues(typeof(VehiclesType)).Cast<VehiclesType>().ToList();
+
+                for (int i = 0; i < vehicleTypes.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {vehicleTypes[i]}");
+                }
+
+                Console.Write("Escolha o número do tipo de veículo: ");
+                if (int.TryParse(Console.ReadLine(), out int vehicleTypeChoice) && vehicleTypeChoice > 0 && vehicleTypeChoice <= vehicleTypes.Count)
+                {
+                    var selectedVehicleType = vehicleTypes[vehicleTypeChoice - 1];
+
+                    // Filtra os veículos disponíveis pelo tipo selecionado
+                    var availableVehicles = _context.Vehicles
+                        .Where(v => v.Type == selectedVehicleType) // Filtra por tipo
+                        .ToList();
+
+                    if (!availableVehicles.Any())
+                    {
+                        Console.WriteLine("Nenhum veículo disponível para o tipo selecionado.");
+                        return;
+                    }
+
+                    Console.WriteLine("Selecione os veículos disponíveis:");
+                    for (int i = 0; i < availableVehicles.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. Marca: {availableVehicles[i].Brand}, Modelo: {availableVehicles[i].VehicleModel}, Matrícula: {availableVehicles[i].VehicleRegist}");
+                    }
+
+                    Console.Write("Escolha os números dos veículos (separados por vírgula): ");
+                    var vehicleChoices = Console.ReadLine().Split(',').Select(v => v.Trim()).ToList();
+
+                    foreach (var vehicleChoice in vehicleChoices)
+                    {
+                        if (int.TryParse(vehicleChoice, out int vehicleIndex) && vehicleIndex > 0 && vehicleIndex <= availableVehicles.Count)
+                        {
+                            var selectedVehicle = availableVehicles[vehicleIndex - 1];
+
+                            // Associa o veículo ao incidente
+                            AssociateVehicleWithIncident(selectedVehicle.Id, incident.Id);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Escolha inválida para veículo: {vehicleChoice}");
+                        }
+                    }
+
+                    Console.WriteLine("Incidente criado e equipa atribuída com sucesso");
+                }
+                else
+                {
+                    Console.WriteLine("Escolha inválida. Incidente não foi criado.");
+                }
             }
             else
             {
                 Console.WriteLine("Escolha inválida. Incidente não foi criado.");
             }
         }
+        #endregion
 
+        #region Associate Vehicle With Incident
+        public void AssociateVehicleWithIncident(int vehicleId, int incidentId)
+        {
+            using (var context = new EmergenciesDBContext())
+            {
+                var vehicle = context.Vehicles.FirstOrDefault(v => v.Id == vehicleId);
+                var incident = context.Incidents.FirstOrDefault(i => i.Id == incidentId);
+
+                if (vehicle == null)
+                {
+                    throw new KeyNotFoundException($"Veículo com ID {vehicleId} não encontrado");
+                }
+
+                if (incident == null)
+                {
+                    throw new KeyNotFoundException($"Incidente com ID {incidentId} não encontrado");
+                }
+
+                var vehicleIncident = new VehicleIncident
+                {
+                    VehicleId = vehicleId,
+                    IncidentId = incidentId
+                };
+
+                context.VehicleIncidents.Add(vehicleIncident);
+                context.SaveChanges();
+                Console.WriteLine("Veículo associado ao incidente com sucesso");
+            }
+        }
         #endregion
 
         #region Update Incident

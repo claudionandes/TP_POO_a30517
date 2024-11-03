@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
-using TP_POO_a30517.Teams;
+using TP_POO_a30517.Relations;
 using Utils;
 
 namespace TP_POO_a30517.Models

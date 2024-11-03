@@ -19,6 +19,7 @@ using DataValidationLibrary;
 using TP_POO_a30517.Data;
 using System.Numerics;
 using TP_POO_a30517.Teams;
+using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Services
 {

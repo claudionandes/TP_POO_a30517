@@ -7,6 +7,7 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ using TP_POO_a30517.Data;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Equipments;
 using TP_POO_a30517.Interfaces;
+using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Services
 {
@@ -39,6 +41,70 @@ namespace TP_POO_a30517.Services
                 context.Equipments.Add(equipment);
                 context.SaveChanges();
                 Console.WriteLine("Equipamento inserido com sucesso");
+            }
+        }
+        #endregion
+
+        #region Associate Equipment with Incident
+        public void AssociateEquipmentWithIncident(int equipmentId, int incidentId)
+        {
+            using (var context = new EmergenciesDBContext())
+            {
+                var equipment = context.Equipments.FirstOrDefault(e => e.Id == equipmentId);
+                var incident = context.Incidents.FirstOrDefault(i => i.Id == incidentId);
+
+                if (equipment == null)
+                {
+                    throw new KeyNotFoundException($"Equipamento com ID {equipmentId} não encontrado");
+                }
+
+                if (incident == null)
+                {
+                    throw new KeyNotFoundException($"Incidente com ID {incidentId} não encontrado");
+                }
+
+                // Adiciona a associação
+                var equipmentIncident = new EquipmentIncident
+                {
+                    EquipmentId = equipmentId,
+                    IncidentId = incidentId
+                };
+
+                context.EquipmentIncidents.Add(equipmentIncident);
+
+                // Atualiza a lista EquipmentUsed do incidente com o ID do equipamento
+                if (incident.EquipmentUsed == null)
+                {
+                    incident.EquipmentUsed = new List<EquipmentType>();
+                }
+
+                // Adiciona o ID do equipamento à lista EquipmentUsed
+                incident.EquipmentUsed.Add(equipment.Type);
+
+                context.SaveChanges();
+                Console.WriteLine("Equipamento associado ao incidente com sucesso");
+            }
+        }
+        #endregion
+
+        #region Remove Equipment from Incident
+        public void RemoveEquipmentFromIncident(int equipmentId, int incidentId)
+        {
+            using (var context = new EmergenciesDBContext())
+            {
+                var association = context.EquipmentIncidents
+                    .FirstOrDefault(ei => ei.EquipmentId == equipmentId && ei.IncidentId == incidentId);
+
+                if (association != null)
+                {
+                    context.EquipmentIncidents.Remove(association);
+                    context.SaveChanges();
+                    Console.WriteLine("Associação de equipamento removida do incidente com sucesso");
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"Associação entre equipamento {equipmentId} e incidente {incidentId} não encontrada");
+                }
             }
         }
         #endregion
@@ -111,6 +177,23 @@ namespace TP_POO_a30517.Services
             {
                 return context.Equipments
                               .Where(e => e.Status == EquipmentStatus.Disponível)
+                              .ToList();
+            }
+        }
+        #endregion
+
+        #region List Equipments by Incident
+        public List<Equipment> GetEquipmentsByIncident(int incidentId)
+        {
+            using (var context = new EmergenciesDBContext())
+            {
+                var equipmentIds = context.EquipmentIncidents
+                                           .Where(ei => ei.IncidentId == incidentId)
+                                           .Select(ei => ei.EquipmentId)
+                                           .ToList();
+
+                return context.Equipments
+                              .Where(e => equipmentIds.Contains(e.Id))
                               .ToList();
             }
         }

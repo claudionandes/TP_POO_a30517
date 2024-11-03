@@ -57,7 +57,7 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Constructors
-        public MedicalIncident(string description, DateTime created,string location,IncidentSeverityLevel severity,IncidentType type,IncidentStatus status,List<EquipmentType> equipmentUsed,
+        public MedicalIncident(string description, DateTime created,string location,IncidentSeverityLevel severity,IncidentType type,IncidentStatus status, List<EquipmentType> equipmentUsed,
                                TeamType teamType, string patientName, int patientAge, string medicalCondition)
             : base(description, created, location, severity, type, status, equipmentUsed, teamType)
         {

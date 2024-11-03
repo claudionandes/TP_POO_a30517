@@ -29,7 +29,7 @@ namespace TP_POO_a30517
         [STAThread]
         static void Main()
         {
-            //ApplicationConfiguration.Initialize();ç
+            //ApplicationConfiguration.Initialize();
             //Application.Run(new Form1());
             #region ADD Person
             //PersonsManager personsManager = new PersonsManager();
@@ -92,25 +92,25 @@ namespace TP_POO_a30517
             #endregion
 
             #region Delete Person by ID
-            try
-            {
-                using (var context = new EmergenciesDBContext())
-                {
-                    var personsManager = new PersonsManager();
+            //try
+            //{
+            //    using (var context = new EmergenciesDBContext())
+            //    {
+            //        var personsManager = new PersonsManager();
 
-                    int personIdToDelete = 1;
+            //        int personIdToDelete = 1;
 
-                    personsManager.DeletePerson(personIdToDelete);
-                }
-            }
-            catch (InvalidOperationException ex)
-            {
-                Console.WriteLine($"{ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"{ex.Message}");
-            }
+            //        personsManager.DeletePerson(personIdToDelete);
+            //    }
+            //}
+            //catch (InvalidOperationException ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
+            //}
 
             #endregion
 
@@ -145,6 +145,7 @@ namespace TP_POO_a30517
             #endregion
 
             #region Create Vehicle
+
             //try
             //{
             //    VehiclesManager vehiclesManager = new VehiclesManager();
@@ -257,6 +258,28 @@ namespace TP_POO_a30517
             //try
             //{
             //    equipmentsManager.AddEquipment(equipment);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
+            //}
+            #endregion
+
+            #region Asociate Equipment to Incident
+            //EquipmentsManager equipmentsManager = new EquipmentsManager();
+
+            //int equipmentId = 20;
+            //int incidentId = 1;
+
+            //try
+            //{
+            //    // Associar o equipamento ao incidente
+            //    equipmentsManager.AssociateEquipmentWithIncident(equipmentId, incidentId);
+            //    Console.WriteLine($"Equipamento com ID {equipmentId} associado ao incidente com ID {incidentId} com sucesso.");
+            //}
+            //catch (KeyNotFoundException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
             //}
             //catch (Exception ex)
             //{
@@ -455,33 +478,33 @@ namespace TP_POO_a30517
             //    {
             //        // Criando um incidente médico
             //        MedicalIncident medicalIncident = new MedicalIncident(
-            //            "Paciente com perna partido",
+            //            "Paciente com problemas psicológicos",
             //            DateTime.Now,
             //            "Rua dos testes, 50",
-            //            IncidentSeverityLevel.Crítico,
+            //            IncidentSeverityLevel.Leve,
             //            IncidentType.Emergência_Médica,
             //            IncidentStatus.Em_Progresso,
             //            new List<EquipmentType> { EquipmentType.Médico },
             //            TeamType.INEM,
-            //            "Joaquim Guerra",
-            //            80,
-            //            "Perna partido"
+            //            "Joaquina Azevedo",
+            //            20,
+            //            "Tentativa de Suicídio"
             //        );
 
             //        incidentsManager.CreateIncident(medicalIncident, TeamType.INEM);
 
             //        // Criando um incidente de incêndio
             //        FireIncident fireIncident = new FireIncident(
-            //            "Incêndio em edifício residencial",
+            //            "Incêndio em Fábrica",
             //            DateTime.Now,
-            //            "Avenida Central, 456",
+            //            "Avenida Dos Postes, 800",
             //            IncidentSeverityLevel.Crítico,
             //            IncidentType.Incêndio,
             //            IncidentStatus.Em_Progresso,
-            //            new List<EquipmentType> { EquipmentType.Máscaras_Cogulas, EquipmentType.Combate_Incêndio },
+            //            new List<EquipmentType> { EquipmentType.Capacetes, EquipmentType.Combate_Incêndio },
             //            TeamType.Bombeiros,
             //            150.5,
-            //            10 
+            //            150
             //        );
 
             //        incidentsManager.CreateIncident(fireIncident, TeamType.Bombeiros);

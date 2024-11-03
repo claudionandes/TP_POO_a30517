@@ -13,8 +13,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_POO_a30517.Models;
+using TP_POO_a30517.Teams;
 
-namespace TP_POO_a30517.Teams
+namespace TP_POO_a30517.Relations
 {
     public class TeamMember
     {

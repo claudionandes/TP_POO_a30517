@@ -9,7 +9,7 @@
 
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Interfaces;
-using TP_POO_a30517.Teams;
+using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Incidents
 {
@@ -74,9 +74,11 @@ namespace TP_POO_a30517.Incidents
 
         public List<EquipmentType> EquipmentUsed
         {
-            get => equipmentUsed; 
+            get => equipmentUsed;
             set => equipmentUsed = value;
         }
+
+
         public TeamType TeamType
         {
             get => teamType;
@@ -84,6 +86,10 @@ namespace TP_POO_a30517.Incidents
         }
 
         public ICollection<TeamIncident> TeamIncidents { get; set; }
+
+        public ICollection<EquipmentIncident> EquipmentIncidents { get; set; }
+
+        public ICollection<VehicleIncident> VehicleIncidents { get; set; }
         #endregion
 
         #region Construtors        

@@ -18,6 +18,7 @@ using System.Xml.Linq;
 using TP_POO_a30517.Enums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Vehicles
 {
@@ -75,6 +76,8 @@ namespace TP_POO_a30517.Vehicles
             get => status; 
             set => status = value;
         }
+
+        public ICollection<VehicleIncident> VehicleIncidents { get; set; }
         #endregion
 
         #region Constructors  

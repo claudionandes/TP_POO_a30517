@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using TP_POO_a30517.Enums;
+using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Equipments
 {
@@ -60,6 +61,8 @@ namespace TP_POO_a30517.Equipments
             get => status;
             set => status = value;
         }
+
+        public ICollection<EquipmentIncident> EquipmentIncidents { get; set; }
         #endregion
 
         #region Construtors        

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TP_POO_a30517.Data;
 
@@ -11,9 +12,11 @@ using TP_POO_a30517.Data;
 namespace TP_POO_a30517.Migrations
 {
     [DbContext(typeof(EmergenciesDBContext))]
-    partial class EmergenciesDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241103201423_CreateEquipmentIncidentTable")]
+    partial class CreateEquipmentIncidentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,21 +206,6 @@ namespace TP_POO_a30517.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("TeamMembers");
-                });
-
-            modelBuilder.Entity("TP_POO_a30517.Relations.VehicleIncident", b =>
-                {
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IncidentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("VehicleId", "IncidentId");
-
-                    b.HasIndex("IncidentId");
-
-                    b.ToTable("VehicleIncidents");
                 });
 
             modelBuilder.Entity("TP_POO_a30517.Teams.EmergencyTeamBase", b =>
@@ -597,25 +585,6 @@ namespace TP_POO_a30517.Migrations
                     b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("TP_POO_a30517.Relations.VehicleIncident", b =>
-                {
-                    b.HasOne("TP_POO_a30517.Incidents.Incident", "Incident")
-                        .WithMany("VehicleIncidents")
-                        .HasForeignKey("IncidentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TP_POO_a30517.Vehicles.Vehicle", "Vehicle")
-                        .WithMany("VehicleIncidents")
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Incident");
-
-                    b.Navigation("Vehicle");
-                });
-
             modelBuilder.Entity("TP_POO_a30517.Incidents.CatastropheIncident", b =>
                 {
                     b.HasOne("TP_POO_a30517.Incidents.Incident", null)
@@ -786,8 +755,6 @@ namespace TP_POO_a30517.Migrations
                     b.Navigation("EquipmentIncidents");
 
                     b.Navigation("TeamIncidents");
-
-                    b.Navigation("VehicleIncidents");
                 });
 
             modelBuilder.Entity("TP_POO_a30517.Models.Person", b =>
@@ -800,11 +767,6 @@ namespace TP_POO_a30517.Migrations
                     b.Navigation("TeamIncidents");
 
                     b.Navigation("TeamMembers");
-                });
-
-            modelBuilder.Entity("TP_POO_a30517.Vehicles.Vehicle", b =>
-                {
-                    b.Navigation("VehicleIncidents");
                 });
 
             modelBuilder.Entity("TP_POO_a30517.Teams.FireFighters", b =>
