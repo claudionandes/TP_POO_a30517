@@ -32,12 +32,6 @@ namespace TP_POO_a30517.Teams
         #endregion
 
         #region Constructors
-        public INEM() : base("Default Name", TeamStatus.Disponível, TeamType.INEM)
-        {
-            DoctorsList = new List<Doctor>();
-            NursesList = new List<Nurse>();
-            EmergencyTechniciansList = new List<EmergencyTechnician>();
-        }
         public INEM(string name, TeamStatus status, TeamType teamType)
             : base(name, status, teamType)
         {
@@ -53,8 +47,7 @@ namespace TP_POO_a30517.Teams
             var doctorsDetails = string.Join(", ", DoctorsList);
             var nursesDetails = string.Join(", ", NursesList);
             var emergencyTechniciansDetails = string.Join(", ", EmergencyTechniciansList);
-            return $"ID: {Id}\n" +
-                   $"Nome: {Name}\n" +
+            return $"Nome: {Name}\n" +
                    $"Estado: {Status}\n\n" +
                    $"Equipa: {TeamType}\n\n" +
                    $"Médico:\n{doctorsDetails}\n" +

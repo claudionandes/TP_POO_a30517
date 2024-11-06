@@ -7,6 +7,7 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ using TP_POO_a30517.Enums;
 using TP_POO_a30517.Equipments;
 using TP_POO_a30517.Interfaces;
 using TP_POO_a30517.Relations;
+using TP_POO_a30517.Vehicles;
 
 namespace TP_POO_a30517.Services
 {
@@ -83,6 +85,25 @@ namespace TP_POO_a30517.Services
 
                 context.SaveChanges();
                 Console.WriteLine("Equipamento associado ao incidente com sucesso");
+            }
+        }
+        #endregion
+
+        #region Associate Equipment to Vehicle
+        public void AssignEquipmentToVehicle(Vehicle vehicle, Equipment equipment, int quantity)
+        {
+            using (var context = new EmergenciesDBContext())
+            {
+                var vehicleEquipment = new VehicleEquipment
+                {
+                    Vehicle = vehicle,
+                    Equipment = equipment,
+                };
+
+                vehicle.VehicleEquipments.Add(vehicleEquipment);
+                equipment.VehicleEquipments.Add(vehicleEquipment);
+
+                context.SaveChanges();
             }
         }
         #endregion
@@ -205,6 +226,28 @@ namespace TP_POO_a30517.Services
                 return context.Equipments
                               .Where(e => equipmentIds.Contains(e.Id))
                               .ToList();
+            }
+        }
+        #endregion
+
+        #region List Equipments by Vehicle
+        public void ListEquipmentsForVehicle(int vehicleId)
+        {
+            using (var context = new EmergenciesDBContext())
+            {
+                var vehicle = context.Vehicles
+                                  .Include(v => v.VehicleEquipments)
+                                  .ThenInclude(ve => ve.Equipment)
+                                  .FirstOrDefault(v => v.Id == vehicleId);
+
+                if (vehicle != null)
+                {
+                    Console.WriteLine($"Equipamentos para o veículo {vehicle.VehicleRegist}:");
+                    foreach (var ve in vehicle.VehicleEquipments)
+                    {
+                        Console.WriteLine($"{ve.Equipment.Name}");
+                    }
+                }
             }
         }
         #endregion

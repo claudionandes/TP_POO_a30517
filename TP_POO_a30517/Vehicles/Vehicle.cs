@@ -78,6 +78,8 @@ namespace TP_POO_a30517.Vehicles
         }
 
         public ICollection<VehicleIncident> VehicleIncidents { get; set; }
+        public ICollection<VehicleEquipment> VehicleEquipments { get; set; } = new List<VehicleEquipment>();
+
         #endregion
 
         #region Constructors  

@@ -38,7 +38,7 @@ namespace TP_POO_a30517.Services
 
         #region Public Methods
 
-        #region Add Person
+        #region Create Person
         public void AddPerson(Person person)
         {
             if (person == null)
@@ -102,8 +102,12 @@ namespace TP_POO_a30517.Services
                     throw new FormatException("E-mail inválido");
                 }
 
-                context.SaveChanges();
+                if (!Validator.ValidPhoneNumber(person.Phone))
+                {
+                    throw new FormatException("Contacto inválido");
+                }
 
+                context.SaveChanges();
                 Console.WriteLine($"{person.Name} inserido com sucesso");
             }
         }
@@ -138,7 +142,55 @@ namespace TP_POO_a30517.Services
         }
         #endregion
 
-        #region Associate Person to Team
+        #region Delete Person
+        public void DeletePerson(int personId)
+        {
+            using (var context = new EmergenciesDBContext())
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var person = context.Set<Person>().Find(personId);
+                    if (person == null)
+                    {
+                        throw new InvalidOperationException($"Pessoa com ID {personId} não encontrada");
+                    }
+
+                    // Remover associações com equipas
+                    var teamMemberships = context.TeamMembers.Where(tm => tm.PersonId == personId).ToList();
+                    foreach (var membership in teamMemberships)
+                    {
+                        // Verificar se a equipa está associada a incidentes
+                        var teamIncidents = context.TeamIncidents.Where(ti => ti.TeamId == membership.TeamId).ToList();
+                        foreach (var teamIncident in teamIncidents)
+                        {
+                            // Atualizar o incidente
+                            var incident = teamIncident.Incident;
+                            incident.Description += $" (Membro da equipa {person.Name} eliminado em {DateTime.Now})";
+                            context.Incidents.Update(incident);
+                        }
+                        // Remover a associação da pessoa com a equipa
+                        context.TeamMembers.Remove(membership);
+                    }
+
+                    context.Set<Person>().Remove(person);
+
+                    context.SaveChanges();
+                    transaction.Commit();
+
+                    Console.WriteLine($"Pessoa com ID {personId} foi eliminada com sucesso");
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine($"Erro ao eliminar pessoa: {ex.Message}");
+                    throw;
+                }
+            }
+        }
+        #endregion
+
+        #region Associate Person (Available) to Team
         public void AssociatePersonToTeam(int personId, int teamId)
         {
             using (var context = new EmergenciesDBContext())
@@ -154,6 +206,18 @@ namespace TP_POO_a30517.Services
                 if (team == null)
                 {
                     throw new InvalidOperationException($"Equipa com ID {teamId} não encontrada");
+                }
+
+                // Verificar se a pessoa está disponível
+                if (person.Status != PersonStatus.Disponível)
+                {
+                    throw new InvalidOperationException($"A pessoa com ID {personId} não está disponível para ser associada à equipa.");
+                }
+
+                // Verificar se o TeamType da pessoa é compatível com o da equipa
+                if (person.TeamType != team.TeamType)
+                {
+                    throw new InvalidOperationException($"A pessoa com ID {personId} não pode ser associada a uma equipa do tipo {team.TeamType}, porque o seu TeamType é {person.TeamType}");
                 }
 
                 // Verificar se a associação já existe
@@ -177,54 +241,23 @@ namespace TP_POO_a30517.Services
         }
         #endregion
 
-        #region Delete Person
-        public void DeletePerson(int personId)
+        #region Dissociate Person From Team
+        public void DissociatePersonFromTeam(int personId, int teamId)
         {
             using (var context = new EmergenciesDBContext())
-            using (var transaction = context.Database.BeginTransaction())
             {
-                try
+                // Procura a associação entre a pessoa e a equipa
+                var teamMember = context.TeamMembers.FirstOrDefault(tm => tm.PersonId == personId && tm.TeamId == teamId);
+                if (teamMember == null)
                 {
-                    var person = context.Set<Person>().Find(personId);
-                    if (person == null)
-                    {
-                        throw new InvalidOperationException($"Pessoa com ID {personId} não encontrada");
-                    }
-
-                    // 1. Remover associações com equipas
-                    var teamMemberships = context.TeamMembers.Where(tm => tm.PersonId == personId).ToList();
-                    foreach (var membership in teamMemberships)
-                    {
-                        // 2. Verificar se a equipa está associada a incidentes
-                        var teamIncidents = context.TeamIncidents.Where(ti => ti.TeamId == membership.TeamId).ToList();
-                        foreach (var teamIncident in teamIncidents)
-                        {
-                            // Atualizar o incidente
-                            var incident = teamIncident.Incident;
-                            incident.Description += $" (Membro da equipa {person.Name} removido em {DateTime.Now})";
-                            context.Incidents.Update(incident);
-
-                            // Remover a associação TeamIncident
-                            context.TeamIncidents.Remove(teamIncident);
-                        }
-
-                        // 3. Remover a associação da pessoa com a equipe
-                        context.TeamMembers.Remove(membership);
-                    }
-
-                    context.Set<Person>().Remove(person);
-
-                    context.SaveChanges();
-                    transaction.Commit();
-
-                    Console.WriteLine($"Pessoa com ID {personId} foi eliminada com sucesso");
+                    throw new InvalidOperationException($"Associação entre a pessoa com ID {personId} e a equipa com ID {teamId} não encontrada");
                 }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    Console.WriteLine($"Erro ao eliminar pessoa: {ex.Message}");
-                    throw;
-                }
+
+                // Remover a associação da tabela TeamMembers
+                context.TeamMembers.Remove(teamMember);
+                context.SaveChanges();
+
+                Console.WriteLine($"Associação da pessoa com ID {personId} foi eliminada com sucesso da equipa com ID {teamId}");
             }
         }
         #endregion
@@ -234,28 +267,24 @@ namespace TP_POO_a30517.Services
         {
             using (var context = new EmergenciesDBContext())
             {
-                // Converter o enum para int antes da comparação
                 var filteredPersons = context.Set<Person>()
-                    .Where(p => (int)p.Status == (int)status)
+                    .Where(p => p.Status == status)
                     .ToList();
 
-                if (filteredPersons.Any())
+                if (filteredPersons.Count == 0)
                 {
-                    Console.WriteLine($"Pessoas com o estado '{status}':");
-                    foreach (var person in filteredPersons)
-                    {
-                        Console.WriteLine(person.ReturnsValuesPerson());
-                    }
+                    Console.WriteLine($"Nenhuma pessoa encontrada com o estado '{status}'");
                 }
                 else
                 {
-                    Console.WriteLine($"Nenhuma pessoa encontrada com o estado '{status}'");
+                    Console.WriteLine($"Pessoas com o status '{status}':");
+                    filteredPersons.ForEach(p => Console.WriteLine(p.ReturnsValuesPerson()));
                 }
             }
         }
         #endregion
 
-        #region Get All Persons
+        #region List All Persons
         public List<Person> GetAllPersons()
         {
             using (var context = new EmergenciesDBContext())
@@ -264,6 +293,7 @@ namespace TP_POO_a30517.Services
             }
         }
         #endregion
+
         #endregion
     }
 }

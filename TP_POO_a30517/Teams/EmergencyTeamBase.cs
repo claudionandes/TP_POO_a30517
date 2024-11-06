@@ -37,12 +37,13 @@ namespace TP_POO_a30517.Teams
         #endregion
 
         #region Constructors
-        protected EmergencyTeamBase(string name, TeamStatus status, TeamType teamType)
+        public EmergencyTeamBase(string name, TeamStatus status, TeamType teamType)
         {
             Name = name;
             Status = status;
             TeamType = teamType;
         }
+
 
         #endregion
 

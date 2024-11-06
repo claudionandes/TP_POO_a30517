@@ -54,6 +54,8 @@ namespace TP_POO_a30517.Data
 
         public DbSet<VehicleIncident> VehicleIncidents { get; set; }
 
+        public DbSet<VehicleEquipment> VehicleEquipments { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -144,8 +146,8 @@ namespace TP_POO_a30517.Data
 
             modelBuilder.Entity<TeamIncident>()
                    .HasOne(ti => ti.Team)
-                .WithMany(t => t.TeamIncidents)
-            .HasForeignKey(ti => ti.TeamId);
+                   .WithMany(t => t.TeamIncidents)
+                   .HasForeignKey(ti => ti.TeamId);
 
             modelBuilder.Entity<TeamIncident>()
                 .HasOne(ti => ti.Incident)
@@ -185,7 +187,7 @@ namespace TP_POO_a30517.Data
                 .HasBaseType<Vehicle>();
 
             modelBuilder.Entity<VehicleIncident>()
-        .HasKey(vi => new { vi.VehicleId, vi.IncidentId });
+                .HasKey(vi => new { vi.VehicleId, vi.IncidentId });
 
             modelBuilder.Entity<VehicleIncident>()
                 .HasOne(vi => vi.Vehicle)
@@ -196,6 +198,19 @@ namespace TP_POO_a30517.Data
                 .HasOne(vi => vi.Incident)
                 .WithMany(i => i.VehicleIncidents)
                 .HasForeignKey(vi => vi.IncidentId);
+
+            modelBuilder.Entity<VehicleEquipment>()
+                .HasKey(ve => new { ve.VehicleId, ve.EquipmentId });
+
+            modelBuilder.Entity<VehicleEquipment>()
+                .HasOne(ve => ve.Vehicle)
+                .WithMany(v => v.VehicleEquipments)
+                .HasForeignKey(ve => ve.VehicleId);
+
+            modelBuilder.Entity<VehicleEquipment>()
+                .HasOne(ve => ve.Equipment)
+                .WithMany(e => e.VehicleEquipments)
+                .HasForeignKey(ve => ve.EquipmentId);
         }
 
 

@@ -53,9 +53,8 @@ namespace TP_POO_a30517.Models
         public override string ReturnsValuesPerson()
         {
             return base.ReturnsValuesPerson() + "\n" +
-                   $"ID: {Id}\n" +
                    $"Nome Profissional: {ProfessionalName}\n" +
-                   $"Número Mecanográfico: {TechnicalNumber}";
+                   $"Número Mecanográfico: {TechnicalNumber}\n";
         }
         #endregion
     }

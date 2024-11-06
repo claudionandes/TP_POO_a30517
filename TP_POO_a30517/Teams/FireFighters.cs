@@ -37,8 +37,7 @@ namespace TP_POO_a30517.Teams
         public override string ReturnTeamDetails()
         {
             var firefightersDetails = string.Join(", ", FireFightersList);
-            return $"ID: {Id}\n" +
-                   $"Nome: {Name}\n" +
+            return $"Nome: {Name}\n" +
                    $"Estado: {Status}\n" +
                    $"Equipa: {TeamType}\n" +
                    $"Lista Equipa: {firefightersDetails}";

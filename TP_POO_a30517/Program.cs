@@ -17,6 +17,7 @@ using TP_POO_a30517.Equipments;
 using TP_POO_a30517.Data;
 using TP_POO_a30517.Interfaces;
 using TP_POO_a30517.Incidents;
+using ConsoleTables;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TP_POO_a30517
@@ -31,12 +32,12 @@ namespace TP_POO_a30517
         {
             //ApplicationConfiguration.Initialize();
             //Application.Run(new Form1());
-            #region ADD Person
+            #region Create Person
             //PersonsManager personsManager = new PersonsManager();
-            //Nurse nurse = new Nurse("Teste João Fernandes", new DateOnly(1978, 10, 10), "1234d5", "987654321", "teste@teste.pt", "Rua de Viena 40", "Portuguesa", Roles.Enfermeiro, TeamType.INEM, PersonStatus.Disponível, "Teste Silva", 4710, "Pneumologia");
-            //Doctor doctor = new Doctor("Carlos Teste Pereira", new DateOnly(1990, 05, 29), "58r288", "912345678", "Email@teste.pt", "Rua Porto, 100", "Portuguesa", Roles.Médico, TeamType.Bombeiros, PersonStatus.Disponível, "Carlos Pereira", 141000, "Cardiologia");
-            //FireFighter firefighter = new FireFighter("Pedro Teste", new DateOnly(1980, 04, 30), "456y9123", "923456789", "POO@teste.pt", "Rua Campos, 67", "Portuguesa", Roles.Bombeiro, TeamType.Bombeiros, PersonStatus.Disponível, 5, "Resgate em Incêndios", 5515000);
-            //EmergencyTechnician technician = new EmergencyTechnician("Tiago Fernandes", new DateOnly(1985, 10, 15), "78945k23", "924567890", "tec@teste.pt", "Rua Lisboa, 23", "Portuguesa", Roles.TécnicoEmergência, TeamType.INEM, PersonStatus.Disponível, "Tiago F.", 00111);
+            //Nurse nurse = new Nurse("Teste Cláudio Fernandes", new DateOnly(1992, 12, 29), "05158", "585958555", "teste@teste.pt", "Rua de Viena 500", "Portuguesa", Roles.Enfermeiro, TeamType.INEM, PersonStatus.Disponível, "Teste Cláudio", 51000, "Pneumologia");
+            //Doctor doctor = new Doctor("António Figueiredo Ramalho", new DateOnly(1990, 05, 29), "04512", "912345678", "Email@teste.pt", "Rua Porto, 100", "Portuguesa", Roles.Médico, TeamType.Bombeiros, PersonStatus.Disponível, "António Ramalho", 10210, "Cardiologia");
+            //FireFighter firefighter = new FireFighter("Anacleto das Dores", new DateOnly(1980, 04, 30), "029445", "923456789", "POO@teste.pt", "Rua Campos, 67", "Portuguesa", Roles.Bombeiro, TeamType.Bombeiros, PersonStatus.Disponível, 5, "Resgate em Incêndios", 092205);
+            //EmergencyTechnician technician = new EmergencyTechnician("Gil Fernandes", new DateOnly(1985, 10, 15), "01474", "924567890", "tec@teste.pt", "Rua Lisboa, 23", "Portuguesa", Roles.TécnicoEmergência, TeamType.INEM, PersonStatus.Disponível, "Gil F.", 020825);
 
             //// Adicionar profissionais ao manager
             //try
@@ -68,55 +69,9 @@ namespace TP_POO_a30517
             //}
             #endregion
 
-            #region Associate Person to Team
-            //try
-            //{
-            //    using (var context = new EmergenciesDBContext())
-            //    {
-            //        var personsManager = new PersonsManager();
-
-            //        int personId = 1; // ID da pessoa a associar
-            //        int teamId = 1;   // ID da equipa
-
-            //        personsManager.AssociatePersonToTeam(personId, teamId);
-            //    }
-            //}
-            //catch (InvalidOperationException ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            #endregion
-
-            #region Delete Person by ID
-            //try
-            //{
-            //    using (var context = new EmergenciesDBContext())
-            //    {
-            //        var personsManager = new PersonsManager();
-
-            //        int personIdToDelete = 1;
-
-            //        personsManager.DeletePerson(personIdToDelete);
-            //    }
-            //}
-            //catch (InvalidOperationException ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-
-            #endregion
-
             #region Update Person
             //var personsManager = new PersonsManager();
-            //int ID = 1;
+            //int ID = 2;
             //var updates = new Dictionary<string, object>
             //{
             //    { "Name", "Cláudio Teste Fernandes" },
@@ -134,15 +89,144 @@ namespace TP_POO_a30517
             //}
             //catch (Exception ex)
             //{
-            //    Console.WriteLine($"Ocorreu um erro: {ex.Message}");
+            //    Console.WriteLine($"{ex.Message}");
+            //}
+            #endregion
+
+            #region Delete Person
+            //try
+            //{
+            //    using (var context = new EmergenciesDBContext())
+            //    {
+            //        var personsManager = new PersonsManager();
+            //        var people = context.Set<Person>().ToList();
+
+            //        Console.WriteLine("Lista de Pessoas:");
+            //        for (int i = 0; i < people.Count; i++)
+            //        {
+            //            Console.WriteLine($"ID: {people[i].Id} {people[i].Name}");
+            //        }
+
+            //        Console.Write("Insira o ID da pessoa a ser eliminada: ");
+            //        int personIdToDelete;
+            //        bool isValidId = int.TryParse(Console.ReadLine(), out personIdToDelete);
+
+            //        if (!isValidId || !people.Any(p => p.Id == personIdToDelete))
+            //        {
+            //            Console.WriteLine("ID inválido");
+            //        }
+            //        else
+            //        {
+            //            personsManager.DeletePerson(personIdToDelete);
+            //        }
+            //    }
+            //}
+            //catch (InvalidOperationException ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
+            //}
+
+            #endregion
+
+            #region Associate Person (Available) to Team
+            //try
+            //{
+            //    using (var context = new EmergenciesDBContext())
+            //    {
+            //        var personsManager = new PersonsManager();
+
+            //        int personId = 9;
+            //        int teamId = 4;
+
+            //        personsManager.AssociatePersonToTeam(personId, teamId);
+            //    }
+            //}
+            //catch (InvalidOperationException ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
+            //}
+            #endregion
+
+            #region Dissociate Person From Team
+            //try
+            //{
+            //    using (var context = new EmergenciesDBContext())
+            //    {
+            //        var personsManager = new PersonsManager();
+
+            //        int personId = 28;
+            //        int teamId = 3;
+
+            //        personsManager.DissociatePersonFromTeam(personId, teamId);
+            //    }
+            //}
+            //catch (InvalidOperationException ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"{ex.Message}");
             //}
             #endregion
 
             #region List Person by Status
-            //var personsManager = new PersonsManager();
-            //PersonStatus statusToFilter = PersonStatus.Disponível;
-            //personsManager.PersonsByStatus(statusToFilter);
+            //try
+            //{
+            //    using (var context = new EmergenciesDBContext())
+            //    {
+            //        var personsManager = new PersonsManager();
+
+            //        Console.WriteLine("Digite o estado da pessoa (Disponível, Férias, Baixa_Médica, Ausente, Outro):");
+            //        string inputStatus = Console.ReadLine();
+
+            //        // Converter a entrada do utilizador para o enum PersonStatus
+            //        if (Enum.TryParse(inputStatus, true, out PersonStatus status))
+            //        {
+            //            personsManager.PersonsByStatus(status);
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine("Status inválido.");
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"Erro: {ex.Message}");
+            //}
             #endregion
+
+            #region List All Person
+            //try
+            //{
+            //    using (var context = new EmergenciesDBContext())
+            //    {
+            //        var personsManager = new PersonsManager();
+            //        List<Person> persons = personsManager.GetAllPersons();
+
+            //        var table = new ConsoleTable("ID", "Nome", "Estado");
+            //        foreach (var person in persons)
+            //        {
+            //            table.AddRow(person.Id, person.Name, person.Status);
+            //        }
+            //        table.Write();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"Erro: {ex.Message}");
+            //}
+            #endregion
+
 
             #region Create Vehicle
 
@@ -477,21 +561,21 @@ namespace TP_POO_a30517
             //    try
             //    {
             //        // Criando um incidente médico
-            //        MedicalIncident medicalIncident = new MedicalIncident(
-            //            "Paciente com problemas psicológicos",
-            //            DateTime.Now,
-            //            "Rua dos testes, 50",
-            //            IncidentSeverityLevel.Leve,
-            //            IncidentType.Emergência_Médica,
-            //            IncidentStatus.Em_Progresso,
-            //            new List<EquipmentType> { EquipmentType.Médico },
-            //            TeamType.INEM,
-            //            "Joaquina Azevedo",
-            //            20,
-            //            "Tentativa de Suicídio"
-            //        );
+            //        //MedicalIncident medicalIncident = new MedicalIncident(
+            //        //    "Paciente com problemas psicológicos",
+            //        //    DateTime.Now,
+            //        //    "Rua dos testes, 50",
+            //        //    IncidentSeverityLevel.Leve,
+            //        //    IncidentType.Emergência_Médica,
+            //        //    IncidentStatus.Em_Progresso,
+            //        //    new List<EquipmentType> { EquipmentType.Médico },
+            //        //    TeamType.INEM,
+            //        //    "Joaquina Azevedo",
+            //        //    20,
+            //        //    "Tentativa de Suicídio"
+            //        //);
 
-            //        incidentsManager.CreateIncident(medicalIncident, TeamType.INEM);
+            //        //incidentsManager.CreateIncident(medicalIncident, TeamType.INEM);
 
             //        // Criando um incidente de incêndio
             //        FireIncident fireIncident = new FireIncident(
@@ -512,7 +596,7 @@ namespace TP_POO_a30517
             //    }
             //    catch (Exception ex)
             //    {
-            //        Console.WriteLine($"Erro ao criar o incidente: {ex.Message}");
+            //        Console.WriteLine($"{ex.Message}");
             //    }
             //}
             #endregion

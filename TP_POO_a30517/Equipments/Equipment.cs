@@ -63,6 +63,8 @@ namespace TP_POO_a30517.Equipments
         }
 
         public ICollection<EquipmentIncident> EquipmentIncidents { get; set; }
+        public ICollection<VehicleEquipment> VehicleEquipments { get; set; } = new List<VehicleEquipment>();
+
         #endregion
 
         #region Construtors        

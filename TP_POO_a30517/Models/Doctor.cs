@@ -60,10 +60,9 @@ namespace TP_POO_a30517.Models
         public override string ReturnsValuesPerson()
         {
             return base.ReturnsValuesPerson() + "\n" +
-                   $"ID: {Id}\n" +
                    $"Nome Profissional: {ProfessionalName}\n" +
                    $"Número de Cédula: {CardNumber}\n" +
-                   $"Especialidade: {Specialty}";
+                   $"Especialidade: {Specialty}\n";
         }
         #endregion
     }

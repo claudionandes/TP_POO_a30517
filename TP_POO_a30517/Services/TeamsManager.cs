@@ -159,28 +159,6 @@ namespace TP_POO_a30517.Services
         }
         #endregion
 
-        #region Add Member to Team
-        /// <summary>
-        /// Adiciona um membro a uma equipa existente.
-        /// </summary>
-        /// <param name="teamId">ID da equipa.</param>
-        /// <param name="member">Membro a ser adicionado (deve ser do tipo Person).</param>
-        public void AddMemberToTeam(int teamId, Person member)
-        {
-        }
-        #endregion
-
-        #region Remove Member from Team
-        /// <summary>
-        /// Remove um membro de uma equipa existente.
-        /// </summary>
-        /// <param name="teamId">ID da equipa.</param>
-        /// <param name="memberId">ID do membro a ser removido.</param>
-        public void RemoveMemberFromTeam(int teamId, int memberId)
-        {
-        }
-        #endregion
-
         #region Create Team with Professionals
         /// <summary>
         /// Cria uma nova equipa e associa os profissionais disponíveis.

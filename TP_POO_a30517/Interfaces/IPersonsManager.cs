@@ -24,5 +24,6 @@ namespace TP_POO_a30517.Interfaces
         public void AssociatePersonToTeam(int personId, int teamId);
         void DeletePerson(int id);
         void PersonsByStatus(PersonStatus status);
+        public List<Person> GetAllPersons();
     }
 }
