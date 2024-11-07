@@ -122,7 +122,6 @@ namespace TP_POO_a30517.Models
         /// <param name="role">The role.</param>
         public Person(string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, TeamType teamType, PersonStatus status)
         {
-            Id = id;
             Name = name;
             Birthdate = birthdate;
             CitizenCard = citizenCard;
