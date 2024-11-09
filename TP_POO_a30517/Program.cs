@@ -19,6 +19,7 @@ using TP_POO_a30517.Interfaces;
 using TP_POO_a30517.Incidents;
 using ConsoleTables;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Numerics;
 
 namespace TP_POO_a30517
 {
@@ -227,381 +228,273 @@ namespace TP_POO_a30517
             //}
             #endregion
 
-
-            #region Create Vehicle
-
-            //try
-            //{
-            //    VehiclesManager vehiclesManager = new VehiclesManager();
-            //    // VMER
-            //    Ambulance vmer = new Ambulance("VV-111-MM", new DateOnly(2023, 01, 15), VehiclesType.ViaturaMédicadeEmergênciaeReanimação_VMER, "Mercedes", "Sprinter",
-            //        new DateOnly(2024, 01, 15), VehiclesStatus.Disponível, 1, 3, EquipmentType.Médico);
-            //    vehiclesManager.CreateVehicle(vmer);
-
-            //    // Ambulância SIV
-            //    Ambulance siv = new Ambulance("SS-222-II", new DateOnly(2022, 06, 20), VehiclesType.Ambulância_Suporte_Imediato_de_Vida_SIV, "Fiat", "Ducato",
-            //        new DateOnly(2023, 06, 20), VehiclesStatus.Em_Manutenção, 1, 2, EquipmentType.Médico);
-            //    vehiclesManager.CreateVehicle(siv);
-
-            //    // Ambulância TIP
-            //    Ambulance tip = new Ambulance("TT-333-PP", new DateOnly(2021, 11, 30), VehiclesType.Ambulância_de_Transporte_Inter_hospitalar_Pediátrico_TIP, "Volkswagen", "Crafter",
-            //        new DateOnly(2023, 11, 30), VehiclesStatus.Disponível, 1, 3, EquipmentType.Médico);
-            //    vehiclesManager.CreateVehicle(tip);
-
-            //    // Motociclo de Emergência Médica
-            //    MotorBike mem = new MotorBike("MM-444-EE", new DateOnly(2023, 03, 10), VehiclesType.Motociclos_de_Emergência_Médica_MEM, "BMW", "R1250RT",
-            //        new DateOnly(2024, 03, 10), VehiclesStatus.Disponível, 1250, true);
-            //    vehiclesManager.CreateVehicle(mem);
-
-            //    // Veículo de Combate a Incêndios
-            //    FireTruck vfci = new FireTruck("VV-555-FF", new DateOnly(2022, 08, 05), VehiclesType.Veículo_Florestal_de_Combate_a_Incêndios_VFCI, "MAN", "TGM",
-            //        new DateOnly(2023, 08, 05), VehiclesStatus.Disponível, 4000);
-            //    vehiclesManager.CreateVehicle(vfci);
-
-            //    // Veículo com Escada Giratória
-            //    LiftingMeans ve32 = new LiftingMeans("EE-666-GG", new DateOnly(2021, 12, 15), VehiclesType.Veículo_com_Escada_Giratória_VE32, "Magirus", "M32L-AT",
-            //        new DateOnly(2023, 12, 15), VehiclesStatus.Em_Manutenção, 300, 32, EquipmentType.Ferramentas);
-            //    vehiclesManager.CreateVehicle(ve32);
-
-            //    // Veículo de Apoio Alimentar
-            //    LogisticalSupport vapa = new LogisticalSupport("AA-777-LL", new DateOnly(2023, 02, 28), VehiclesType.Veículo_de_Apoio_Alimentar_VAPA, "Iveco", "Daily",
-            //        new DateOnly(2024, 02, 28), VehiclesStatus.Disponível, 1000, EquipmentType.Outro);
-            //    vehiclesManager.CreateVehicle(vapa);
-
-            //    // Bote de Socorro e Resgate Pneumático
-            //    Boat bsrp = new Boat("BB-888-SS", new DateOnly(2022, 07, 01), VehiclesType.Bote_de_Socorro_e_Resgate_Pneumático_BSRP, "Zodiac", "MilPro",
-            //        new DateOnly(2023, 07, 01), VehiclesStatus.Disponível, 8, EquipmentType.Ferramentas, 4.7, 50);
-            //    vehiclesManager.CreateVehicle(bsrp);
-
-            //    // Helicóptero INEM
-            //    Heli heliInem = new Heli("HH-999-II", new DateOnly(2021, 09, 20), VehiclesType.Heli_INEM, "AgustaWestland", "AW139",
-            //        new DateOnly(2023, 09, 20), VehiclesStatus.Ocupado, 2, 1500, "Querosene");
-            //    vehiclesManager.CreateVehicle(heliInem);
-
-            //    // Veículo de Comando e Comunicações
-            //    LogisticalSupport vcoc = new LogisticalSupport("CC-000-VV", new DateOnly(2023, 04, 15), VehiclesType.Veículo_de_Comando_e_Comunicações_VCOC, "Mercedes", "Sprinter",
-            //        new DateOnly(2024, 04, 15), VehiclesStatus.Disponível, 6, EquipmentType.Acessórios);
-            //    vehiclesManager.CreateVehicle(vcoc);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            #endregion
-
-            #region Update Vehicle
-            //VehiclesManager vehiclesManager = new VehiclesManager();
-
-            //string vehicleRegist = "AB-123-CD";
-
-            //var updates = new Dictionary<string, object>
-            //{
-            //    { "Brand", "Ford" },
-            //    { "VehicleModel", "Transit" },
-            //    { "CrewCapacity", 3 }
-
-            //};
-
-            //try
-            //{
-            //    vehiclesManager.UpdateVehicle(vehicleRegist, updates);
-            //}
-            //catch (KeyNotFoundException knfEx)
-            //{
-            //    Console.WriteLine(knfEx.Message);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            #endregion
-
-            #region Delete Vehicle
-            //VehiclesManager vehiclesManager = new VehiclesManager();
-            //string vehicleDelete = "AB-123-CD";
-
-            //try
-            //{
-            //    vehiclesManager.DeleteVehicle(vehicleDelete);
-            //}
-            //catch (KeyNotFoundException ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            #endregion
-
             #region Add Equipment
-            //EquipmentsManager equipmentsManager = new EquipmentsManager();
+        //EquipmentsManager equipmentsManager = new EquipmentsManager();
 
-            //Equipment equipment = new Equipment("Desfibrilador", EquipmentType.Ferramentas, 10, EquipmentStatus.Disponível);
-            //try
-            //{
-            //    equipmentsManager.AddEquipment(equipment);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            #endregion
+        //Equipment equipment = new Equipment("Desfibrilador", EquipmentType.Ferramentas, 10, EquipmentStatus.Disponível);
+        //try
+        //{
+        //    equipmentsManager.AddEquipment(equipment);
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine($"{ex.Message}");
+        //}
+        #endregion
 
             #region Asociate Equipment to Incident
-            //EquipmentsManager equipmentsManager = new EquipmentsManager();
+        //EquipmentsManager equipmentsManager = new EquipmentsManager();
 
-            //int equipmentId = 20;
-            //int incidentId = 1;
+        //int equipmentId = 20;
+        //int incidentId = 1;
 
-            //try
-            //{
-            //    // Associar o equipamento ao incidente
-            //    equipmentsManager.AssociateEquipmentWithIncident(equipmentId, incidentId);
-            //    Console.WriteLine($"Equipamento com ID {equipmentId} associado ao incidente com ID {incidentId} com sucesso.");
-            //}
-            //catch (KeyNotFoundException ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            #endregion
+        //try
+        //{
+        //    // Associar o equipamento ao incidente
+        //    equipmentsManager.AssociateEquipmentWithIncident(equipmentId, incidentId);
+        //    Console.WriteLine($"Equipamento com ID {equipmentId} associado ao incidente com ID {incidentId} com sucesso.");
+        //}
+        //catch (KeyNotFoundException ex)
+        //{
+        //    Console.WriteLine(ex.Message);
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine($"{ex.Message}");
+        //}
+        #endregion
 
             #region Update Equipment
-            //EquipmentsManager equipmentsManager = new EquipmentsManager();
-            //var updates = new Dictionary<string, object>
-            //{
-            //    { "name", "Desfibrilhador Avançado" },
-            //    { "quantityavailable", 5 },
-            //    { "status", EquipmentStatus.Em_Manutenção }
-            //};
+        //EquipmentsManager equipmentsManager = new EquipmentsManager();
+        //var updates = new Dictionary<string, object>
+        //{
+        //    { "name", "Desfibrilhador Avançado" },
+        //    { "quantityavailable", 5 },
+        //    { "status", EquipmentStatus.Em_Manutenção }
+        //};
 
-            //try
-            //{
-            //    equipmentsManager.UpdateEquipment(24, updates);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"{ex.Message}");
-            //}
-            #endregion
+        //try
+        //{
+        //    equipmentsManager.UpdateEquipment(24, updates);
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine($"{ex.Message}");
+        //}
+        #endregion
 
             #region Delete Equipment
-            //EquipmentsManager equipmentsManager = new EquipmentsManager();
-            //try
-            //{
-            //    equipmentsManager.DeleteEquipment(1);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"Erro ao eliminar equipamento: {ex.Message}");
-            //}
-            #endregion
+        //EquipmentsManager equipmentsManager = new EquipmentsManager();
+        //try
+        //{
+        //    equipmentsManager.DeleteEquipment(1);
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine($"Erro ao eliminar equipamento: {ex.Message}");
+        //}
+        #endregion
 
             #region Create Team
 
-            //    try
-            //    {
-            //        using (var context = new EmergenciesDBContext())
-            //        {
-            //            TeamsManager teamsManager = new TeamsManager(context);
+        //    try
+        //    {
+        //        using (var context = new EmergenciesDBContext())
+        //        {
+        //            TeamsManager teamsManager = new TeamsManager(context);
 
-            //            //// Criar equipa
-            //            //INEM inemTeam = new INEM("Equipa INEM 2", TeamStatus.Disponível, TeamType.INEM);
+        //            //// Criar equipa
+        //            //INEM inemTeam = new INEM("Equipa INEM 2", TeamStatus.Disponível, TeamType.INEM);
 
-            //            //// Criando e adicionando médicos
-            //            //Doctor doctor1 = new Doctor(
-            //            //    "Matilde Fernandes",
-            //            //    new DateOnly(1980, 1, 1),
-            //            //    "8885",
-            //            //    "911222333",
-            //            //    "matilde.fernandes@example.com",
-            //            //    "Rua A, 123",
-            //            //    "Portuguesa",
-            //            //    Roles.Médico,
-            //            //    TeamType.INEM,
-            //            //    PersonStatus.Disponível,
-            //            //    "Dra. Matilde Fernandes",
-            //            //    12388,
-            //            //    "Pneumologia"
-            //            //);
-            //            //inemTeam.DoctorsList.Add(doctor1);
+        //            //// Criando e adicionando médicos
+        //            //Doctor doctor1 = new Doctor(
+        //            //    "Matilde Fernandes",
+        //            //    new DateOnly(1980, 1, 1),
+        //            //    "8885",
+        //            //    "911222333",
+        //            //    "matilde.fernandes@example.com",
+        //            //    "Rua A, 123",
+        //            //    "Portuguesa",
+        //            //    Roles.Médico,
+        //            //    TeamType.INEM,
+        //            //    PersonStatus.Disponível,
+        //            //    "Dra. Matilde Fernandes",
+        //            //    12388,
+        //            //    "Pneumologia"
+        //            //);
+        //            //inemTeam.DoctorsList.Add(doctor1);
 
-            //            //Doctor doctor2 = new Doctor(
-            //            //    "Maria Teresa Campos",
-            //            //    new DateOnly(1985, 5, 15),
-            //            //    "66554",
-            //            //    "922333444",
-            //            //    "maria.Campos@example.com",
-            //            //    "Rua B, 22",
-            //            //    "Portuguesa",
-            //            //    Roles.Médico,
-            //            //    TeamType.INEM,
-            //            //    PersonStatus.Disponível,
-            //            //    "Dra. Maria Campos",
-            //            //    67890,
-            //            //    "Cardiologia"
-            //            //);
-            //            //inemTeam.DoctorsList.Add(doctor2);
+        //            //Doctor doctor2 = new Doctor(
+        //            //    "Maria Teresa Campos",
+        //            //    new DateOnly(1985, 5, 15),
+        //            //    "66554",
+        //            //    "922333444",
+        //            //    "maria.Campos@example.com",
+        //            //    "Rua B, 22",
+        //            //    "Portuguesa",
+        //            //    Roles.Médico,
+        //            //    TeamType.INEM,
+        //            //    PersonStatus.Disponível,
+        //            //    "Dra. Maria Campos",
+        //            //    67890,
+        //            //    "Cardiologia"
+        //            //);
+        //            //inemTeam.DoctorsList.Add(doctor2);
 
-            //            //// Criando e adicionando enfermeiros
-            //            //Nurse nurse1 = new Nurse(
-            //            //    "Joana Pereira Dias",
-            //            //    new DateOnly(1990, 3, 20),
-            //            //    "4111",
-            //            //    "933444555",
-            //            //    "Joana.Dias@example.com",
-            //            //    "Rua C, 789",
-            //            //    "Portuguesa",
-            //            //    Roles.Enfermeiro,
-            //            //    TeamType.INEM,
-            //            //    PersonStatus.Disponível,
-            //            //    "Enf. Joana Dias",
-            //            //    11111,
-            //            //    "Emergência"
-            //            //);
-            //            //inemTeam.NursesList.Add(nurse1);
+        //            //// Criando e adicionando enfermeiros
+        //            //Nurse nurse1 = new Nurse(
+        //            //    "Joana Pereira Dias",
+        //            //    new DateOnly(1990, 3, 20),
+        //            //    "4111",
+        //            //    "933444555",
+        //            //    "Joana.Dias@example.com",
+        //            //    "Rua C, 789",
+        //            //    "Portuguesa",
+        //            //    Roles.Enfermeiro,
+        //            //    TeamType.INEM,
+        //            //    PersonStatus.Disponível,
+        //            //    "Enf. Joana Dias",
+        //            //    11111,
+        //            //    "Emergência"
+        //            //);
+        //            //inemTeam.NursesList.Add(nurse1);
 
-            //            //// Criando e adicionando técnicos de emergência
-            //            //EmergencyTechnician tech1 = new EmergencyTechnician(
-            //            //    "Carlos Costa",
-            //            //    new DateOnly(1988, 7, 10),
-            //            //    "2145",
-            //            //    "944555666",
-            //            //    "Carlos.costa@example.com",
-            //            //    "Rua D, 1011",
-            //            //    "Portuguesa",
-            //            //    Roles.TécnicoEmergência,
-            //            //    TeamType.INEM,
-            //            //    PersonStatus.Disponível,
-            //            //    "Téc. Carlos Costa",
-            //            //    33333
-            //            //);
-            //            //inemTeam.EmergencyTechniciansList.Add(tech1);
+        //            //// Criando e adicionando técnicos de emergência
+        //            //EmergencyTechnician tech1 = new EmergencyTechnician(
+        //            //    "Carlos Costa",
+        //            //    new DateOnly(1988, 7, 10),
+        //            //    "2145",
+        //            //    "944555666",
+        //            //    "Carlos.costa@example.com",
+        //            //    "Rua D, 1011",
+        //            //    "Portuguesa",
+        //            //    Roles.TécnicoEmergência,
+        //            //    TeamType.INEM,
+        //            //    PersonStatus.Disponível,
+        //            //    "Téc. Carlos Costa",
+        //            //    33333
+        //            //);
+        //            //inemTeam.EmergencyTechniciansList.Add(tech1);
 
-            //            //// Adicionando a equipa
-            //            //teamsManager.AddTeam(inemTeam);
+        //            //// Adicionando a equipa
+        //            //teamsManager.AddTeam(inemTeam);
 
-            //            // Criando a equipe de Bombeiros
-            //            FireFighters fireFightersTeam = new FireFighters("Equipa Bombeiros 2", TeamStatus.Disponível, TeamType.Bombeiros);
+        //            // Criando a equipe de Bombeiros
+        //            FireFighters fireFightersTeam = new FireFighters("Equipa Bombeiros 2", TeamStatus.Disponível, TeamType.Bombeiros);
 
-            //            // Criando e adicionando bombeiros
-            //            FireFighter firefighter1 = new FireFighter(
-            //                "Carlos Oliveira",
-            //                new DateOnly(1982, 3, 15),
-            //                "234567890",
-            //                "955666777",
-            //                "carlos.oliveira@example.com",
-            //                "Rua E, 567",
-            //                "Portuguesa",
-            //                Roles.Bombeiro,
-            //                TeamType.Bombeiros,
-            //                PersonStatus.Disponível,
-            //                8,
-            //                "Combate a Incêndios",
-            //                10201
-            //            );
-            //            fireFightersTeam.FireFightersList.Add(firefighter1);
+        //            // Criando e adicionando bombeiros
+        //            FireFighter firefighter1 = new FireFighter(
+        //                "Carlos Oliveira",
+        //                new DateOnly(1982, 3, 15),
+        //                "234567890",
+        //                "955666777",
+        //                "carlos.oliveira@example.com",
+        //                "Rua E, 567",
+        //                "Portuguesa",
+        //                Roles.Bombeiro,
+        //                TeamType.Bombeiros,
+        //                PersonStatus.Disponível,
+        //                8,
+        //                "Combate a Incêndios",
+        //                10201
+        //            );
+        //            fireFightersTeam.FireFightersList.Add(firefighter1);
 
-            //            FireFighter firefighter2 = new FireFighter(
-            //                "Sofia Rodrigues",
-            //                new DateOnly(1988, 7, 20),
-            //                "345678901",
-            //                "966777888",
-            //                "sofia.rodrigues@example.com",
-            //                "Rua F, 678",
-            //                "Portuguesa",
-            //                Roles.Bombeiro,
-            //                TeamType.Bombeiros,
-            //                PersonStatus.Disponível,
-            //                5,
-            //                "Resgate e Salvamento",
-            //                304520
-            //            );
-            //            fireFightersTeam.FireFightersList.Add(firefighter2);
+        //            FireFighter firefighter2 = new FireFighter(
+        //                "Sofia Rodrigues",
+        //                new DateOnly(1988, 7, 20),
+        //                "345678901",
+        //                "966777888",
+        //                "sofia.rodrigues@example.com",
+        //                "Rua F, 678",
+        //                "Portuguesa",
+        //                Roles.Bombeiro,
+        //                TeamType.Bombeiros,
+        //                PersonStatus.Disponível,
+        //                5,
+        //                "Resgate e Salvamento",
+        //                304520
+        //            );
+        //            fireFightersTeam.FireFightersList.Add(firefighter2);
 
-            //            FireFighter firefighter3 = new FireFighter(
-            //                "André Santos",
-            //                new DateOnly(1985, 11, 10),
-            //                "456789012",
-            //                "977888999",
-            //                "andre.santos@example.com",
-            //                "Rua G, 789",
-            //                "Portuguesa",
-            //                Roles.Bombeiro,
-            //                TeamType.Bombeiros,
-            //                PersonStatus.Disponível,
-            //                7,
-            //                "Emergências Médicas",
-            //                807150
-            //            );
-            //            fireFightersTeam.FireFightersList.Add(firefighter3);
+        //            FireFighter firefighter3 = new FireFighter(
+        //                "André Santos",
+        //                new DateOnly(1985, 11, 10),
+        //                "456789012",
+        //                "977888999",
+        //                "andre.santos@example.com",
+        //                "Rua G, 789",
+        //                "Portuguesa",
+        //                Roles.Bombeiro,
+        //                TeamType.Bombeiros,
+        //                PersonStatus.Disponível,
+        //                7,
+        //                "Emergências Médicas",
+        //                807150
+        //            );
+        //            fireFightersTeam.FireFightersList.Add(firefighter3);
 
-            //            // Adicionando a equipa
-            //            teamsManager.AddTeam(fireFightersTeam);
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine($"Ocorreu um erro: {ex.Message}");
-            //    }
-            //}
-            #endregion
+        //            // Adicionando a equipa
+        //            teamsManager.AddTeam(fireFightersTeam);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Ocorreu um erro: {ex.Message}");
+        //    }
+        //}
+        #endregion
 
-            #region Create Incident
-            //using (var context = new EmergenciesDBContext())
-            //{
-            //    var teamsManager = new TeamsManager(context);
-            //    var incidentsManager = new IncidentsManager(context, teamsManager);
+         #region Create Incident
+        //using (var context = new EmergenciesDBContext())
+        //{
+        //    var teamsManager = new TeamsManager(context);
+        //    var incidentsManager = new IncidentsManager(context, teamsManager);
 
-            //    try
-            //    {
-            //        // Criando um incidente médico
-            //        //MedicalIncident medicalIncident = new MedicalIncident(
-            //        //    "Paciente com problemas psicológicos",
-            //        //    DateTime.Now,
-            //        //    "Rua dos testes, 50",
-            //        //    IncidentSeverityLevel.Leve,
-            //        //    IncidentType.Emergência_Médica,
-            //        //    IncidentStatus.Em_Progresso,
-            //        //    new List<EquipmentType> { EquipmentType.Médico },
-            //        //    TeamType.INEM,
-            //        //    "Joaquina Azevedo",
-            //        //    20,
-            //        //    "Tentativa de Suicídio"
-            //        //);
+        //    try
+        //    {
+        //        // Criando um incidente médico
+        //        //MedicalIncident medicalIncident = new MedicalIncident(
+        //        //    "Paciente com problemas psicológicos",
+        //        //    DateTime.Now,
+        //        //    "Rua dos testes, 50",
+        //        //    IncidentSeverityLevel.Leve,
+        //        //    IncidentType.Emergência_Médica,
+        //        //    IncidentStatus.Em_Progresso,
+        //        //    new List<EquipmentType> { EquipmentType.Médico },
+        //        //    TeamType.INEM,
+        //        //    "Joaquina Azevedo",
+        //        //    20,
+        //        //    "Tentativa de Suicídio"
+        //        //);
 
-            //        //incidentsManager.CreateIncident(medicalIncident, TeamType.INEM);
+        //        //incidentsManager.CreateIncident(medicalIncident, TeamType.INEM);
 
-            //        // Criando um incidente de incêndio
-            //        FireIncident fireIncident = new FireIncident(
-            //            "Incêndio em Fábrica",
-            //            DateTime.Now,
-            //            "Avenida Dos Postes, 800",
-            //            IncidentSeverityLevel.Crítico,
-            //            IncidentType.Incêndio,
-            //            IncidentStatus.Em_Progresso,
-            //            new List<EquipmentType> { EquipmentType.Capacetes, EquipmentType.Combate_Incêndio },
-            //            TeamType.Bombeiros,
-            //            150.5,
-            //            150
-            //        );
+        //        // Criando um incidente de incêndio
+        //        FireIncident fireIncident = new FireIncident(
+        //            "Incêndio em Fábrica",
+        //            DateTime.Now,
+        //            "Avenida Dos Postes, 800",
+        //            IncidentSeverityLevel.Crítico,
+        //            IncidentType.Incêndio,
+        //            IncidentStatus.Em_Progresso,
+        //            new List<EquipmentType> { EquipmentType.Capacetes, EquipmentType.Combate_Incêndio },
+        //            TeamType.Bombeiros,
+        //            150.5,
+        //            150
+        //        );
 
-            //        incidentsManager.CreateIncident(fireIncident, TeamType.Bombeiros);
+        //        incidentsManager.CreateIncident(fireIncident, TeamType.Bombeiros);
 
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine($"{ex.Message}");
-            //    }
-            //}
-            #endregion
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"{ex.Message}");
+        //    }
+        //}
+        #endregion
 
 
-        }
+    }
     }
 }

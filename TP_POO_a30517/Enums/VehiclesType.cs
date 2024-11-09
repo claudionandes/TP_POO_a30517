@@ -69,7 +69,6 @@ namespace TP_POO_a30517.Enums
         Veículo_de_Protecção_Multirriscos_Especial_VPME,
         Veículo_de_Protecção_Multirriscos_Táctico_VPMT,
         Veículo_de_Socorro_e_Assistência_Especial_VSAE,
-        Veículo_de_Socorro_e_Assistência_Táctico_VSAT,
-        Outro
+        Veículo_de_Socorro_e_Assistência_Táctico_VSAT
     }
 }
