@@ -5,13 +5,11 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Abstract class representing a person in the emergency response system.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Relations;
 using Utils;
@@ -19,7 +17,7 @@ using Utils;
 namespace TP_POO_a30517.Models
 {
     /// <summary>
-    /// Abstract class Person
+    /// Abstract class representing a person.
     /// </summary>
     public abstract class Person: IComparable
     {
@@ -39,12 +37,6 @@ namespace TP_POO_a30517.Models
         #endregion
 
         #region Public Properties        
-        /// <summary>
-        /// Public - Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
         public int Id
         {
             get => id;
@@ -110,16 +102,18 @@ namespace TP_POO_a30517.Models
 
         #region Constructors                                
         /// <summary>
-        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// Initializes a new instance of the Person class
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="birthdate">The birthdate.</param>
-        /// <param name="citizenCard">The citizen card.</param>
-        /// <param name="phone">The phone.</param>
-        /// <param name="email">The email.</param>
-        /// <param name="address">The address.</param>
-        /// <param name="nationality">The nationality.</param>
-        /// <param name="role">The role.</param>
+        /// <param name="name"></param>
+        /// <param name="birthdate"></param>
+        /// <param name="citizenCard"></param>
+        /// <param name="phone"></param>
+        /// <param name="email"></param>
+        /// <param name="address"></param>
+        /// <param name="nationality"></param>
+        /// <param name="role"></param>
+        /// <param name="teamType"></param>
+        /// <param name="status"></param>
         public Person(string name, DateOnly birthdate, string citizenCard, string phone, string email, string address, string nationality, Roles role, TeamType teamType, PersonStatus status)
         {
             Name = name;
@@ -137,11 +131,11 @@ namespace TP_POO_a30517.Models
 
         #region Public Methods        
         /// <summary>
-        /// Compares to ID or Name.
+        /// Compares this instance with another object.
         /// </summary>
-        /// <param name="other">The other.</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentException">Object must be of type Person</exception>
+        /// <param name="other">The other object to compare with</param>
+        /// <returns>An integer that indicates the relative order of the objects being compared</returns>
+        /// <exception cref="System.ArgumentException">Thrown when the object is not of type Person</exception>
         public int CompareTo(object? other)
         {
             if (!(other is Person))
@@ -151,6 +145,12 @@ namespace TP_POO_a30517.Models
             return this.Id.CompareTo(((Person)other).Id);
         }
 
+        /// <summary>
+        /// Compares this instance with another object by name
+        /// </summary>
+        /// <param name="other">The other object to compare with</param>
+        /// <returns>An integer that indicates the relative order of the objects being compared</returns>
+        /// <exception cref="ArgumentException">Thrown when the object is not of type Person</exception>
         public int CompareToName(object? other)
         {
             if (!(other is Person))
@@ -159,8 +159,12 @@ namespace TP_POO_a30517.Models
             }
             return string.Compare(Name, (other as Person)?.Name, StringComparison.Ordinal);
         }
+
         /// <summary>
-        /// Returnses the values.
+        /// Returns detailed information about this person
+        /// </summary>
+        /// <returns>/// <summary>
+        /// Returns detailed information about this person
         /// </summary>
         /// <returns></returns>
         public virtual string ReturnsValuesPerson()
@@ -179,10 +183,6 @@ namespace TP_POO_a30517.Models
                    $"Estado: {Status}";
         }
         #endregion
-
-        #region Private Methods             
-        #endregion
-
         
     }
 }

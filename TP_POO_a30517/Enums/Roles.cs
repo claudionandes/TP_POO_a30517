@@ -5,16 +5,17 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the various roles of emergency personnel.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
+    /// <summary>
+    /// Represents the different roles of emergency service personnel.
+    /// </summary>
     public enum Roles
     {
         Bombeiro,

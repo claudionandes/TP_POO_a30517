@@ -5,19 +5,19 @@
 //    </copyright>
 //    <date>01-11-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the IEquipmentsManager interface for managing emergency equipment.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Equipments;
-using TP_POO_a30517.Teams;
 
 namespace TP_POO_a30517.Interfaces
 {
+    /// <summary>
+    /// Defines methods for managing emergency equipment.
+    /// </summary>
     public interface IEquipmentsManager
     {
         void AddEquipment(Equipment equipment);

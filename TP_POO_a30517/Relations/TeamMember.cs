@@ -7,16 +7,14 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Models;
 using TP_POO_a30517.Teams;
 
 namespace TP_POO_a30517.Relations
 {
+    /// <summary>
+    /// Represents the association between a team and a member (person).
+    /// </summary>
     public class TeamMember
     {
         public int Id { get; set; }

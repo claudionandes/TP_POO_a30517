@@ -5,6 +5,9 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the abstract Incident class, which serves as a base for specific incident types.
+//    </summary>
 //-----------------------------------------------------------------
 
 using TP_POO_a30517.Enums;
@@ -14,7 +17,7 @@ using TP_POO_a30517.Relations;
 namespace TP_POO_a30517.Incidents
 {
     /// <summary>
-    /// Public class Incident
+    /// Represents an abstract base class for all types of incidents.
     /// </summary>
     public abstract class Incident : IEmergency
     {
@@ -32,9 +35,6 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Public Properties        
-        /// <summary>
-        /// Gets or sets the properties for the incident.
-        /// </summary>
         public int Id
         {
             get => id; 
@@ -94,16 +94,16 @@ namespace TP_POO_a30517.Incidents
 
         #region Construtors        
         /// <summary>
-        /// Initializes a new instance of the <see cref="Incident"/> class.
+        /// Initializes a new instance of the Incident class
         /// </summary>
-        /// <param name="description">The description.</param>
-        /// <param name="created">The created.</param>
-        /// <param name="location">The location.</param>
-        /// <param name="severity">The severity.</param>
-        /// <param name="type">The type.</param>
-        /// <param name="status">The status.</param>
-        /// <param name="equipmentUsed">The equipment used.</param>
-        /// <param name="teamType">The team Type.</param>
+        /// <param name="description"></param>
+        /// <param name="created"></param>
+        /// <param name="location"></param>
+        /// <param name="severity"></param>
+        /// <param name="type"></param>
+        /// <param name="status"></param>
+        /// <param name="equipmentUsed"></param>
+        /// <param name="teamType"></param>
         public Incident (string description, DateTime created, string location, IncidentSeverityLevel severity, IncidentType type, IncidentStatus status, List<EquipmentType> equipmentUsed, TeamType teamType)
         {
             Description = description;
@@ -119,7 +119,7 @@ namespace TP_POO_a30517.Incidents
 
         #region Public Methods
         /// <summary>
-        /// Returnses the values.
+        /// Returns a string representation of the incident's details.
         /// </summary>
         /// <returns>Details of all "Incident" properties</returns>
         public virtual string ReturnsValuesIncident()
@@ -135,12 +135,18 @@ namespace TP_POO_a30517.Incidents
                    $"Equipa de Emergência: {TeamType}";
         }
 
+        /// <summary>
+        /// Starts the emergency response for this incident
+        /// </summary>
         public void StartEmergency()
         {
             Status = IncidentStatus.Em_Progresso;
             Console.WriteLine("Emergência ID {Id} iniciada");
         }
 
+        /// <summary>
+        /// Concludes the emergency response for this incident
+        /// </summary>
         public void ConcludeEmergency()
         {
             Status = IncidentStatus.Terminado;
@@ -149,6 +155,14 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Formats the list of equipment types into a string representation.
+        /// </summary>
+        /// <param name="equipmentList">The list of equipment types used in the incident.</param>
+        /// <returns>
+        /// A string representation of the equipment list. Returns "Nenhum equipamento utilizado" if the list is null or empty.
+        /// Otherwise, returns a comma-separated list of equipment types.
+        /// </returns>
         private string EquipmentList(List<EquipmentType> equipmentList)
         {
             return equipmentList == null || equipmentList.Count == 0

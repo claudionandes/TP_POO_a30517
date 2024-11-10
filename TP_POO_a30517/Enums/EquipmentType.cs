@@ -5,19 +5,21 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//     This file contains the EquipmentType enum definition.
+//    </summary>
+//    <remarks>
+//     This enum represents the various types of equipment used in emergency services.
+//    </remarks>
 //-----------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
     /// <summary>
-    /// Equipment Type
+    /// Represents the types of equipment used in emergency services.
     /// </summary>
+    /// <remarks>
+    /// This enum categorizes different equipment types for inventory and management purposes.
+    /// </remarks>
     public enum EquipmentType
     {
         Capacetes,

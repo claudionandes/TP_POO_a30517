@@ -5,19 +5,24 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     This file contains the EquipmentStatus enum definition.
+//    </summary>
+//    <remarks>
+//     This enum represents the various states an equipment item can be in.
+//    </remarks>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
     /// <summary>
-    /// Equipment Status
+    /// Represents the status of equipment items.
     /// </summary>
+    /// <remarks>
+    /// This enum is used to track the current state of equipment,
+    /// such as availability, allocation, or maintenance status.
+    /// </remarks>
     public enum EquipmentStatus
     {
         Disponível,

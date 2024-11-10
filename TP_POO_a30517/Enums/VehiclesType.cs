@@ -5,19 +5,21 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the various types of emergency and rescue vehicles.
+//    </summary>
 //-----------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
     /// <summary>
-    /// Type of Vehicles
+    /// Represents the different types of vehicles used in emergency and rescue operations.
     /// </summary>
+    /// <remarks>
+    /// This enum includes a comprehensive list of specialized vehicles used by emergency services,
+    /// including medical ambulances, firefighting vehicles, rescue boats, and various support vehicles.
+    /// The names are kept in Portuguese to maintain their specific meanings in the context of Portuguese emergency services.
+    /// </remarks>
     public enum VehiclesType
     {
         ViaturaMédicadeEmergênciaeReanimação_VMER,

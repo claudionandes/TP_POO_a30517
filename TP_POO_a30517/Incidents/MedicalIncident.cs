@@ -5,17 +5,13 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the MedicalIncident class, a specialized type of Incident.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
-using TP_POO_a30517.Equipments;
-using TP_POO_a30517.Incidents;
-using TP_POO_a30517.Teams;
+
 
 namespace TP_POO_a30517.Incidents
 {
@@ -28,27 +24,18 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Public Properties
-        /// <summary>
-        /// Gets or sets the patient's name.
-        /// </summary>
         public string PatientName
         {
             get => patientName;
             set => patientName = value;
         }
 
-        /// <summary>
-        /// Gets or sets the patient's age.
-        /// </summary>
         public int PatientAge
         {
             get => patientAge;
             set => patientAge = value > 0 ? value : 0;
         }
 
-        /// <summary>
-        /// Gets or sets the patient's medical condition.
-        /// </summary>
         public string MedicalCondition
         {
             get => medicalCondition;
@@ -57,6 +44,20 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the MedicalIncident class
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="created"></param>
+        /// <param name="location"></param>
+        /// <param name="severity"></param>
+        /// <param name="type"></param>
+        /// <param name="status"></param>
+        /// <param name="equipmentUsed"></param>
+        /// <param name="teamType"></param>
+        /// <param name="patientName"></param>
+        /// <param name="patientAge"></param>
+        /// <param name="medicalCondition"></param>
         public MedicalIncident(string description, DateTime created,string location,IncidentSeverityLevel severity,IncidentType type,IncidentStatus status, List<EquipmentType> equipmentUsed,
                                TeamType teamType, string patientName, int patientAge, string medicalCondition)
             : base(description, created, location, severity, type, status, equipmentUsed, teamType)
@@ -69,13 +70,12 @@ namespace TP_POO_a30517.Incidents
 
         #region Public Methods
         /// <summary>
-        /// Returns detailed information about the medical incident.
+        /// Returns a string representation of the medical incident's details.
         /// </summary>
-        /// <returns>Details of all properties specific to a Medical Incident</returns>
+        /// <returns>A string with detailed information about the medical incident.</returns>
         public override string ReturnsValuesIncident()
         {
             return base.ReturnsValuesIncident() + "\n" +
-                   $"ID: {Id}\n" +
                    $"Nome do Paciente: {PatientName}\n" +
                    $"Idade do Paciente: {PatientAge}\n" +
                    $"Condição Médica: {MedicalCondition}";

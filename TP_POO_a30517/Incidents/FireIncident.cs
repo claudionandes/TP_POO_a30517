@@ -5,6 +5,9 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the FireIncident class, a specialized type of Incident.
+//    </summary>
 //-----------------------------------------------------------------
 
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -20,7 +23,7 @@ using TP_POO_a30517.Teams;
 namespace TP_POO_a30517.Incidents
 {
     /// <summary>
-    /// Public class FireIncident derived from Incident
+    /// Represents a fire incident, derived from the base Incident class.
     /// </summary>
     public class FireIncident : Incident
     {
@@ -29,19 +32,13 @@ namespace TP_POO_a30517.Incidents
         private int peopleAffectedFire;
         #endregion
 
-        #region Public Properties
-        /// <summary>
-        /// Gets or sets the affected area of the fire.
-        /// </summary>
+        #region Public Properties>
         public double AffectedAreaFire
         {
             get => affectedAreaFire;
             set => affectedAreaFire = value > 0 ? value : 0;
         }
 
-        /// <summary>
-        /// Gets or sets the number of people affected by the fire.
-        /// </summary>
         public int PeopleAffectedFire
         {
             get => peopleAffectedFire;
@@ -50,6 +47,20 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the FireIncident class
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="created"></param>
+        /// <param name="location"></param>
+        /// <param name="severity"></param>
+        /// <param name="type"></param>
+        /// <param name="status"></param>
+        /// <param name="equipmentUsed"></param>
+        /// <param name="teamType"></param>
+        /// <param name="affectedAreaFire"></param>
+        /// <param name="peopleAffectedFire"></param>
+        /// <exception cref="ArgumentException"></exception>
         public FireIncident(string description, DateTime created, string location, IncidentSeverityLevel severity, IncidentType type,
                             IncidentStatus status, List<EquipmentType> equipmentUsed, TeamType teamType,
                             double affectedAreaFire, int peopleAffectedFire)
@@ -68,7 +79,6 @@ namespace TP_POO_a30517.Incidents
         public override string ReturnsValuesIncident()
         {
             return base.ReturnsValuesIncident() + "\n" +
-                   $"ID: {Id}\n" +
                    $"Área Afetada: {AffectedAreaFire} m²\n" +
                    $"Pessoas Afetadas: {PeopleAffectedFire}";
         }

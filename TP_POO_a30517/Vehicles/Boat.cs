@@ -7,15 +7,13 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
 
 namespace TP_POO_a30517.Vehicles
 {
+    /// <summary>
+    /// Represents a boat used in the emergency response system.
+    /// </summary>
     public class Boat : Vehicle
     {
         #region Private Properties
@@ -52,6 +50,20 @@ namespace TP_POO_a30517.Vehicles
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the Boat class.
+        /// </summary>
+        /// <param name="vehicleRegist">The registration number of the vehicle.</param>
+        /// <param name="yearOfRegist">The year of registration.</param>
+        /// <param name="type">The type of the vehicle.</param>
+        /// <param name="brand">The brand of the vehicle.</param>
+        /// <param name="vehicleModel">The model of the vehicle.</param>
+        /// <param name="inspDate">The inspection date.</param>
+        /// <param name="status">The current status of the vehicle.</param>
+        /// <param name="passengerCapacity">The capacity for passengers.</param>
+        /// <param name="equipment">The type of equipment available.</param>
+        /// <param name="comprimento">The length of the boat.</param>
+        /// <param name="motor">The power of the motor.</param>
         public Boat(string vehicleRegist, DateOnly yearOfRegist, VehiclesType type, string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status,
                     int passengerCapacity, EquipmentType equipment, double comprimento, int motor)
             : base(vehicleRegist, yearOfRegist, type, brand, vehicleModel, inspDate, status)
@@ -64,6 +76,10 @@ namespace TP_POO_a30517.Vehicles
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Returns details about the boat in a formatted string.
+        /// </summary>
+        /// <returns>A string containing details about the boat.</returns>
         public override string ReturnsValuesVehicles()
         {
             return base.ReturnsValuesVehicles() + "\n" +

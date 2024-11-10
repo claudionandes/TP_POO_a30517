@@ -5,19 +5,17 @@
 //    </copyright>
 //    <date>02-11-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the CatastropheIncident class, a specialized type of Incident.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
 
 namespace TP_POO_a30517.Incidents
 {
     /// <summary>
-    /// Public class CatastropheIncident derived from Incident
+    /// Represents a catastrophe incident, derived from the base Incident class.
     /// </summary>
     public class CatastropheIncident : Incident
     {
@@ -29,36 +27,24 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Public Properties
-        /// <summary>
-        /// Gets or sets the type of catastrophe (e.g., Earthquake, Flood, Tsunami).
-        /// </summary>
         public string CatastropheType
         {
             get => catastropheType;
             set => catastropheType = value ?? throw new ArgumentException("O tipo de catástrofe é obrigatório");
         }
 
-        /// <summary>
-        /// Gets or sets the affected area of the catastrophe.
-        /// </summary>
         public double AffectedAreaCatastrophe
         {
             get => affectedAreaCatastrophe;
             set => affectedAreaCatastrophe = value;
         }
 
-        /// <summary>
-        /// Gets or sets the number of people affected by the catastrophe.
-        /// </summary>
         public int PeopleAffectedCatastrophe
         {
             get => peopleAffectedCatastrophe;
             set => peopleAffectedCatastrophe = value;
         }
 
-        /// <summary>
-        /// Gets or sets the intensity of the catastrophe (if applicable).
-        /// </summary>
         public double IntensityCatastrophe
         {
             get => intensityCatastrophe;
@@ -67,6 +53,21 @@ namespace TP_POO_a30517.Incidents
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the CatastropheIncident class.
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="created"></param>
+        /// <param name="location"></param>
+        /// <param name="severity"></param>
+        /// <param name="type"></param>
+        /// <param name="status"></param>
+        /// <param name="equipmentUsed"></param>
+        /// <param name="teamType"></param>
+        /// <param name="catastropheType"></param>
+        /// <param name="affectedAreaCatastrophe"></param>
+        /// <param name="peopleAffectedCatastrophe"></param>
+        /// <param name="intensityCatastrophe"></param>
         public CatastropheIncident(string description, DateTime created, string location, IncidentSeverityLevel severity,
                                    IncidentType type, IncidentStatus status, List<EquipmentType> equipmentUsed, TeamType teamType,
                                    string catastropheType, double affectedAreaCatastrophe, int peopleAffectedCatastrophe, double intensityCatastrophe)
@@ -87,7 +88,6 @@ namespace TP_POO_a30517.Incidents
         public override string ReturnsValuesIncident()
         {
             return base.ReturnsValuesIncident() + "\n" +
-                   $"ID: {Id}\n" +
                    $"Tipo de Catástrofe: {CatastropheType}\n" +
                    $"Área Afetada: {AffectedAreaCatastrophe} m²\n" +
                    $"Pessoas Afetadas: {PeopleAffectedCatastrophe}\n" +

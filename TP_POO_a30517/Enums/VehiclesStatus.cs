@@ -5,16 +5,16 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the possible statuses for emergency vehicles.
+//    </summary>
 //-----------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
+    /// <summary>
+    /// Represents the current operational status of emergency vehicles.
+    /// </summary>
     public enum VehiclesStatus
     {
         Disponível,

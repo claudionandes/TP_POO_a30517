@@ -5,18 +5,16 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the status options for incidents.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
     /// <summary>
-    /// Status of the incident
+    /// Represents the current status of an incident.
     /// </summary>
     public enum IncidentStatus
     {

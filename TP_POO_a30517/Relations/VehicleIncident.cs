@@ -7,16 +7,14 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Incidents;
 using TP_POO_a30517.Vehicles;
 
 namespace TP_POO_a30517.Relations
 {
+    /// <summary>
+    /// Represents the association between a vehicle and an incident.
+    /// </summary>
     public class VehicleIncident
     {
         public int VehicleId { get; set; }

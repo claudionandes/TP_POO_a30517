@@ -7,14 +7,6 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using TP_POO_a30517.Enums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -22,6 +14,9 @@ using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Vehicles
 {
+    /// <summary>
+    /// Represents the base class for all vehicles in the emergency response system.
+    /// </summary>
     public abstract class Vehicle
     {
         #region Private Properties        
@@ -84,15 +79,15 @@ namespace TP_POO_a30517.Vehicles
 
         #region Constructors  
         /// <summary>
-        /// Initializes a new instance of the <see cref="Vehicle"/> class.
+        /// Initializes a new instance of the Vehicle class.
         /// </summary>
-        /// <param name="vehicleRegist"></param>
-        /// <param name="yearofRegist"></param>
-        /// <param name="type"></param>
-        /// <param name="brand"></param>
-        /// <param name="vehicleModel"></param>
-        /// <param name="inspDate"></param>
-        /// <param name="status"></param>
+        /// <param name="vehicleRegist">The registration number of the vehicle.</param>
+        /// <param name="yearOfRegist">The year of registration.</param>
+        /// <param name="type">The type of the vehicle.</param>
+        /// <param name="brand">The brand of the vehicle.</param>
+        /// <param name="vehicleModel">The model of the vehicle.</param>
+        /// <param name="inspDate">The inspection date.</param>
+        /// <param name="status">The current status of the vehicle.</param>
         public Vehicle(string vehicleRegist, DateOnly yearOfRegist, VehiclesType type, string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status)
         {
             VehicleRegist = vehicleRegist;
@@ -106,6 +101,10 @@ namespace TP_POO_a30517.Vehicles
         #endregion
 
         #region Public Methods    
+        /// <summary>
+        /// Returns details about the vehicle in a formatted string.
+        /// </summary>
+        /// <returns>A string containing details about the vehicle.</returns>
         public virtual string ReturnsValuesVehicles()
         {
             return $"Matrícula: {VehicleRegist}\n" +

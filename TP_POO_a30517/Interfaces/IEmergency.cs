@@ -5,19 +5,27 @@
 //    </copyright>
 //    <date>01-11-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the IEmergency interface for managing emergency operations.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Interfaces
 {
+    /// <summary>
+    /// Defines methods for managing the lifecycle of an emergency
+    /// </summary>
     public interface IEmergency
     {
+        /// <summary>
+        /// Initiates the emergency response
+        /// </summary>
         void StartEmergency();
+
+        /// <summary>
+        /// Concludes the emergency response
+        /// </summary>
         void ConcludeEmergency();
     }
 }

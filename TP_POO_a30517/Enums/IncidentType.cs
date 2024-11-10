@@ -5,18 +5,15 @@
 //    </copyright>
 //    <date>27-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the types of incidents that can be reported.
+//    </summary>
 //-----------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
     /// <summary>
-    /// Incident Type
+    /// Represents the different types of incidents.
     /// </summary>
     public enum IncidentType
     {

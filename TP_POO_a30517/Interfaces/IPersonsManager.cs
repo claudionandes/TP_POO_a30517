@@ -5,18 +5,19 @@
 //    </copyright>
 //    <date></date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the IPersonsManager interface for managing personnel in the emergency response system.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Models;
 
 namespace TP_POO_a30517.Interfaces
 {
+    /// <summary>
+    /// Defines methods for managing personnel in the emergency response system.
+    /// </summary>
     public interface IPersonsManager
     {
         void AddPerson(Person person);

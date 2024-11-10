@@ -5,18 +5,15 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the severity levels for incidents.
+//    </summary>
 //-----------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP_POO_a30517.Enums
 {
     /// <summary>
-    /// Severity level of the incident
+    /// Represents the severity level of an incident.
     /// </summary>
     public enum IncidentSeverityLevel
     {

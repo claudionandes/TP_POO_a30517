@@ -7,17 +7,15 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Models;
 using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Teams
 {
+    /// <summary>
+    /// Represents the base class for emergency teams.
+    /// </summary>
     public abstract class EmergencyTeamBase
     {
         #region Private Properties
@@ -37,17 +35,25 @@ namespace TP_POO_a30517.Teams
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the EmergencyTeamBase class.
+        /// </summary>
+        /// <param name="name">The name of the team</param>
+        /// <param name="status">The status of the team</param>
+        /// <param name="teamType">The type of the team</param>
         public EmergencyTeamBase(string name, TeamStatus status, TeamType teamType)
         {
             Name = name;
             Status = status;
             TeamType = teamType;
         }
-
-
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Returns details about the team in a formatted string.
+        /// </summary>
+        /// <returns>A string containing details about the team.</returns>
         public virtual string ReturnTeamDetails()
         {
             return $"ID: {Id}\n" +

@@ -7,22 +7,19 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Models;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Interfaces;
 using DataValidationLibrary;
 using TP_POO_a30517.Data;
-using System.Numerics;
 using TP_POO_a30517.Teams;
 using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Services
 {
+    /// <summary>
+    /// Manages operations related to persons in the emergency response system.
+    /// </summary>
     public class PersonsManager : IPersonsManager
     {
         #region Private Properties
@@ -38,6 +35,10 @@ namespace TP_POO_a30517.Services
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Initializes a new instance of the PersonsManager class
+        /// </summary>
+        /// <param name="context"></param>
         public PersonsManager(EmergenciesDBContext context)
         {
             this.context = context;
@@ -47,6 +48,10 @@ namespace TP_POO_a30517.Services
         #region Public Methods
 
         #region Create Person
+        /// <summary>
+        /// Adds a new person to the system.
+        /// </summary>
+        /// <param name="person">The person to be added.</param>
         public void AddPerson(Person person)
         {
             if (person == null)
@@ -118,6 +123,11 @@ namespace TP_POO_a30517.Services
         #endregion
 
         #region Update Person
+        /// <summary>
+        /// Updates an existing person's details.
+        /// </summary>
+        /// <param name="id">The ID of the person to update.</param>
+        /// <param name="updates">A dictionary of properties to update.</param>
         public void UpdatePerson(int id, Dictionary<string, object> updates)
         {
             
@@ -125,13 +135,23 @@ namespace TP_POO_a30517.Services
         #endregion
 
         #region Delete Person
+        /// <summary>
+        /// Updates an existing person's details.
+        /// </summary>
+        /// <param name="id">The ID of the person to update.</param>
+        /// <param name="updates">A dictionary of properties to update.</param>
         public void DeletePerson(int personId)
         {
            
         }
         #endregion
 
-        #region Associate Person (Available) to Team
+        #region Associate Person to Team
+        /// <summary>
+        /// Associates a person with a specific team.
+        /// </summary>
+        /// <param name="personId">The ID of the person.</param>
+        /// <param name="teamId">The ID of the team.</param>
         public void AssociatePersonToTeam(int personId, int teamId)
         {
             
@@ -139,6 +159,11 @@ namespace TP_POO_a30517.Services
         #endregion
 
         #region Dissociate Person From Team
+        /// <summary>
+        /// Dissociates a person from a specific team.
+        /// </summary>
+        /// <param name="personId">The ID of the person.</param>
+        /// <param name="teamId">The ID of the team.</param>
         public void DissociatePersonFromTeam(int personId, int teamId)
         {
             
@@ -146,6 +171,10 @@ namespace TP_POO_a30517.Services
         #endregion
 
         #region List Person by Status
+        /// <summary>
+        /// Lists persons filtered by their status.
+        /// </summary>
+        /// <param name="status">The status to filter persons by.</param>
         public void PersonsByStatus(PersonStatus status)
         {
             var filteredPersons = context.Set<Person>()
@@ -165,6 +194,9 @@ namespace TP_POO_a30517.Services
         #endregion
 
         #region List All Persons
+        /// <summary>
+        /// Retrieves all persons from the system.
+        /// </summary>
         public List<Person> GetAllPersons()
         {
             return context.Set<Person>().ToList();

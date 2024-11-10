@@ -7,16 +7,13 @@
 //    <author>Cláudio Fernandes</author>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP_POO_a30517.Enums;
-using TP_POO_a30517.Vehicles;
 
 namespace TP_POO_a30517.Vehicles
 {
+    /// <summary>
+    /// Represents an ambulance vehicle in the emergency response system.
+    /// </summary>
     public class Ambulance : Vehicle
     {
         #region Private Properties
@@ -47,18 +44,18 @@ namespace TP_POO_a30517.Vehicles
 
         #region Constructors
         /// <summary>
-        /// 
+        /// Initializes a new instance of the Ambulance class.
         /// </summary>
-        /// <param name="vehicleRegist"></param>
-        /// <param name="yearOfRegist"></param>
-        /// <param name="type"></param>
-        /// <param name="brand"></param>
-        /// <param name="vehicleModel"></param>
-        /// <param name="inspDate"></param>
-        /// <param name="status"></param>
-        /// <param name="patientCapacity"></param>
-        /// <param name="crewCapacity"></param>
-        /// <param name="medicalEquipment"></param>
+        /// <param name="vehicleRegist">The registration number of the vehicle.</param>
+        /// <param name="yearOfRegist">The year of registration.</param>
+        /// <param name="type">The type of the vehicle.</param>
+        /// <param name="brand">The brand of the vehicle.</param>
+        /// <param name="vehicleModel">The model of the vehicle.</param>
+        /// <param name="inspDate">The inspection date.</param>
+        /// <param name="status">The current status of the vehicle.</param>
+        /// <param name="patientCapacity">The capacity for patients.</param>
+        /// <param name="crewCapacity">The capacity for crew members.</param>
+        /// <param name="medicalEquipment">The type of medical equipment available.</param>
         public Ambulance(string vehicleRegist, DateOnly yearOfRegist, VehiclesType type,string brand, string vehicleModel, DateOnly inspDate, VehiclesStatus status,
                          int patientCapacity, int crewCapacity, EquipmentType medicalEquipment)
             : base(vehicleRegist, yearOfRegist, type, brand, vehicleModel, inspDate, status)
@@ -70,6 +67,10 @@ namespace TP_POO_a30517.Vehicles
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Returns details about the ambulance in a formatted string.
+        /// </summary>
+        /// <returns>A string containing details about the ambulance.</returns>
         public override string ReturnsValuesVehicles()
         {
             return base.ReturnsValuesVehicles() + "\n" +
@@ -79,7 +80,5 @@ namespace TP_POO_a30517.Vehicles
         }
         #endregion
 
-        #region Private Methods
-        #endregion
     }
 }

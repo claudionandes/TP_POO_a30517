@@ -5,15 +5,12 @@
 //    </copyright>
 //    <date>02-11-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Represents the database context for managing emergencies and related entities.
+//    </summary>
 //-----------------------------------------------------------------
 
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using TP_POO_a30517.Equipments;
 using TP_POO_a30517.Incidents;
 using TP_POO_a30517.Models;
@@ -23,8 +20,15 @@ using TP_POO_a30517.Vehicles;
 
 namespace TP_POO_a30517.Data
 {
+    /// <summary>
+    /// Database context for managing emergency-related entities.
+    /// </summary>
     public class EmergenciesDBContext : DbContext
     {
+        #region DbSet Properties
+        /// <summary>
+        /// DbSet properties representing tables in the database
+        /// </summary>
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<Incident> Incidents { get; set; }
         public DbSet<CatastropheIncident> Catastrophe_Incidents { get; set; }
@@ -55,12 +59,16 @@ namespace TP_POO_a30517.Data
         public DbSet<VehicleIncident> VehicleIncidents { get; set; }
 
         public DbSet<VehicleEquipment> VehicleEquipments { get; set; }
+        #endregion
 
 
-
+        #region Model Builder
+        /// <summary>
+        /// Configures the model and its relationships
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configuração de tabelas e chaves primárias
             modelBuilder.Entity<Equipment>()
                 .ToTable("Equipments")
                 .HasKey(e => e.Id);
@@ -212,11 +220,18 @@ namespace TP_POO_a30517.Data
                 .WithMany(e => e.VehicleEquipments)
                 .HasForeignKey(ve => ve.EquipmentId);
         }
+        #endregion
 
 
+        #region Database Connection
+        /// <summary>
+        /// Configures the database connection settings
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=CLAUDIO\\SQLEXPRESS;Database=TP_POO_Emergency_DB;Trusted_Connection=True;Encrypt=False");
         }
+        #endregion
     }
 }

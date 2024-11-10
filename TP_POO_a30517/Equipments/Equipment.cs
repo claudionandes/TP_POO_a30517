@@ -5,21 +5,19 @@
 //    </copyright>
 //    <date>30-10-2024</date>
 //    <author>Cláudio Fernandes</author>
+//    <summary>
+//     Defines the Equipment class for managing emergency equipment.
+//    </summary>
 //-----------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Relations;
 
 namespace TP_POO_a30517.Equipments
 {
     /// <summary>
-    /// Public class Equipment
+    /// Represents a piece of emergency equipment.
     /// </summary>
     public class Equipment
     {
@@ -67,7 +65,14 @@ namespace TP_POO_a30517.Equipments
 
         #endregion
 
-        #region Construtors        
+        #region Construtors  
+        /// <summary>
+        /// Initializes a new instance of the Equipment class.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="quantityAvailable"></param>
+        /// <param name="status"></param>
         public Equipment (string name, EquipmentType type, int quantityAvailable, EquipmentStatus status)
         {
             Name = name;
@@ -78,6 +83,9 @@ namespace TP_POO_a30517.Equipments
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Returns a string representation of the equipment's details.
+        /// </summary>
         public string ReturnsValuesEquipment()
         {
             return $"ID: {Id}\n" +
