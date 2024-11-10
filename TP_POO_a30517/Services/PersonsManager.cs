@@ -23,15 +23,7 @@ namespace TP_POO_a30517.Services
     public class PersonsManager : IPersonsManager
     {
         #region Private Properties
-        private List<Person> persons;
         private EmergenciesDBContext context;
-        #endregion
-
-        #region Public Properties
-        public PersonsManager()
-        {
-            persons = new List<Person>();
-        }
         #endregion
 
         #region Constructor

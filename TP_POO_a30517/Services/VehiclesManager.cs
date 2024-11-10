@@ -22,15 +22,7 @@ namespace TP_POO_a30517.Services
     public class VehiclesManager : IVehiclesManager
     {
         #region Private Properties
-        private List<Vehicle> vehicles;
         private EmergenciesDBContext context;
-        #endregion
-
-        #region Public Properties
-        public VehiclesManager()
-        {
-            vehicles = new List<Vehicle>();
-        }
         #endregion
 
         #region Constructor
