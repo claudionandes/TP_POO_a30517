@@ -17,6 +17,7 @@ using TP_POO_a30517.Data;
 using TP_POO_a30517.Enums;
 using TP_POO_a30517.Interfaces;
 using TP_POO_a30517.Models;
+using TP_POO_a30517.Relations;
 using TP_POO_a30517.Vehicles;
 
 namespace TP_POO_a30517.Services
@@ -25,6 +26,7 @@ namespace TP_POO_a30517.Services
     {
         #region Private Properties
         private List<Vehicle> vehicles;
+        private EmergenciesDBContext context;
         #endregion
 
         #region Public Properties
@@ -34,36 +36,35 @@ namespace TP_POO_a30517.Services
         }
         #endregion
 
+        #region Constructor
+        public VehiclesManager(EmergenciesDBContext context)
+        {
+            this.context = context;
+        }
+        #endregion
+
         #region Public Methods
 
         #region Create Vehicles
         public void CreateVehicle(Vehicle vehicle)
         {
-            using (var context = new EmergenciesDBContext())
+            bool vehicleExists = context.Vehicles.Any(v => v.VehicleRegist == vehicle.VehicleRegist);
+
+            if (vehicleExists)
             {
-                bool vehicleExists = context.Vehicles.Any(v => v.VehicleRegist == vehicle.VehicleRegist);
-
-                if (vehicleExists)
-                {
-                    throw new InvalidOperationException($"Já existe um veículo com a matrícula {vehicle.VehicleRegist}");
-                }
-
-                context.Vehicles.Add(vehicle);
-                context.SaveChanges();
-                Console.WriteLine("Veículo criado com sucesso");
+                throw new InvalidOperationException($"Já existe um veículo com a matrícula {vehicle.VehicleRegist}");
             }
+
+            context.Vehicles.Add(vehicle);
+            context.SaveChanges();
+            Console.WriteLine("Veículo criado com sucesso");
         }
         #endregion
 
         #region Update Vehicle
         public void UpdateVehicle(string vehicleRegist, Dictionary<string, object> updates)
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                
-            }
         }
-
 
         #endregion
 
@@ -78,23 +79,32 @@ namespace TP_POO_a30517.Services
 
         #endregion
 
+        #region Assign Vehicle To Incident
+        public void AssignVehicleToIncident(int vehicleId, int incidentId)
+        {
+            // Verificar se o veículo existe, Verificar se o incidente existe, Verificar se a associação já existe, Criar nova associação
+        }
+
+        #endregion
+
+        #region Remove Vehicle From Incident
+        public void RemoveVehicleFromIncident(int vehicleId, int incidentId)
+        {
+            // Verificar se o veículo existe, Verificar se o incidente existe
+        }
+        #endregion
+
         #region List all Vehicles
         public List<Vehicle> ListAllVehicles()
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                return context.Vehicles.ToList();
-            }
+            return context.Vehicles.ToList();
         }
         #endregion
 
         #region List Vehicles by Type
         public List<Vehicle> ListVehiclesByType(VehiclesType type)
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                return context.Vehicles.Where(v => v.Type == type).ToList();
-            }
+            return context.Vehicles.Where(v => v.Type == type).ToList();
         }
         #endregion
 

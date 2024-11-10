@@ -20,12 +20,6 @@ namespace TP_POO_a30517.Teams
         #endregion
 
         #region Constructors
-        public FireFighters() : base("Default Name", TeamStatus.Disponível, TeamType.Bombeiros)
-        {
-            FireFightersList = new List<FireFighter>();
-        }
-
-        // Construtor com parâmetros para uso fora do Entity Framework
         public FireFighters(string name, TeamStatus status, TeamType teamType)
             : base(name, status, teamType)
         {

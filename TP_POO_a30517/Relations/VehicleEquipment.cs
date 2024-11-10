@@ -26,5 +26,6 @@ namespace TP_POO_a30517.Relations
         public Equipment Equipment { get; set; }
 
         public DateTime AssignedDate { get; set; }
+        public int Quantity { get; set; }
     }
 }

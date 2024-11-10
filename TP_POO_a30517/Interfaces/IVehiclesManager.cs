@@ -22,6 +22,8 @@ namespace TP_POO_a30517.Interfaces
         void CreateVehicle(Vehicle vehicle);
         void UpdateVehicle(string vehicleRegist, Dictionary<string, object> updates);
         void DeleteVehicle(string vehicleRegist);
+        public void AssignVehicleToIncident(int vehicleId, int incidentId);
+        public void RemoveVehicleFromIncident(int vehicleId, int incidentId);
         List<Vehicle> ListVehiclesByType(VehiclesType type);
         List<Vehicle> ListAllVehicles();
     }

@@ -26,11 +26,14 @@ namespace TP_POO_a30517.Services
     public class EquipmentsManager : IEquipmentsManager
     {
         #region Private Properties
-       
+        private EmergenciesDBContext context;
         #endregion
 
         #region Constructor
-        public EquipmentsManager() { }
+        public EquipmentsManager(EmergenciesDBContext context)
+        {
+            this.context = context;
+        }
         #endregion
 
         #region Public Methods
@@ -38,215 +41,103 @@ namespace TP_POO_a30517.Services
         #region Add Equipment
         public void AddEquipment(Equipment equipment)
         {
-            using (var context = new EmergenciesDBContext())
-            {
                 context.Equipments.Add(equipment);
                 context.SaveChanges();
                 Console.WriteLine("Equipamento inserido com sucesso");
-            }
-        }
-        #endregion
-
-        #region Associate Equipment with Incident
-        public void AssociateEquipmentWithIncident(int equipmentId, int incidentId)
-        {
-            using (var context = new EmergenciesDBContext())
-            {
-                var equipment = context.Equipments.FirstOrDefault(e => e.Id == equipmentId);
-                var incident = context.Incidents.FirstOrDefault(i => i.Id == incidentId);
-
-                if (equipment == null)
-                {
-                    throw new KeyNotFoundException($"Equipamento com ID {equipmentId} não encontrado");
-                }
-
-                if (incident == null)
-                {
-                    throw new KeyNotFoundException($"Incidente com ID {incidentId} não encontrado");
-                }
-
-                // Adiciona a associação
-                var equipmentIncident = new EquipmentIncident
-                {
-                    EquipmentId = equipmentId,
-                    IncidentId = incidentId
-                };
-
-                context.EquipmentIncidents.Add(equipmentIncident);
-
-                // Atualiza a lista EquipmentUsed do incidente com o ID do equipamento
-                if (incident.EquipmentUsed == null)
-                {
-                    incident.EquipmentUsed = new List<EquipmentType>();
-                }
-
-                // Adiciona o ID do equipamento à lista EquipmentUsed
-                incident.EquipmentUsed.Add(equipment.Type);
-
-                context.SaveChanges();
-                Console.WriteLine("Equipamento associado ao incidente com sucesso");
-            }
-        }
-        #endregion
-
-        #region Associate Equipment to Vehicle
-        public void AssignEquipmentToVehicle(Vehicle vehicle, Equipment equipment, int quantity)
-        {
-            using (var context = new EmergenciesDBContext())
-            {
-                var vehicleEquipment = new VehicleEquipment
-                {
-                    Vehicle = vehicle,
-                    Equipment = equipment,
-                };
-
-                vehicle.VehicleEquipments.Add(vehicleEquipment);
-                equipment.VehicleEquipments.Add(vehicleEquipment);
-
-                context.SaveChanges();
-            }
-        }
-        #endregion
-
-        #region Remove Equipment from Incident
-        public void RemoveEquipmentFromIncident(int equipmentId, int incidentId)
-        {
-            using (var context = new EmergenciesDBContext())
-            {
-                var association = context.EquipmentIncidents
-                    .FirstOrDefault(ei => ei.EquipmentId == equipmentId && ei.IncidentId == incidentId);
-
-                if (association != null)
-                {
-                    context.EquipmentIncidents.Remove(association);
-                    context.SaveChanges();
-                    Console.WriteLine("Associação de equipamento removida do incidente com sucesso");
-                }
-                else
-                {
-                    throw new KeyNotFoundException($"Associação entre equipamento {equipmentId} e incidente {incidentId} não encontrada");
-                }
-            }
         }
         #endregion
 
         #region Update Equipment
         public void UpdateEquipment(int id, Dictionary<string, object> updates)
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                var equipmentToUpdate = context.Equipments.FirstOrDefault(e => e.Id == id);
-                if (equipmentToUpdate != null)
-                {
-                    foreach (var update in updates)
-                    {
-                        switch (update.Key.ToLower())
-                        {
-                            case "name":
-                                equipmentToUpdate.Name = update.Value as string;
-                                break;
-                            case "type":
-                                equipmentToUpdate.Type = (EquipmentType)update.Value;
-                                break;
-                            case "quantityavailable":
-                                equipmentToUpdate.QuantityAvailable = Convert.ToInt32(update.Value);
-                                break;
-                            case "status":
-                                equipmentToUpdate.Status = (EquipmentStatus)update.Value;
-                                break;
-                            default:
-                                Console.WriteLine($"Atributo desconhecido: {update.Key}");
-                                break;
-                        }
-                    }
-
-                    context.SaveChanges();
-                    Console.WriteLine("Equipamento atualizado com sucesso");
-                }
-                else
-                {
-                    throw new KeyNotFoundException($"Equipamento com ID {id} não encontrado");
-                }
-            }
         }
         #endregion
 
         #region Delete Equipment
         public void DeleteEquipment(int id)
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                var equipment = context.Equipments.FirstOrDefault(e => e.Id == id);
-                if (equipment != null)
-                {
-                    context.Equipments.Remove(equipment);
-                    context.SaveChanges();
-                    Console.WriteLine("Equipamento eliminado com sucesso");
-                }
-                else
-                {
-                    throw new KeyNotFoundException($"Equipamento com ID {id} não encontrado");
-                }
-            }
+            // Remover as relações com veículos, Remover as relações com incidentes
+        }
+        #endregion
+
+        #region Associate Equipment with Incident
+        public void AssociateEquipmentWithIncident(int equipmentId, int incidentId)
+        {
+            // Verificar se o equipamento existe, Verificar se o incidente existe, Verificar se a associação já existe
+            // Criar nova associação, Atualizar a quantidade disponível do equipamento
+        }
+
+        #endregion
+
+        #region Remove Equipment from Incident
+        public void RemoveEquipmentFromIncident(int equipmentId, int incidentId)
+        {
+            // Verificar se o equipamento existe, Verificar se o incidente existe, Verificar se a associação existe
+            // Remover a associação, Repor a quantidade disponível do equipamento
+        }
+
+        #endregion
+
+        #region Associate Equipment to Vehicle
+        public void AssignEquipmentToVehicle(int vehicleId, int equipmentId, int quantity)
+        {
+            // Verificar se o veículo existe, Verificar se o equipamento existe, Verificar se há quantidade suficiente disponível
+            // Verificar se o equipamento já está associado ao veículo, Criar a nova associação, Adicionar a associação e atualizar a quantidade disponível
+        }
+
+        #endregion
+
+        #region Remove Equipment from Vehicle
+        public void RemoveEquipmentFromVehicle(int vehicleId, int equipmentId)
+        {
+            // Verificar se o veículo existe, Verificar se o equipamento existe, Verificar se a associação existe, Repor a quantidade disponível do equipamento
         }
         #endregion
 
         #region List All Equipments
         public List<Equipment> ListAllEquipments()
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                return context.Equipments.ToList(); // Retorna todos os equipamentos
-            }
+            return context.Equipments.ToList();
         }
         #endregion
 
         #region List Equipments by Status
         public List<Equipment> ListEquipmentsByStatus(EquipmentStatus status)
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                return context.Equipments
-                              .Where(e => e.Status == status)
-                              .ToList();
-            }
+            return context.Equipments
+                          .Where(e => e.Status == status)
+                          .ToList();
         }
         #endregion
 
         #region List Equipments by Incident
         public List<Equipment> GetEquipmentsByIncident(int incidentId)
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                var equipmentIds = context.EquipmentIncidents
-                                           .Where(ei => ei.IncidentId == incidentId)
-                                           .Select(ei => ei.EquipmentId)
-                                           .ToList();
+            var equipmentIds = context.EquipmentIncidents
+                                       .Where(ei => ei.IncidentId == incidentId)
+                                       .Select(ei => ei.EquipmentId)
+                                       .ToList();
 
-                return context.Equipments
-                              .Where(e => equipmentIds.Contains(e.Id))
-                              .ToList();
-            }
+            return context.Equipments
+                          .Where(e => equipmentIds.Contains(e.Id))
+                          .ToList();
         }
         #endregion
 
         #region List Equipments by Vehicle
         public void ListEquipmentsForVehicle(int vehicleId)
         {
-            using (var context = new EmergenciesDBContext())
-            {
-                var vehicle = context.Vehicles
-                                  .Include(v => v.VehicleEquipments)
-                                  .ThenInclude(ve => ve.Equipment)
-                                  .FirstOrDefault(v => v.Id == vehicleId);
+            var vehicle = context.Vehicles
+                              .Include(v => v.VehicleEquipments)
+                              .ThenInclude(ve => ve.Equipment)
+                              .FirstOrDefault(v => v.Id == vehicleId);
 
-                if (vehicle != null)
+            if (vehicle != null)
+            {
+                Console.WriteLine($"Equipamentos para o veículo {vehicle.VehicleRegist}:");
+                foreach (var ve in vehicle.VehicleEquipments)
                 {
-                    Console.WriteLine($"Equipamentos para o veículo {vehicle.VehicleRegist}:");
-                    foreach (var ve in vehicle.VehicleEquipments)
-                    {
-                        Console.WriteLine($"{ve.Equipment.Name}");
-                    }
+                    Console.WriteLine($"{ve.Equipment.Name}");
                 }
             }
         }
