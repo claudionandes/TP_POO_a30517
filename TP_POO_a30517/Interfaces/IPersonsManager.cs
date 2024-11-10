@@ -23,6 +23,7 @@ namespace TP_POO_a30517.Interfaces
         void AddPerson(Person person);
         void UpdatePerson(int id, Dictionary<string, object> updates);
         public void AssociatePersonToTeam(int personId, int teamId);
+        public void DissociatePersonFromTeam(int personId, int teamId);
         void DeletePerson(int id);
         void PersonsByStatus(PersonStatus status);
         public List<Person> GetAllPersons();
