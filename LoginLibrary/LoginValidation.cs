@@ -1,4 +1,13 @@
-﻿namespace LoginLibrary
+﻿
+//-----------------------------------------------------------------
+//    <copyright file="LoginValidation.cs" company="IPCA">
+//     Copyright IPCA-EST. All rights reserved.
+//    </copyright>
+//    <date></date>
+//    <author>Cláudio Fernandes</author>
+//-----------------------------------------------------------------
+
+namespace LoginLibrary
 {
     public class User
     {

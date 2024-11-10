@@ -1,4 +1,13 @@
-﻿using System;
+﻿
+//-----------------------------------------------------------------
+//    <copyright file="DataValidation.cs" company="IPCA">
+//     Copyright IPCA-EST. All rights reserved.
+//    </copyright>
+//    <date></date>
+//    <author>Cláudio Fernandes</author>
+//-----------------------------------------------------------------
+
+using System;
 using System.Text.RegularExpressions;
 
 namespace DataValidationLibrary
