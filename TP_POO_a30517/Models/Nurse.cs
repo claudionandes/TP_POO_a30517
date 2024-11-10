@@ -1,6 +1,6 @@
 ﻿
 //-----------------------------------------------------------------
-//    <copyright file="Enfermeiro.cs" company="IPCA">
+//    <copyright file="Nurse.cs" company="IPCA">
 //     Copyright IPCA-EST. All rights reserved.
 //    </copyright>
 //    <date>30-10-2024</date>

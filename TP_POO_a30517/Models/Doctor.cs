@@ -1,6 +1,6 @@
 ﻿
 //-----------------------------------------------------------------
-//    <copyright file="Medico.cs" company="IPCA">
+//    <copyright file="Doctor.cs" company="IPCA">
 //     Copyright IPCA-EST. All rights reserved.
 //    </copyright>
 //    <date>30-10-2024</date>
