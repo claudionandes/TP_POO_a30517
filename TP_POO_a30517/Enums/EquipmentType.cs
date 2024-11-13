@@ -1,5 +1,4 @@
-﻿
-//-----------------------------------------------------------------
+﻿//-----------------------------------------------------------------
 //    <copyright file="EquipmentType.cs" company="IPCA">
 //     Copyright IPCA-EST. All rights reserved.
 //    </copyright>
