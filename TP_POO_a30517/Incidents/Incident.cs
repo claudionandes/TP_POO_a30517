@@ -31,7 +31,6 @@ namespace TP_POO_a30517.Incidents
         private IncidentStatus status;
         private List<EquipmentType> equipmentUsed;
         private TeamType teamType;
-
         #endregion
 
         #region Public Properties        

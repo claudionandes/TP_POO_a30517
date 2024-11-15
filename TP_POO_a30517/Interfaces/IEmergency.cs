@@ -11,6 +11,9 @@
 //-----------------------------------------------------------------
 
 
+using TP_POO_a30517.Enums;
+using TP_POO_a30517.Vehicles;
+
 namespace TP_POO_a30517.Interfaces
 {
     /// <summary>
