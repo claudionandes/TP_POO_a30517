@@ -397,3 +397,20 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/TP_POO_a30517/Data/DatabaseConnection.cs
+/TP_POO_a30517/Data/Factory.cs
+/TP_POO_a30517/Migrations/20241103153057_InitialCreateTables.cs
+/TP_POO_a30517/Migrations/20241103175313_AddTeamMemberRelationships.cs
+/TP_POO_a30517/Migrations/20241103181527_AddTeamIncident.cs
+/TP_POO_a30517/Migrations/20241103183359_CreateTeamMembersTable.cs
+/TP_POO_a30517/Migrations/20241103201423_CreateEquipmentIncidentTable.cs
+/TP_POO_a30517/Migrations/20241103211007_CreateVehicleIncidentTable.cs
+/TP_POO_a30517/Migrations/20241106212103_AddVehicleEquipmentRelation.cs
+/TP_POO_a30517/Migrations/20241110113133_AddQuantityToVehicleEquipment.cs
+/TP_POO_a30517/Migrations/20241123135704_AddUsersTable.cs
+/TP_POO_a30517/Migrations/20241127234005_CreateIncidentHierarchy.cs
+/TP_POO_a30517/Migrations/20241127235004_CreateIncidentHierarchyagain.cs
+/TP_POO_a30517/Migrations/20241128000641_UpdateIncidentRelationships.cs
+/TP_POO_a30517/Migrations/20241128001532_InitialCreate.cs
+/TP_POO_a30517/Migrations/20241212000748_RecreateUsersTable.cs
+/TP_POO_a30517/Migrations/EmergenciesDBContextModelSnapshot.cs
