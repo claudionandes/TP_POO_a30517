@@ -98,6 +98,7 @@ namespace TP_POO_a30517.Models
         }
 
         public ICollection<TeamMember> TeamMemberships { get; set; }
+
         #endregion
 
         #region Constructors                                
@@ -182,7 +183,28 @@ namespace TP_POO_a30517.Models
                    $"Equipa: {TeamType}\n" +
                    $"Estado: {Status}";
         }
+
+        /// <summary>
+        /// Gets a string representation of the team memberships associated with the person.
+        /// If there are no memberships, it returns a default message indicating that there are no teams.
+        /// Otherwise, it returns a comma-separated list of Team IDs representing the teams the person is a member of.
+        /// </summary>
+        /// <value>
+        /// A string that displays the team IDs or a message indicating no team memberships.
+        /// </value>
+        public string TeamMembershipsDisplay
+        {
+            get
+            {
+                if (TeamMemberships == null || !TeamMemberships.Any())
+                {
+                    return "Sem equipa";
+                }
+
+                return string.Join(", ", TeamMemberships.Select(tm => tm.TeamId));
+            }
+        }
         #endregion
-        
+
     }
 }

@@ -20,6 +20,7 @@ namespace TP_POO_a30517.Interfaces
     /// </summary>
     public interface IVehiclesManager
     {
+        #region Methods
         void CreateVehicle(Vehicle vehicle);
         void UpdateVehicle(string vehicleRegist, Dictionary<string, object> updates);
         void DeleteVehicle(string vehicleRegist);
@@ -27,5 +28,6 @@ namespace TP_POO_a30517.Interfaces
         public void RemoveVehicleFromIncident(int vehicleId, int incidentId);
         List<Vehicle> ListVehiclesByType(VehiclesType type);
         List<Vehicle> ListAllVehicles();
+        #endregion
     }
 }

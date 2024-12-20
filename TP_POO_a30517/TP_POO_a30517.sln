@@ -12,8 +12,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "..\Utils\Utils.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataValidationLibrary", "..\DataValidationLibrary\DataValidationLibrary.csproj", "{BDC2825E-7323-4234-A2C0-37C184B118A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginLibrary", "..\LoginLibrary\LoginLibrary.csproj", "{CBC3724A-5523-4A34-87C5-71378CA92E8B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,10 +30,6 @@ Global
 		{BDC2825E-7323-4234-A2C0-37C184B118A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDC2825E-7323-4234-A2C0-37C184B118A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDC2825E-7323-4234-A2C0-37C184B118A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBC3724A-5523-4A34-87C5-71378CA92E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBC3724A-5523-4A34-87C5-71378CA92E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBC3724A-5523-4A34-87C5-71378CA92E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBC3724A-5523-4A34-87C5-71378CA92E8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

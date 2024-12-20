@@ -17,9 +17,8 @@ namespace TP_POO_a30517.Enums
     /// </summary>
     public enum IncidentType
     {
-        Incêndio,
-        Catástrofe,
         Emergência_Médica,
-        Outra_Emergência
+        Incêndio,
+        Catástrofe
     }
 }

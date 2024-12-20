@@ -20,14 +20,17 @@ namespace TP_POO_a30517.Interfaces
     /// </summary>
     public interface ITeamsManager
     {
+        #region Methods
         public void AddTeam(EmergencyTeamBase team);
-        public void UpdateTeam(int teamId, Dictionary<string, object> updates);
+        public void UpdateTeam(EmergencyTeamBase updatedTeam);
         public void DeleteTeam(int teamId);
         public void AssignTeamToIncident(int incidentId, List<int> teamIds);
         public void RemoveTeamFromIncident(int teamId, int incidentId);
         public List<EmergencyTeamBase> GetAllTeams();
-        public List<EmergencyTeamBase> GetTeamsByType(TeamType teamType);
+        public List<FireFighters> GetAllFireFighters();
+        public List<INEM> GetAllINEM();
         public List<EmergencyTeamBase> ListTeamsByTypeAndStatus(TeamType teamType, TeamStatus status);
         public List<EmergencyTeamBase> ListTeamsByTypeAndPersonStatus(TeamType teamType, PersonStatus personStatus);
+        #endregion
     }
 }

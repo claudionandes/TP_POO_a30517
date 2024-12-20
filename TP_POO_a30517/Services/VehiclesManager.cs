@@ -66,6 +66,37 @@ namespace TP_POO_a30517.Services
         /// <param name="updates">A dictionary containing properties to update.</param>
         public void UpdateVehicle(string vehicleRegist, Dictionary<string, object> updates)
         {
+            var vehicle = context.Vehicles.FirstOrDefault(v => v.VehicleRegist == vehicleRegist);
+
+            if (vehicle != null)
+            {
+                foreach (var update in updates)
+                {
+                    // Obter a propriedade do veículo base
+                    var propertyInfo = typeof(Vehicle).GetProperty(update.Key);
+
+                    if (propertyInfo != null && propertyInfo.CanWrite)
+                    {
+                        propertyInfo.SetValue(vehicle, update.Value);
+                    }
+                    else
+                    {
+                        var vehicleType = vehicle.GetType();
+                        var subclassProperty = vehicleType.GetProperty(update.Key);
+
+                        if (subclassProperty != null && subclassProperty.CanWrite)
+                        {
+                            subclassProperty.SetValue(vehicle, update.Value);
+                        }
+                    }
+                }
+                context.SaveChanges();
+                Console.WriteLine("Veículo atualizado com sucesso");
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Veículo com a matrícula {vehicleRegist} não encontrado");
+            }
         }
 
         #endregion
@@ -77,9 +108,33 @@ namespace TP_POO_a30517.Services
         /// <param name="vehicleRegist">The registration number of the vehicle to delete.</param>
         public void DeleteVehicle(string vehicleRegist)
         {
-            using (var context = new EmergenciesDBContext())
+            // Procurar o veículo pela matrícula
+            var vehicleDelete = context.Vehicles.FirstOrDefault(v => v.VehicleRegist == vehicleRegist);
+
+            if (vehicleDelete != null)
             {
-                
+                // Remover relações com incidentes
+                var relatedIncidents = context.VehicleIncidents.Where(vi => vi.VehicleId == vehicleDelete.Id).ToList();
+                if (relatedIncidents.Any())
+                {
+                    context.VehicleIncidents.RemoveRange(relatedIncidents);
+                }
+
+                // Remover relações com equipamentos
+                var relatedEquipments = context.VehicleEquipments.Where(ve => ve.VehicleId == vehicleDelete.Id).ToList();
+                if (relatedEquipments.Any())
+                {
+                    context.VehicleEquipments.RemoveRange(relatedEquipments);
+                }
+
+                // Remover o veículo
+                context.Vehicles.Remove(vehicleDelete);
+                context.SaveChanges();
+                Console.WriteLine("Veículo eliminado com sucesso.");
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Veículo com a matrícula {vehicleRegist} não encontrado.");
             }
         }
 
@@ -93,7 +148,41 @@ namespace TP_POO_a30517.Services
         /// <param name="incidentId">The ID of the incident.</param>
         public void AssignVehicleToIncident(int vehicleId, int incidentId)
         {
-            // Verificar se o veículo existe, Verificar se o incidente existe, Verificar se a associação já existe, Criar nova associação
+            // Verificar se o veículo existe
+            var vehicle = context.Vehicles.FirstOrDefault(v => v.Id == vehicleId);
+            if (vehicle == null)
+            {
+                throw new KeyNotFoundException($"Veículo com ID {vehicleId} não encontrado");
+            }
+
+            // Verificar se o incidente existe
+            var incident = context.Incidents.FirstOrDefault(i => i.Id == incidentId);
+            if (incident == null)
+            {
+                throw new KeyNotFoundException($"Incidente com ID {incidentId} não encontrado");
+            }
+
+            // Verificar se a associação já existe
+            var existingRelation = context.Set<VehicleIncident>()
+                .FirstOrDefault(vi => vi.VehicleId == vehicleId && vi.IncidentId == incidentId);
+
+            if (existingRelation != null)
+            {
+                Console.WriteLine($"O veículo ID {vehicleId} já está associado ao incidente ID {incidentId}");
+                return;
+            }
+
+            // Criar nova associação
+            var vehicleIncident = new VehicleIncident
+            {
+                VehicleId = vehicleId,
+                IncidentId = incidentId
+            };
+
+            context.Set<VehicleIncident>().Add(vehicleIncident);
+            context.SaveChanges();
+
+            Console.WriteLine($"Veículo ID {vehicleId} associado ao incidente ID {incidentId} com sucesso");
         }
 
         #endregion
@@ -106,7 +195,34 @@ namespace TP_POO_a30517.Services
         /// <param name="incidentId">The ID of the incident.</param>
         public void RemoveVehicleFromIncident(int vehicleId, int incidentId)
         {
-            // Verificar se o veículo existe, Verificar se o incidente existe
+            // Verificar se o veículo existe
+            var vehicle = context.Vehicles.FirstOrDefault(v => v.Id == vehicleId);
+            if (vehicle == null)
+            {
+                throw new KeyNotFoundException($"Veículo com ID {vehicleId} não encontrado");
+            }
+
+            // Verificar se o incidente existe
+            var incident = context.Incidents.FirstOrDefault(i => i.Id == incidentId);
+            if (incident == null)
+            {
+                throw new KeyNotFoundException($"Incidente com ID {incidentId} não encontrado");
+            }
+
+            // Procurar a associação existente
+            var existingRelation = context.Set<VehicleIncident>()
+                .FirstOrDefault(vi => vi.VehicleId == vehicleId && vi.IncidentId == incidentId);
+
+            if (existingRelation == null)
+            {
+                Console.WriteLine($"O veículo ID {vehicleId} não está associado ao incidente ID {incidentId}");
+                return;
+            }
+
+            context.Set<VehicleIncident>().Remove(existingRelation);
+            context.SaveChanges();
+
+            Console.WriteLine($"Associação entre veículo ID {vehicleId} e incidente ID {incidentId} removida com sucesso");
         }
         #endregion
 

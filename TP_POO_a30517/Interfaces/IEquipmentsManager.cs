@@ -20,6 +20,7 @@ namespace TP_POO_a30517.Interfaces
     /// </summary>
     public interface IEquipmentsManager
     {
+        #region Methods
         void AddEquipment(Equipment equipment);
         void UpdateEquipment(int id, Dictionary<string, object> updates);
         void DeleteEquipment(int id);
@@ -31,6 +32,6 @@ namespace TP_POO_a30517.Interfaces
         public List<Equipment> ListEquipmentsByStatus(EquipmentStatus status);
         public List<Equipment> GetEquipmentsByIncident(int incidentId);
         public void ListEquipmentsForVehicle(int vehicleId);
-
+        #endregion
     }
 }

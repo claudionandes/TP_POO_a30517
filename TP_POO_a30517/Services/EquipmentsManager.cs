@@ -60,6 +60,38 @@ namespace TP_POO_a30517.Services
         /// <param name="updates">A dictionary of properties to update.</param>
         public void UpdateEquipment(int id, Dictionary<string, object> updates)
         {
+            var equipmentToUpdate = context.Equipments.FirstOrDefault(e => e.Id == id);
+            if (equipmentToUpdate != null)
+            {
+                foreach (var update in updates)
+                {
+                    switch (update.Key.ToLower())
+                    {
+                        case "name":
+                            equipmentToUpdate.Name = update.Value as string;
+                            break;
+                        case "type":
+                            equipmentToUpdate.Type = (EquipmentType)update.Value;
+                            break;
+                        case "quantityavailable":
+                            equipmentToUpdate.QuantityAvailable = Convert.ToInt32(update.Value);
+                            break;
+                        case "status":
+                            equipmentToUpdate.Status = (EquipmentStatus)update.Value;
+                            break;
+                        default:
+                            Console.WriteLine($"Atributo desconhecido: {update.Key}");
+                            break;
+                    }
+                }
+
+                context.SaveChanges();
+                Console.WriteLine("Equipamento atualizado com sucesso");
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Equipamento com ID {id} não encontrado");
+            }
         }
         #endregion
 
@@ -70,7 +102,33 @@ namespace TP_POO_a30517.Services
         /// <param name="id">The ID of the equipment to delete.</param>
         public void DeleteEquipment(int id)
         {
-            // Remover as relações com veículos, Remover as relações com incidentes
+            var equipment = context.Equipments.FirstOrDefault(e => e.Id == id);
+
+            if (equipment != null)
+            {
+                // Remover as relações com veículos
+                var vehicleEquipments = context.Set<VehicleEquipment>().Where(ve => ve.EquipmentId == id).ToList();
+                if (vehicleEquipments.Any())
+                {
+                    context.Set<VehicleEquipment>().RemoveRange(vehicleEquipments);
+                }
+
+                // Remover as relações com incidentes
+                var equipmentIncidents = context.Set<EquipmentIncident>().Where(ei => ei.EquipmentId == id).ToList();
+                if (equipmentIncidents.Any())
+                {
+                    context.Set<EquipmentIncident>().RemoveRange(equipmentIncidents);
+                }
+
+                context.Equipments.Remove(equipment);
+                context.SaveChanges();
+
+                Console.WriteLine("Equipamento eliminado com sucesso");
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Equipamento com ID {id} não encontrado");
+            }
         }
         #endregion
 
@@ -82,8 +140,52 @@ namespace TP_POO_a30517.Services
         /// <param name="incidentId">The ID of the incident.</param>
         public void AssociateEquipmentWithIncident(int equipmentId, int incidentId)
         {
-            // Verificar se o equipamento existe, Verificar se o incidente existe, Verificar se a associação já existe
-            // Criar nova associação, Atualizar a quantidade disponível do equipamento
+            // Verificar se o equipamento existe
+            var equipment = context.Equipments.FirstOrDefault(e => e.Id == equipmentId);
+            if (equipment == null)
+            {
+                throw new KeyNotFoundException($"Equipamento com ID {equipmentId} não encontrado");
+            }
+
+            // Verificar se o incidente existe
+            var incident = context.Incidents.FirstOrDefault(i => i.Id == incidentId);
+            if (incident == null)
+            {
+                throw new KeyNotFoundException($"Incidente com ID {incidentId} não encontrado");
+            }
+
+            // Verificar se a associação já existe
+            var existingRelation = context.EquipmentIncidents
+                .FirstOrDefault(ei => ei.EquipmentId == equipmentId && ei.IncidentId == incidentId);
+
+            if (existingRelation != null)
+            {
+                Console.WriteLine($"O equipamento ID {equipmentId} já está associado ao incidente ID {incidentId}");
+                return;
+            }
+
+            // Criar nova associação
+            var equipmentIncident = new EquipmentIncident
+            {
+                EquipmentId = equipmentId,
+                IncidentId = incidentId
+            };
+
+            context.EquipmentIncidents.Add(equipmentIncident);
+
+            // Atualizar a quantidade disponível do equipamento
+            if (equipment.QuantityAvailable > 0)
+            {
+                equipment.QuantityAvailable -= 1;
+            }
+            else
+            {
+                Console.WriteLine($"Equipamento ID {equipmentId} está indisponível");
+                return;
+            }
+
+            context.SaveChanges();
+            Console.WriteLine($"Equipamento ID {equipmentId} associado ao incidente ID {incidentId} com sucesso");
         }
 
         #endregion
@@ -96,8 +198,38 @@ namespace TP_POO_a30517.Services
         /// <param name="incidentId">The ID of the incident.</param>
         public void RemoveEquipmentFromIncident(int equipmentId, int incidentId)
         {
-            // Verificar se o equipamento existe, Verificar se o incidente existe, Verificar se a associação existe
-            // Remover a associação, Repor a quantidade disponível do equipamento
+            // Verificar se o equipamento existe
+            var equipment = context.Equipments.FirstOrDefault(e => e.Id == equipmentId);
+            if (equipment == null)
+            {
+                throw new KeyNotFoundException($"Equipamento com ID {equipmentId} não encontrado");
+            }
+
+            // Verificar se o incidente existe
+            var incident = context.Incidents.FirstOrDefault(i => i.Id == incidentId);
+            if (incident == null)
+            {
+                throw new KeyNotFoundException($"Incidente com ID {incidentId} não encontrado");
+            }
+
+            // Verificar se a associação existe
+            var equipmentIncident = context.EquipmentIncidents
+                .FirstOrDefault(ei => ei.EquipmentId == equipmentId && ei.IncidentId == incidentId);
+
+            if (equipmentIncident == null)
+            {
+                Console.WriteLine($"O equipamento ID {equipmentId} não está associado ao incidente ID {incidentId}");
+                return;
+            }
+
+            // Remover a associação
+            context.EquipmentIncidents.Remove(equipmentIncident);
+
+            // Repor a quantidade disponível do equipamento
+            equipment.QuantityAvailable += 1;
+
+            context.SaveChanges();
+            Console.WriteLine($"Equipamento ID {equipmentId} desassociado do incidente ID {incidentId} com sucesso");
         }
 
         #endregion
@@ -111,8 +243,49 @@ namespace TP_POO_a30517.Services
         /// <param name="quantity">The quantity to assign.</param>
         public void AssignEquipmentToVehicle(int vehicleId, int equipmentId, int quantity)
         {
-            // Verificar se o veículo existe, Verificar se o equipamento existe, Verificar se há quantidade suficiente disponível
-            // Verificar se o equipamento já está associado ao veículo, Criar a nova associação, Adicionar a associação e atualizar a quantidade disponível
+            // Verificar se o veículo existe
+            var vehicle = context.Vehicles.FirstOrDefault(v => v.Id == vehicleId);
+            if (vehicle == null)
+            {
+                throw new KeyNotFoundException($"Veículo com ID {vehicleId} não encontrado");
+            }
+
+            // Verificar se o equipamento existe
+            var equipment = context.Equipments.FirstOrDefault(e => e.Id == equipmentId);
+            if (equipment == null)
+            {
+                throw new KeyNotFoundException($"Equipamento com ID {equipmentId} não encontrado");
+            }
+
+            // Verificar se há quantidade suficiente disponível
+            if (equipment.QuantityAvailable < quantity)
+            {
+                throw new InvalidOperationException($"Quantidade insuficiente de {equipment.Name}. Disponível: {equipment.QuantityAvailable}, Requerido: {quantity}");
+            }
+
+            // Verificar se o equipamento já está associado ao veículo
+            var existingAssociation = context.VehicleEquipments
+                .FirstOrDefault(ve => ve.VehicleId == vehicleId && ve.EquipmentId == equipmentId);
+
+            if (existingAssociation != null)
+            {
+                throw new InvalidOperationException($"O equipamento ID {equipmentId} já está associado ao veículo ID {vehicleId}");
+            }
+
+            // Criar a nova associação
+            var vehicleEquipment = new VehicleEquipment
+            {
+                VehicleId = vehicleId,
+                EquipmentId = equipmentId,
+                Quantity = quantity
+            };
+
+            // Adicionar a associação e atualizar a quantidade disponível
+            context.VehicleEquipments.Add(vehicleEquipment);
+            equipment.QuantityAvailable -= quantity;
+
+            context.SaveChanges();
+            Console.WriteLine($"Equipamento ID {equipmentId} associado ao veículo ID {vehicleId} com sucesso.");
         }
 
         #endregion
@@ -125,7 +298,37 @@ namespace TP_POO_a30517.Services
         /// <param name="equipmentId">The ID of the equipment.</param>
         public void RemoveEquipmentFromVehicle(int vehicleId, int equipmentId)
         {
-            // Verificar se o veículo existe, Verificar se o equipamento existe, Verificar se a associação existe, Repor a quantidade disponível do equipamento
+            // Verificar se o veículo existe
+            var vehicle = context.Vehicles.FirstOrDefault(v => v.Id == vehicleId);
+            if (vehicle == null)
+            {
+                throw new KeyNotFoundException($"Veículo com ID {vehicleId} não encontrado");
+            }
+
+            // Verificar se o equipamento existe
+            var equipment = context.Equipments.FirstOrDefault(e => e.Id == equipmentId);
+            if (equipment == null)
+            {
+                throw new KeyNotFoundException($"Equipamento com ID {equipmentId} não encontrado");
+            }
+
+            // Verificar se a associação existe
+            var vehicleEquipment = context.VehicleEquipments
+                .FirstOrDefault(ve => ve.VehicleId == vehicleId && ve.EquipmentId == equipmentId);
+
+            if (vehicleEquipment == null)
+            {
+                throw new InvalidOperationException($"A associação entre o equipamento ID {equipmentId} e o veículo ID {vehicleId} não foi encontrada");
+            }
+
+            // Repor a quantidade disponível do equipamento
+            equipment.QuantityAvailable += vehicleEquipment.Quantity;
+
+            // Remover a associação
+            context.VehicleEquipments.Remove(vehicleEquipment);
+
+            context.SaveChanges();
+            Console.WriteLine($"Associação do equipamento ID {equipmentId} com o veículo ID {vehicleId} removida com sucesso");
         }
         #endregion
 

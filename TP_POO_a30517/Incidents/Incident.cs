@@ -19,7 +19,7 @@ namespace TP_POO_a30517.Incidents
     /// <summary>
     /// Represents an abstract base class for all types of incidents.
     /// </summary>
-    public abstract class Incident : IEmergency
+    public abstract class Incident
     {
         #region Private Properties        
         private int id;
@@ -134,23 +134,6 @@ namespace TP_POO_a30517.Incidents
                    $"Equipa de Emergência: {TeamType}";
         }
 
-        /// <summary>
-        /// Starts the emergency response for this incident
-        /// </summary>
-        public void StartEmergency()
-        {
-            Status = IncidentStatus.Em_Progresso;
-            Console.WriteLine("Emergência ID {Id} iniciada");
-        }
-
-        /// <summary>
-        /// Concludes the emergency response for this incident
-        /// </summary>
-        public void ConcludeEmergency()
-        {
-            Status = IncidentStatus.Terminado;
-            Console.WriteLine("Emergência ID {Id} terminada");
-        }
         #endregion
 
         #region Private Methods

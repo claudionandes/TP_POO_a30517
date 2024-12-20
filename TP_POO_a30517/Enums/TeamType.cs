@@ -19,7 +19,6 @@ namespace TP_POO_a30517.Enums
     public enum TeamType
     {
         INEM,
-        Bombeiros,
-        Outro
+        Bombeiros
     }
 }
